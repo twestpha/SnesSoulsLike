@@ -1,0 +1,44 @@
+Game TODO
+
+- maps
+    - interior/boss room
+
+- graphics
+    - bonfire equivalent
+    - treasure chest/item pickup
+
+- spawn hit fx between characters when hits happen
+
+- 2 enemies
+    - skeleton
+    - wandering wight
+- boss
+    - 3 headed skelly
+- enemy animations
+    - attack A
+    - attack B
+    - idle
+    - walk
+    - damaged
+    - dying
+
+- player animations
+    - heavy attack
+    - damaged
+    - use item
+    - dying
+
+- reuse animation in 8x8 blocks, python py image code? See how much we can reduce it?
+- or just cut down on anims strategically by hand?
+- but first, render everything and save a copy
+
+- hud
+    - equipped item + use
+    - boss/enemy health bar
+    - dialogue text for 'does not open from this side'
+    - dialogue for location text
+    - game over
+
+- metagame
+    - bonfire + "saving"
+    - moving locations
