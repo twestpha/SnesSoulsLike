@@ -35,6 +35,9 @@ class DoorTeleporterComponent : MonoBehaviour {
         player.transform.position = teleportTarget.position;
         player.transform.rotation = teleportTarget.rotation;
 
+        // Unpause
+        player.SetPaused(false);
+
         // Fade in
         fadeTimer.Start();
         while(!fadeTimer.Finished()){
@@ -46,8 +49,5 @@ class DoorTeleporterComponent : MonoBehaviour {
         }
 
         RenderSettings.ambientLight = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-
-        // Unpause
-        player.SetPaused(false);
     }
 }

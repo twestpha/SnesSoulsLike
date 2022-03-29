@@ -365,6 +365,7 @@ class PlayerComponent : MonoBehaviour {
         // Fixes up camera jitter when un pausing
         if(!playerPaused){
             lookAngle = transform.rotation.eulerAngles.y;
+            skyPlaneMeshRenderer.material.SetTextureOffset("_MainTex", new Vector2(transform.rotation.eulerAngles.y / 360.0f, 0.0f));
         }
     }
 }
