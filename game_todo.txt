@@ -1,44 +1,54 @@
-Game TODO
+// #################################################################################################
+// Done
+// #################################################################################################
 
-- maps
-    - interior/boss room
+// #################################################################################################
+// Game TODO
+// #################################################################################################
+[x] maps
+    [x] interior/boss room
 
-- graphics
-    - bonfire equivalent
-    - treasure chest/item pickup
+[x] graphics
+    [x] bonfire equivalent
+    [x] treasure chest/item pickup
 
-- spawn hit fx between characters when hits happen
+[x] spawn hit fx between characters when hits happen
+    - blood? Or generic flash? What's tonally right...?
+    - maybe really shiny black material, more contrast
 
-- 2 enemies
-    - skeleton
-    - wandering wight
-- boss
-    - 3 headed skelly
-- enemy animations
-    - attack A
-    - attack B
-    - idle
-    - walk
-    - damaged
-    - dying
+[x] 2 enemies
+    [x] skeleton
+    [x] wandering wight
+[x] boss
+    [x] 3 headed skelly
+[x] enemy animations
+    [x] attack A
+    [x] attack B
+    [x] idle
+    [x] walk
+    [x] damaged
+    [x] dying
 
-- player animations
-    - heavy attack
-    - damaged
-    - use item
-    - dying
+[x] player animations
+    [x] heavy attack
+    [x] damaged
+    [x] use item
+    [x] Use "bonfire"
+    [x] dying
 
-- reuse animation in 8x8 blocks, python py image code? See how much we can reduce it?
-- or just cut down on anims strategically by hand?
-- but first, render everything and save a copy
+[x] reuse animation in 8x8 blocks, python py image code? See how much we can reduce it?
+[x] or just cut down on anims strategically by hand?
+[x] but first, render everything and save a copy
 
-- hud
-    - equipped item + use
-    - boss/enemy health bar
-    - dialogue text for 'does not open from this side'
-    - dialogue for location text
-    - game over
+[x] hud
+    [x] equipped item + use
+    [x] boss/enemy health bar
+    [x] dialogue text for 'does not open from this side'
+    [x] dialogue for location text
+    [x] game over
 
-- metagame
-    - bonfire + "saving"
-    - moving locations
+[x] metagame
+    [x] bonfire + "saving"
+    [x] moving locations
+
+[x] Publish game + assets/concepts + source

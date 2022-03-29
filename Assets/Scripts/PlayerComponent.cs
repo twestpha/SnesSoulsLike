@@ -71,6 +71,8 @@ class PlayerComponent : MonoBehaviour {
     private Camera playerCamera;
     private CharacterController characterController;
 
+    private bool playerPaused;
+
     public enum PlayerState {
         None,
         Ducking,
@@ -126,6 +128,10 @@ class PlayerComponent : MonoBehaviour {
     }
 
     void Update(){
+        if(playerPaused){
+            return;
+        }
+
         // Stamina regen
         currentStamina = Mathf.Min(currentStamina + (staminaRegenRate * Time.deltaTime), maxStamina);
 
@@ -347,5 +353,18 @@ class PlayerComponent : MonoBehaviour {
         playerAnimation.looping = false;
         playerSpriteRotatable.SetAnimationIndex(ROLL_ANIMATION_INDEX);
         playerAnimation.ForceUpdate();
+    }
+
+    public void SetPaused(bool newPaused){
+        playerPaused = newPaused;
+
+        playerAnimation.looping = true;
+        playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+        playerAnimation.ForceUpdate();
+
+        // Fixes up camera jitter when un pausing
+        if(!playerPaused){
+            lookAngle = transform.rotation.eulerAngles.y;
+        }
     }
 }
