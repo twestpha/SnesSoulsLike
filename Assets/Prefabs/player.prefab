@@ -299,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   hitBox: {fileID: 2047953092}
+  hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
 --- !u!1 &107823551366957259
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 30
   hitBox: {fileID: 3520088730609412236}
+  hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
 --- !u!1 &1620243251698088649
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ class HitBoxComponent : MonoBehaviour {
     public float damage;
     public BoxCollider hitBox;
 
+    public GameObject hitEffectsPrefab;
+
     private bool isPlayer;
 
     private bool enableDamage;
@@ -41,9 +43,20 @@ class HitBoxComponent : MonoBehaviour {
 
                 if(enemyComponent){
                     enemyComponent.DealDamage(damage);
+
+                    GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
+                    newHitEffects.transform.position = Vector3.Lerp(transform.parent.position, enemyComponent.transform.position, 0.5f);
                 }
             } else {
                 // Look for player component
+                PlayerComponent playerComponent = other.gameObject.GetComponent<PlayerComponent>();
+
+                if(playerComponent){
+                    // enemyComponent.DealDamage(damage);
+                    //
+                    // GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
+                    // newHitEffects.transform.position = Vector3.Lerp(transform.parent.position, enemyComponent.transform.position, 0.5f);
+                }
             }
         }
     }

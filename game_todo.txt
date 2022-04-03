@@ -1,12 +1,13 @@
 // #################################################################################################
 // Done
 // #################################################################################################
+[/] moving locations
+[/] maps
+    [/] interior/boss room
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
-[x] maps
-    [x] interior/boss room
 
 [x] graphics
     [x] bonfire equivalent
@@ -14,7 +15,7 @@
 
 [x] spawn hit fx between characters when hits happen
     - blood? Or generic flash? What's tonally right...?
-    - maybe really shiny black material, more contrast
+    - maybe really shiny black material, more contrasty
 
 [x] 2 enemies
     [x] skeleton
@@ -41,14 +42,16 @@
 [x] but first, render everything and save a copy
 
 [x] hud
-    [x] equipped item + use
+    [x] use equipped item
     [x] boss/enemy health bar
     [x] dialogue text for 'does not open from this side'
+    [x] dialogue text for 'used bonfire'
+    [x] dialogue text for 'picked up item'
     [x] dialogue for location text
-    [x] game over
+    [x] dialogue for game over/died
 
 [x] metagame
     [x] bonfire + "saving"
-    [x] moving locations
+    [x] Fog setting volumes
 
 [x] Publish game + assets/concepts + source
