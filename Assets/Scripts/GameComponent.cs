@@ -13,11 +13,9 @@ class GameComponent : MonoBehaviour {
 
     [Space(10)]
     public GameObject exteriorPrefab;
-    public Transform exteriorStartingTransform;
 
     [Space(10)]
     public GameObject interiorPrefab;
-    public Transform interiorStartingTransform;
 
     [Space(10)]
     public Transform respawnTransform;

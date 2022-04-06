@@ -4,18 +4,18 @@
 [/] moving locations
 [/] maps
     [/] interior/boss room
+[/] spawn hit fx between characters when hits happen
+    - blood? Or generic flash? What's tonally right...?
+    - maybe really shiny black material, more contrasty
+[/] bonfire equivalent
+[/] bonfire + "saving"
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
 [x] graphics
-    [x] bonfire equivalent
     [x] treasure chest/item pickup
-
-[x] spawn hit fx between characters when hits happen
-    - blood? Or generic flash? What's tonally right...?
-    - maybe really shiny black material, more contrasty
 
 [x] 2 enemies
     [x] skeleton
@@ -34,12 +34,11 @@
     [x] heavy attack
     [x] damaged
     [x] use item
-    [x] Use "bonfire"
     [x] dying
 
 [x] reuse animation in 8x8 blocks, python py image code? See how much we can reduce it?
 [x] or just cut down on anims strategically by hand?
-[x] but first, render everything and save a copy
+[x] but first, render everything and save a copy, and don't do anything if we're feeling lazy
 
 [x] hud
     [x] use equipped item
@@ -51,7 +50,6 @@
     [x] dialogue for game over/died
 
 [x] metagame
-    [x] bonfire + "saving"
     [x] Fog setting volumes
 
 [x] Publish game + assets/concepts + source
