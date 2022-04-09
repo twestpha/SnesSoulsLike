@@ -14,6 +14,7 @@ class PlayerComponent : MonoBehaviour {
     private const int UNDUCK_ANIMATION_INDEX      = 3;
     private const int WALK_ANIMATION_INDEX        = 4;
     private const int LIGHTATTACK_ANIMATION_INDEX = 5;
+    private const int HEAVYATTACK_ANIMATION_INDEX = 6;
 
     [Header("Movement")]
     public float moveSpeed = 1.0f;
@@ -210,7 +211,7 @@ class PlayerComponent : MonoBehaviour {
                     currentStamina -= heavyAttackStaminaCost;
 
                     playerAnimation.looping = false;
-                    playerSpriteRotatable.SetAnimationIndex(LIGHTATTACK_ANIMATION_INDEX);
+                    playerSpriteRotatable.SetAnimationIndex(HEAVYATTACK_ANIMATION_INDEX);
                     playerAnimation.ForceUpdate();
 
                     attackTimer.SetDuration(heavyAttackTime);
