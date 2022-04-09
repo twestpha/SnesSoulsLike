@@ -7,6 +7,7 @@ class GateComponent : MonoBehaviour {
     public MaterialAnimationComponent materialAnimationB;
 
     public Collider blockingCollider;
+    public Collider messageCollider;
 
     void Start(){
         if(GameComponent.gateOpened){
@@ -18,10 +19,13 @@ class GateComponent : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other){
-        if(!GameComponent.gateOpened){
+        PlayerComponent player = other.gameObject.GetComponent<PlayerComponent>();
+
+        if(player != null && !GameComponent.gateOpened){
             GameComponent.gateOpened = true;
 
             blockingCollider.enabled = false;
+            messageCollider.enabled = false;
 
             materialAnimationA.enabled = true;
             materialAnimationB.enabled = true;

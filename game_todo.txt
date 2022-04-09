@@ -9,13 +9,15 @@
     - maybe really shiny black material, more contrasty
 [/] bonfire equivalent
 [/] bonfire + "saving"
+[/] graphics
+    [/] treasure chest
+[/] dialogue text for 'does not open from this side'
+[/] dialogue text for 'picked up item'
+[/] dialogue text for 'used bonfire'
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
-
-[x] graphics
-    [x] treasure chest/item pickup
 
 [x] 2 enemies
     [x] skeleton
@@ -23,10 +25,10 @@
 [x] boss
     [x] 3 headed skelly
 [x] enemy animations
-    [x] attack A
-    [x] attack B
     [x] idle
     [x] walk
+    [x] attack A
+    [x] attack B
     [x] damaged
     [x] dying
 
@@ -43,9 +45,6 @@
 [x] hud
     [x] use equipped item
     [x] boss/enemy health bar
-    [x] dialogue text for 'does not open from this side'
-    [x] dialogue text for 'used bonfire'
-    [x] dialogue text for 'picked up item'
     [x] dialogue for location text
     [x] dialogue for game over/died
 

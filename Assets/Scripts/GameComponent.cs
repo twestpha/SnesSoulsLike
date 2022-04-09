@@ -31,6 +31,9 @@ class GameComponent : MonoBehaviour {
     public bool debug;
 
     void Start(){
+        locationFound = false;
+        gateOpened = false;
+
         // Emulate probable SNES framerate and graphics options by default
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 15;

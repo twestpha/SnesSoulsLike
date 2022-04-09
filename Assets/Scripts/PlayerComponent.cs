@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 class PlayerComponent : MonoBehaviour {
     public static PlayerComponent player;
@@ -65,6 +67,10 @@ class PlayerComponent : MonoBehaviour {
 
     public AnimationCurve rollSpeedCurve;
 
+    [Header("Text and Messages")]
+    public Image messageBackground;
+    public Text messageText;
+
     private float spriteDirection;
     private float spriteDirectionVelocity;
 
@@ -72,6 +78,7 @@ class PlayerComponent : MonoBehaviour {
     private CharacterController characterController;
 
     private bool playerPaused;
+    private bool showingMessage;
 
     public enum PlayerState {
         None,
@@ -367,5 +374,59 @@ class PlayerComponent : MonoBehaviour {
             lookAngle = transform.rotation.eulerAngles.y;
             skyPlaneMeshRenderer.material.SetTextureOffset("_MainTex", new Vector2(transform.rotation.eulerAngles.y / 360.0f, 0.0f));
         }
+    }
+
+    public void ShowMessage(string message){
+        StartCoroutine(ShowMessageCoroutine(message));
+    }
+
+    private IEnumerator ShowMessageCoroutine(string message){
+        if(showingMessage){
+            yield break;
+        }
+
+        showingMessage = true;
+        messageText.text = message;
+
+        // Show text box
+        Timer showTimer = new Timer(0.5f);
+        showTimer.Start();
+
+        messageBackground.enabled = true;
+        messageBackground.transform.localScale = new Vector3(1.0f, 0.0f, 1.0f);
+
+        while(!showTimer.Finished()){
+            float t = Mathf.Round(showTimer.Parameterized() * 4.0f) / 4.0f;
+            messageBackground.transform.localScale = new Vector3(1.0f, t, 1.0f);
+
+            yield return null;
+        }
+
+        messageBackground.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        messageText.enabled = true;
+
+        // Wait
+        Timer waitTimer = new Timer(3.0f);
+        waitTimer.Start();
+
+        while(!waitTimer.Finished()){
+            yield return null;
+        }
+
+        // Hide
+        messageText.enabled = false;
+        showTimer.Start();
+
+        while(!showTimer.Finished()){
+            float t = Mathf.Round(showTimer.Parameterized() * 4.0f) / 4.0f;
+            messageBackground.transform.localScale = new Vector3(1.0f, 1.0f - t, 1.0f);
+
+            yield return null;
+        }
+
+        messageBackground.transform.localScale = new Vector3(1.0f, 0.0f, 1.0f);
+        messageBackground.enabled = true;
+
+        showingMessage = false;
     }
 }

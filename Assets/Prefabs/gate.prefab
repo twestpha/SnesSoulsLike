@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &903633010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903633011}
+  - component: {fileID: 903633013}
+  - component: {fileID: 903633012}
+  m_Layer: 0
+  m_Name: message
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &903633011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903633010}
+  m_LocalRotation: {x: -0, y: -0.71881473, z: 0, w: 0.69520175}
+  m_LocalPosition: {x: 0.04404255, y: 0, z: -0.20489064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4319031055214101708}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 13.411, z: 0}
+--- !u!65 &903633013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903633010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &903633012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903633010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5489fb7aa0f46c4f8ca7ecf627aa93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Open Elsewhere
 --- !u!1 &3901782436330386514
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,12 +318,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4319031055214101704}
-  m_LocalRotation: {x: -0, y: -0.6327202, z: -0, w: 0.77438056}
+  m_LocalRotation: {x: 0, y: -0.6327188, z: 0, w: 0.77438164}
   m_LocalPosition: {x: -1.412, y: 0.5, z: 9.853}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3901782437893340723}
   - {fileID: 3901782436330386515}
+  - {fileID: 903633011}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -78.502, z: 0}
@@ -297,6 +356,7 @@ MonoBehaviour:
   materialAnimationA: {fileID: 3901782437893340727}
   materialAnimationB: {fileID: 3901782436330386512}
   blockingCollider: {fileID: 4319031055214101705}
+  messageCollider: {fileID: 903633013}
 --- !u!65 &4319031055214101710
 BoxCollider:
   m_ObjectHideFlags: 0

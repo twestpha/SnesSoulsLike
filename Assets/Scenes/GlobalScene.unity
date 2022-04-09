@@ -5670,7 +5670,7 @@ MonoBehaviour:
   exteriorPrefab: {fileID: 7874393308054499079, guid: 7ab3699d2f24dc140bec6e381564cec8, type: 3}
   interiorPrefab: {fileID: 0}
   respawnTransform: {fileID: 0}
-  debug: 1
+  debug: 0
 --- !u!4 &1525943985
 Transform:
   m_ObjectHideFlags: 0
@@ -8015,7 +8015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7874393308054499079, guid: 7ab3699d2f24dc140bec6e381564cec8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7874393308054499128, guid: 7ab3699d2f24dc140bec6e381564cec8, type: 3}
       propertyPath: m_RootOrder
