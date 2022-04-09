@@ -327,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107823551366957259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11800003, y: 0.1936, z: 0.384}
+  m_LocalPosition: {x: 0, y: 0.1936, z: 0.384}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 5880857953624382461}
@@ -344,8 +344,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.11917047, y: 0.13903819, z: 0.5192826}
-  m_Center: {x: -0.009585239, y: -0.019519098, z: 0.05964133}
+  m_Size: {x: 0.15, y: 0.51, z: 0.5192826}
+  m_Center: {x: -0.009585239, y: -0.08, z: 0.05964133}
 --- !u!114 &5653090175784186636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7ef03aeb7a0bb4c817047e159cbbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 35
   hitBox: {fileID: 3520088730609412236}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
 --- !u!1 &1620243251698088649
@@ -1112,22 +1112,22 @@ MonoBehaviour:
       - {fileID: 2100000, guid: 76d311829bcf5754c8f65671219dba67, type: 2}
       - {fileID: 2100000, guid: 110620df28561044faf8bcaa6259404a, type: 2}
     - mats:
-      - {fileID: 2100000, guid: aae7e9e5fff821741b3dc65e013fcefb, type: 2}
-      - {fileID: 2100000, guid: be75d5ed5f79c0e449563f2063c51b5d, type: 2}
-      - {fileID: 2100000, guid: 388d47c2620b1d14b958a76b9d20a2e6, type: 2}
-      - {fileID: 2100000, guid: 64b32f1a2be29f9458ecf89a0083b64b, type: 2}
-      - {fileID: 2100000, guid: c435b21f872cd36439a2e55f368db1f8, type: 2}
-      - {fileID: 2100000, guid: e79f85c0e62992b4ab975a15d168959e, type: 2}
-      - {fileID: 2100000, guid: 3de53f2ac392ef546ba49880ceb73786, type: 2}
-      - {fileID: 2100000, guid: 23146f953cddd4248bb8f4d745350314, type: 2}
-      - {fileID: 2100000, guid: e651f6eeedfd93f4a91453448ef3bb1a, type: 2}
-      - {fileID: 2100000, guid: cf97db18494decf4c82affe4a56d0531, type: 2}
-      - {fileID: 2100000, guid: 45f5c256198157c4ea9e19a6ed656450, type: 2}
-      - {fileID: 2100000, guid: daacb7c034feee542ac499cbee23302c, type: 2}
-      - {fileID: 2100000, guid: be54d034a6b1eb4469eeef100067b7f1, type: 2}
-      - {fileID: 2100000, guid: e15f57b77d225904a8c5b50fe4b2163e, type: 2}
-      - {fileID: 2100000, guid: 76d311829bcf5754c8f65671219dba67, type: 2}
-      - {fileID: 2100000, guid: 110620df28561044faf8bcaa6259404a, type: 2}
+      - {fileID: 2100000, guid: 8c0930b48bdec5d4a910d640874f5963, type: 2}
+      - {fileID: 2100000, guid: 6fce9d704b176ff4989a1b45e1586104, type: 2}
+      - {fileID: 2100000, guid: 6f966ffc7643db941b290de19d17d65e, type: 2}
+      - {fileID: 2100000, guid: d1b9c8f3248682f4ab527b61f3af8dc9, type: 2}
+      - {fileID: 2100000, guid: e4eb9f5a519fe95449549551778db61d, type: 2}
+      - {fileID: 2100000, guid: 03ba529dbc45d4d4e91b476a695366ac, type: 2}
+      - {fileID: 2100000, guid: a3104507912bc9d41b373e09968430e6, type: 2}
+      - {fileID: 2100000, guid: 64e191af8543e8645b24f14135ac5665, type: 2}
+      - {fileID: 2100000, guid: dde609520d7d778429812aba08371a92, type: 2}
+      - {fileID: 2100000, guid: 30f501b677650d7449c419d4784ff7ae, type: 2}
+      - {fileID: 2100000, guid: 06c02b68e9b2cca4da4c88532bdc5222, type: 2}
+      - {fileID: 2100000, guid: 94d685bbcf31ca048bd0970b616e0b8b, type: 2}
+      - {fileID: 2100000, guid: 96ce252fdf970104da40771f8d5b1eb1, type: 2}
+      - {fileID: 2100000, guid: 1b02a8b64322c9145a85fa98e44e8dae, type: 2}
+      - {fileID: 2100000, guid: 315b20c59bd1be448bf580c8cdb82f12, type: 2}
+      - {fileID: 2100000, guid: fc797fb44355d5a4186d5be1d26066c5, type: 2}
     - mats:
       - {fileID: 2100000, guid: aae7e9e5fff821741b3dc65e013fcefb, type: 2}
       - {fileID: 2100000, guid: be75d5ed5f79c0e449563f2063c51b5d, type: 2}
@@ -1318,9 +1318,9 @@ MonoBehaviour:
   lightAttackDuration: 0.3
   lightAttackStaminaCost: 15
   heavyAttackTime: 1.7
-  heavyAttackDelayTime: 0.5
-  heavyAttackDuration: 0.1
-  heavyAttackStaminaCost: 20
+  heavyAttackDelayTime: 0.9
+  heavyAttackDuration: 0.2
+  heavyAttackStaminaCost: 25
   cameraDistanceBounds: {x: 0.011, y: 1}
   cameraRaycastOrigin: {fileID: 5880857953845856114}
   skyPlaneMeshRenderer: {fileID: 5880857954721714436}

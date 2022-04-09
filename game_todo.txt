@@ -34,6 +34,7 @@
 
 [x] player animations
     [x] heavy attack
+
     [x] damaged
     [x] use item
     [x] dying
