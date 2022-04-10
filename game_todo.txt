@@ -14,6 +14,8 @@
 [/] dialogue text for 'does not open from this side'
 [/] dialogue text for 'picked up item'
 [/] dialogue text for 'used bonfire'
+[/] metagame
+    [/] Fog setting volumes
 
 // #################################################################################################
 // Game TODO
@@ -44,8 +46,5 @@
     [x] boss/enemy health bar
     [x] dialogue for location text
     [x] dialogue for game over/died
-
-[x] metagame
-    [x] Fog setting volumes
 
 [x] Publish game + assets/concepts + source
