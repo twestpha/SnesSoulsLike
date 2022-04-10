@@ -39,10 +39,6 @@
     [x] use item
     [x] dying
 
-[x] reuse animation in 8x8 blocks, python py image code? See how much we can reduce it?
-[x] or just cut down on anims strategically by hand?
-[x] but first, render everything and save a copy, and don't do anything if we're feeling lazy
-
 [x] hud
     [x] use equipped item
     [x] boss/enemy health bar
