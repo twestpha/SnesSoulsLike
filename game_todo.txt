@@ -16,6 +16,7 @@
 [/] dialogue text for 'used bonfire'
 [/] metagame
     [/] Fog setting volumes
+    [/] heavy attack
 
 // #################################################################################################
 // Game TODO
@@ -23,20 +24,29 @@
 
 [x] 2 enemies
     [x] skeleton
+        [x] idle
+        [x] walk
+        [x] attack A
+        [x] attack B
+        [x] damaged
+        [x] dying
     [x] wandering wight
+        [x] idle
+        [x] walk
+        [x] attack A
+        [x] attack B
+        [x] damaged
+        [x] dying
 [x] boss
     [x] 3 headed skelly
-[x] enemy animations
-    [x] idle
-    [x] walk
-    [x] attack A
-    [x] attack B
-    [x] damaged
-    [x] dying
+        [x] idle
+        [x] walk
+        [x] attack A
+        [x] attack B
+        [x] damaged
+        [x] dying
 
 [x] player animations
-    [x] heavy attack
-
     [x] damaged
     [x] use item
     [x] dying
