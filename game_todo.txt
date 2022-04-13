@@ -16,7 +16,7 @@
 [/] dialogue text for 'used bonfire'
 [/] metagame
     [/] Fog setting volumes
-    [/] heavy attack
+[/] heavy attack
 
 // #################################################################################################
 // Game TODO
@@ -49,7 +49,9 @@
 [x] player animations
     [x] damaged
     [x] use item
+        - one direction
     [x] dying
+        - one direction
 
 [x] hud
     [x] use equipped item

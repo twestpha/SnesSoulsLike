@@ -15,6 +15,7 @@ class PlayerComponent : MonoBehaviour {
     private const int WALK_ANIMATION_INDEX        = 4;
     private const int LIGHTATTACK_ANIMATION_INDEX = 5;
     private const int HEAVYATTACK_ANIMATION_INDEX = 6;
+    private const int USEITEM_ANIMATION_INDEX     = 7;
 
     [Header("Movement")]
     public float moveSpeed = 1.0f;
@@ -46,15 +47,20 @@ class PlayerComponent : MonoBehaviour {
     public HitBoxComponent lightAttackHitBox;
     public HitBoxComponent heavyAttackHitBox;
 
+    [Space(10)]
     public float lightAttackTime;
     public float lightAttackDelayTime;
     public float lightAttackDuration;
     public float lightAttackStaminaCost;
 
+    [Space(10)]
     public float heavyAttackTime;
     public float heavyAttackDelayTime;
     public float heavyAttackDuration;
     public float heavyAttackStaminaCost;
+
+    [Space(10)]
+    public float itemUseTime;
 
     [Header("Camera")]
     public Vector2 cameraDistanceBounds;
@@ -106,6 +112,8 @@ class PlayerComponent : MonoBehaviour {
     private Timer attackTimer = new Timer();
     private Timer attackDelayTimer = new Timer();
 
+    private Timer itemUseTimer;
+
     void Start(){
         player = this;
 
@@ -115,6 +123,7 @@ class PlayerComponent : MonoBehaviour {
         playerHeight = transform.position.y;
 
         rollTimer = new Timer(rollTime);
+        itemUseTimer = new Timer(itemUseTime);
 
         // Set aspect ratio of camera
         float targetAspect = 8.0f / 7.0f;
@@ -193,7 +202,7 @@ class PlayerComponent : MonoBehaviour {
                     hurtBox.size = duckingHurtBoxSize;
                     hurtBox.center = duckingHurtBoxCenter;
                 }
-            } else if(lightAttack || heavyAttack){ // This creates stutter when hitting attack and not having stamina
+            } else if((lightAttack && currentStamina > lightAttackStaminaCost) || (heavyAttack && currentStamina > heavyAttackStaminaCost)){
                 if(lightAttack && currentStamina > lightAttackStaminaCost){
                     playerState = PlayerState.LightAttack;
 
@@ -221,8 +230,16 @@ class PlayerComponent : MonoBehaviour {
                 attackTimer.Start();
                 attackDelayTimer.Start();
                 attackDamageStarted = false;
+            } else if(useItem){
+                playerState = PlayerState.UsingItem;
+
+                playerAnimation.looping = false;
+                playerSpriteRotatable.SetAnimationIndex(USEITEM_ANIMATION_INDEX);
+                playerAnimation.ForceUpdate();
+
+                itemUseTimer.Start();
             } else {
-                // Only move if not duck/roll or attack
+                // Only move if not doing another action
                 characterController.SimpleMove(movementVector.normalized * moveSpeed);
 
                 if(movementInput && !movingAnimation){
@@ -296,6 +313,14 @@ class PlayerComponent : MonoBehaviour {
             }
 
             if(attackTimer.Finished()){
+                playerState = PlayerState.None;
+
+                playerAnimation.looping = true;
+                playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
+                playerAnimation.ForceUpdate();
+            }
+        } else if(playerState == PlayerState.UsingItem){
+            if(itemUseTimer.Finished()){
                 playerState = PlayerState.None;
 
                 playerAnimation.looping = true;
