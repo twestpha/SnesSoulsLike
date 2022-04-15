@@ -278,11 +278,15 @@ class PlayerComponent : MonoBehaviour {
             }
         } else if(playerState == PlayerState.Ducking){
             if(!duckRoll){
-                // TODO if unducking and moving, just play move animation
                 playerState = PlayerState.None;
 
-                playerAnimation.looping = false;
-                playerSpriteRotatable.SetAnimationIndex(UNDUCK_ANIMATION_INDEX);
+                if(movementInput){
+                    playerAnimation.looping = true;
+                    playerSpriteRotatable.SetAnimationIndex(WALK_ANIMATION_INDEX);
+                } else {
+                    playerAnimation.looping = false;
+                    playerSpriteRotatable.SetAnimationIndex(UNDUCK_ANIMATION_INDEX);
+                }
                 playerAnimation.ForceUpdate();
 
                 hurtBox.size = originalHurtBoxSize;

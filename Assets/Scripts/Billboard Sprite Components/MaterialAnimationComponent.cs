@@ -103,7 +103,8 @@ public class MaterialAnimationComponent : MonoBehaviour {
         }
 
         if(frameTimer.Finished()){
-            frameTimer.Start();
+            float unclamped = frameTimer.ParameterizedUnclamped();
+            frameTimer.SetParameterized(Mathf.Max(1.0f - unclamped, 0.0f));
 
             if(looping){
                 frameIndex = (frameIndex + 1) % usingMaterials.Length;
