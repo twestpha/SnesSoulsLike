@@ -47,9 +47,8 @@
         [x] dying
 
 [x] player animations
-    [x] damaged
     [x] use item
-        - one direction
+    [x] damaged
     [x] dying
         - one direction
 
