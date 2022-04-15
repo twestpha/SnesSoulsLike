@@ -61,6 +61,8 @@ class PlayerComponent : MonoBehaviour {
 
     [Space(10)]
     public float itemUseTime;
+    public float itemDelayTime;
+    public float itemUseHealAmount;
 
     [Header("Camera")]
     public Vector2 cameraDistanceBounds;
@@ -74,9 +76,13 @@ class PlayerComponent : MonoBehaviour {
 
     public AnimationCurve rollSpeedCurve;
 
-    [Header("Text and Messages")]
+    [Header("Text, Messages, and UI")]
     public Image messageBackground;
     public Text messageText;
+
+    public Image itemImage;
+    public Sprite itemFull;
+    public Sprite itemEmpty;
 
     private float spriteDirection;
     private float spriteDirectionVelocity;
@@ -86,6 +92,7 @@ class PlayerComponent : MonoBehaviour {
 
     private bool playerPaused;
     private bool showingMessage;
+    private bool hasItem = true;
 
     public enum PlayerState {
         None,
@@ -98,6 +105,7 @@ class PlayerComponent : MonoBehaviour {
         Dead,
     }
 
+    [Header("State")]
     public PlayerState playerState;
 
     private Vector3 cachedRollDirection;
@@ -113,6 +121,7 @@ class PlayerComponent : MonoBehaviour {
     private Timer attackDelayTimer = new Timer();
 
     private Timer itemUseTimer;
+    private Timer itemDelayTimer;
 
     void Start(){
         player = this;
@@ -124,6 +133,7 @@ class PlayerComponent : MonoBehaviour {
 
         rollTimer = new Timer(rollTime);
         itemUseTimer = new Timer(itemUseTime);
+        itemDelayTimer = new Timer(itemDelayTime);
 
         // Set aspect ratio of camera
         float targetAspect = 8.0f / 7.0f;
@@ -230,7 +240,7 @@ class PlayerComponent : MonoBehaviour {
                 attackTimer.Start();
                 attackDelayTimer.Start();
                 attackDamageStarted = false;
-            } else if(useItem){
+            } else if(useItem && hasItem){
                 playerState = PlayerState.UsingItem;
 
                 playerAnimation.looping = false;
@@ -238,6 +248,7 @@ class PlayerComponent : MonoBehaviour {
                 playerAnimation.ForceUpdate();
 
                 itemUseTimer.Start();
+                itemDelayTimer.Start();
             } else {
                 // Only move if not doing another action
                 characterController.SimpleMove(movementVector.normalized * moveSpeed);
@@ -324,6 +335,12 @@ class PlayerComponent : MonoBehaviour {
                 playerAnimation.ForceUpdate();
             }
         } else if(playerState == PlayerState.UsingItem){
+            if(itemDelayTimer.Finished() && hasItem){
+                hasItem = false;
+                itemImage.sprite = itemEmpty;
+                currentHealth = Mathf.Min(currentHealth + itemUseHealAmount, maxHealth);
+            }
+
             if(itemUseTimer.Finished()){
                 playerState = PlayerState.None;
 
