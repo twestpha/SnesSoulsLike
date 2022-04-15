@@ -84,6 +84,9 @@ class PlayerComponent : MonoBehaviour {
     public Sprite itemFull;
     public Sprite itemEmpty;
 
+    public Text locationText;
+    public Text gameOverText;
+
     private float spriteDirection;
     private float spriteDirectionVelocity;
 
@@ -475,5 +478,22 @@ class PlayerComponent : MonoBehaviour {
         messageBackground.enabled = true;
 
         showingMessage = false;
+    }
+
+    public void ShowLocation(){
+        StartCoroutine(ShowLocationCoroutine());
+    }
+
+    private IEnumerator ShowLocationCoroutine(){
+        locationText.enabled = true;
+
+        Timer showTimer = new Timer(3.5f);
+        showTimer.Start();
+
+        while(!showTimer.Finished()){
+            yield return null;
+        }
+
+        locationText.enabled = false;
     }
 }

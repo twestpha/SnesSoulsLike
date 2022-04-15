@@ -1,16 +1,6 @@
 // #################################################################################################
 // Done
 // #################################################################################################
-[/] moving locations
-[/] maps
-    [/] interior/boss room
-[/] spawn hit fx between characters when hits happen
-    - blood? Or generic flash? What's tonally right...?
-    - maybe really shiny black material, more contrasty
-[/] bonfire equivalent
-[/] bonfire + "saving"
-[/] graphics
-    [/] treasure chest
 [/] dialogue text for 'does not open from this side'
 [/] dialogue text for 'picked up item'
 [/] dialogue text for 'used bonfire'
@@ -19,14 +9,16 @@
 [/] heavy attack
 [/] use item
 [/] use equipped item
+[/] dialogue for location text
+[/] idle
+[/] walk
+[/] dialogue for game over/died
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
 [x] skeleton
-    [x] idle
-    [x] walk
     [x] attack A
     [x] attack B
     [x] damaged
@@ -46,7 +38,8 @@
 
 [x] hud
     [x] boss/enemy health bar
-    [x] dialogue for location text
-    [x] dialogue for game over/died
 
+[x] Dying/Respawning/Resetting world
+
+[x] Tune health and damage to make it barely beatable
 [x] Publish game + assets/concepts + source
