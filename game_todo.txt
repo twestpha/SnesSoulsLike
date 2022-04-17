@@ -38,6 +38,8 @@
     [x] dying
         - one direction
 
+[x] Music? Sounds?
+
 [x] hud
     [x] boss/enemy health bar
 

@@ -17,6 +17,7 @@ class PlayerComponent : MonoBehaviour {
     private const int HEAVYATTACK_ANIMATION_INDEX = 6;
     private const int USEITEM_ANIMATION_INDEX     = 7;
     private const int STAGGER_ANIMATION_INDEX     = 8;
+    private const int DEATH_ANIMATION_INDEX       = 9;
 
     [Header("Movement")]
     public float moveSpeed = 1.0f;
@@ -512,13 +513,21 @@ class PlayerComponent : MonoBehaviour {
         locationText.enabled = false;
     }
 
-    public void DealDamage(float damage){
+    public bool DealDamage(float damage){
+        if(currentHealth < 0){
+            return false;
+        }
+
         currentHealth -= damage;
 
         if(currentHealth < 0){
             playerState = PlayerState.Dead;
-            // anim
-            return;
+
+            playerAnimation.looping = false;
+            playerSpriteRotatable.SetAnimationIndex(DEATH_ANIMATION_INDEX);
+            playerAnimation.ForceUpdate();
+
+            return true;
         }
 
         if(currentStamina <= (staggerThreshold * maxStamina)){ // Staggering based on stamina
@@ -530,5 +539,7 @@ class PlayerComponent : MonoBehaviour {
             playerSpriteRotatable.SetAnimationIndex(STAGGER_ANIMATION_INDEX);
             playerAnimation.ForceUpdate();
         }
+
+        return true;
     }
 }
