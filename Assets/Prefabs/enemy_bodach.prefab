@@ -662,7 +662,7 @@ MonoBehaviour:
   lightAttackDelayTime: 0.5
   lightAttackDuration: 1
   heavyAttackTime: 2
-  heavyAttackDelayTime: 0.9
+  heavyAttackDelayTime: 1.1
   heavyAttackDuration: 0.3
   enemyState: 0
   spriteRotatable: {fileID: 6256204274536995305}
