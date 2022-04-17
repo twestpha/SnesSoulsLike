@@ -6,6 +6,7 @@
 [/] idle
 [/] walk
 [/] dialogue for game over/died
+[/] damaged
 
 // #################################################################################################
 // Game TODO
@@ -17,6 +18,7 @@
     [x] damaged
     [x] dying
 [x] Lantern Wight
+    [x] Model
     [x] idle
     [x] walk
     [x] attack A
@@ -24,6 +26,7 @@
     [x] damaged
     [x] dying
 [x] 3 headed skelly
+    [x] Model
     [x] idle
     [x] walk
     [x] attack A
@@ -32,7 +35,6 @@
     [x] dying
 
 [x] player animations
-    [x] damaged
     [x] dying
         - one direction
 

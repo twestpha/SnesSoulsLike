@@ -130,6 +130,7 @@ class EnemyComponent : MonoBehaviour {
                     );
 
                     bool lightAttack = UnityEngine.Random.value <= lightAttackChance;
+                    attackDamageStarted = false;
 
                     attackTimer.SetDuration(lightAttack ? lightAttackTime : heavyAttackTime);
                     attackTimer.Start();
@@ -166,7 +167,10 @@ class EnemyComponent : MonoBehaviour {
 
                 if(attackTimer.Finished()){
                     enemyState = EnemyState.Idle;
-                    // anim
+
+                    materialAnimation.looping = true;
+                    spriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+                    materialAnimation.ForceUpdate();
                 }
             } else if(enemyState == EnemyState.HeavyAttack){
                 // wait for anim, trigger hitbox
@@ -177,7 +181,10 @@ class EnemyComponent : MonoBehaviour {
 
                 if(attackTimer.Finished()){
                     enemyState = EnemyState.Idle;
-                    // anim
+
+                    materialAnimation.looping = true;
+                    spriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+                    materialAnimation.ForceUpdate();
                 }
             } else if(enemyState == EnemyState.Damaged){
                 if(damageTimer.Finished()){
