@@ -39,11 +39,21 @@ class PlayerComponent : MonoBehaviour {
     [Header("Hurt Box and Ducking")]
     public BoxCollider hurtBox;
 
+    [Space(10)]
     public Vector3 originalHurtBoxCenter;
     public Vector3 originalHurtBoxSize;
 
+    [Space(10)]
     public Vector3 duckingHurtBoxCenter;
     public Vector3 duckingHurtBoxSize;
+
+    [Space(10)]
+    public Vector2 originalRadiusAndHeight;
+    public Vector3 originalCharacterControllerCenter;
+
+    [Space(10)]
+    public Vector2 duckingRadiusAndHeight;
+    public Vector3 duckingCharacterControllerCenter;
 
     [Header("Hit Boxes and Attacking")]
     public HitBoxComponent lightAttackHitBox;
@@ -222,6 +232,10 @@ class PlayerComponent : MonoBehaviour {
 
                     hurtBox.size = duckingHurtBoxSize;
                     hurtBox.center = duckingHurtBoxCenter;
+
+                    characterController.radius = duckingRadiusAndHeight.x;
+                    characterController.height = duckingRadiusAndHeight.y;
+                    characterController.center = duckingCharacterControllerCenter;
                 }
             } else if((lightAttack && currentStamina > lightAttackStaminaCost) || (heavyAttack && currentStamina > heavyAttackStaminaCost)){
                 if(lightAttack && currentStamina > lightAttackStaminaCost){
@@ -313,6 +327,10 @@ class PlayerComponent : MonoBehaviour {
 
                 hurtBox.size = originalHurtBoxSize;
                 hurtBox.center = originalHurtBoxCenter;
+
+                characterController.radius = originalRadiusAndHeight.x;
+                characterController.height = originalRadiusAndHeight.y;
+                characterController.center = originalCharacterControllerCenter;
             }
 
             if(movementInput && currentStamina > rollStaminaCost){
@@ -423,6 +441,10 @@ class PlayerComponent : MonoBehaviour {
         hurtBox.size = originalHurtBoxSize;
         hurtBox.center = originalHurtBoxCenter;
 
+        characterController.radius = originalRadiusAndHeight.x;
+        characterController.height = originalRadiusAndHeight.y;
+        characterController.center = originalCharacterControllerCenter;
+
         playerAnimation.looping = false;
         playerSpriteRotatable.SetAnimationIndex(ROLL_ANIMATION_INDEX);
         playerAnimation.ForceUpdate();
@@ -514,7 +536,7 @@ class PlayerComponent : MonoBehaviour {
     }
 
     public bool DealDamage(float damage){
-        if(currentHealth < 0){
+        if(currentHealth < 0 || playerState == PlayerState.Rolling){
             return false;
         }
 

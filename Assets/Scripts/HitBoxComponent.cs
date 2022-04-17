@@ -50,8 +50,7 @@ class HitBoxComponent : MonoBehaviour {
 
                     newHitEffects.transform.position = position;
                 }
-            } else {
-                // Look for player component
+            } else {           
                 PlayerComponent playerComponent = other.gameObject.GetComponent<PlayerComponent>();
 
                 if(playerComponent){

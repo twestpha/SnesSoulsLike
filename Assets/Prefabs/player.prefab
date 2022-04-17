@@ -1862,6 +1862,10 @@ MonoBehaviour:
   originalHurtBoxSize: {x: 0.15, y: 0.5, z: 0.15}
   duckingHurtBoxCenter: {x: 0, y: -0.1, z: 0}
   duckingHurtBoxSize: {x: 0.15, y: 0.2, z: 0.15}
+  originalRadiusAndHeight: {x: 0.15, y: 0.42}
+  originalCharacterControllerCenter: {x: 0, y: 0.04, z: 0}
+  duckingRadiusAndHeight: {x: 0.1, y: 0}
+  duckingCharacterControllerCenter: {x: 0, y: -0.11, z: 0}
   lightAttackHitBox: {fileID: 2047953091}
   heavyAttackHitBox: {fileID: 5653090175784186636}
   lightAttackTime: 1.3
