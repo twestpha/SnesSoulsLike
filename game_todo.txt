@@ -1,13 +1,6 @@
 // #################################################################################################
 // Done
 // #################################################################################################
-[/] dialogue text for 'does not open from this side'
-[/] dialogue text for 'picked up item'
-[/] dialogue text for 'used bonfire'
-[/] metagame
-    [/] Fog setting volumes
-[/] heavy attack
-[/] use item
 [/] use equipped item
 [/] dialogue for location text
 [/] idle
@@ -23,6 +16,13 @@
     [x] attack B
     [x] damaged
     [x] dying
+[x] Lantern Wight
+    [x] idle
+    [x] walk
+    [x] attack A
+    [x] attack B
+    [x] damaged
+    [x] dying
 [x] 3 headed skelly
     [x] idle
     [x] walk
@@ -32,7 +32,7 @@
     [x] dying
 
 [x] player animations
-    [x] damaged (is this something I want? maybe super short, 2 frames? Or maybe interruptible with dodge)
+    [x] damaged
     [x] dying
         - one direction
 
@@ -41,5 +41,6 @@
 
 [x] Dying/Respawning/Resetting world
 
-[x] Tune health and damage to make it barely beatable
+[x] Tune health and damage to make it just barely beatable
+
 [x] Publish game + assets/concepts + source

@@ -3,10 +3,12 @@ using System;
 
 class EnemyComponent : MonoBehaviour {
 
-    private const float MOVE_THRESHOLD_RANGE = 0.4f;
+    private const float MOVE_THRESHOLD_RANGE = 0.1f;
 
-    private const int IDLE_ANIMATION_INDEX        = 0;
-    private const int WALK_ANIMATION_INDEX        = 1;
+    private const int IDLE_ANIMATION_INDEX         = 0;
+    private const int WALK_ANIMATION_INDEX         = 1;
+    private const int LIGHT_ATTACK_ANIMATION_INDEX = 2;
+    private const int HEAVY_ATTACK_ANIMATION_INDEX = 3;
 
     [Header("Health and Damage")]
     public float maxHealth;
@@ -91,7 +93,8 @@ class EnemyComponent : MonoBehaviour {
 
     void Update(){
         if(enemyState != EnemyState.Inactive){
-            float playerDistance = (player.transform.position - transform.position).magnitude;
+            Vector3 toPlayer = player.transform.position - transform.position;
+            float playerDistance = toPlayer.magnitude;
             float selfDistance = (startPosition - transform.position).magnitude;
 
             if(enemyState == EnemyState.Idle){
@@ -118,23 +121,31 @@ class EnemyComponent : MonoBehaviour {
                 Vector3 toTarget = moveTargetPosition - transform.position;
                 float toTargetDistance = toTarget.magnitude;
 
+                if(playerDistance <= attackRange){
+                    // face player
+                    transform.rotation = Quaternion.Euler(
+                        transform.rotation.x,
+                        Mathf.Atan2(toPlayer.x, toPlayer.z) * Mathf.Rad2Deg - 5.0f, // Magic number makes rotations look better *shrug*
+                        transform.rotation.z
+                    );
+
+                    bool lightAttack = UnityEngine.Random.value <= lightAttackChance;
+
+                    attackTimer.SetDuration(lightAttack ? lightAttackTime : heavyAttackTime);
+                    attackTimer.Start();
+
+                    attackDelayTimer.SetDuration(lightAttack ? lightAttackDelayTime : heavyAttackDelayTime);
+                    attackDelayTimer.Start();
+
+                    materialAnimation.looping = false;
+                    spriteRotatable.SetAnimationIndex(lightAttack ? LIGHT_ATTACK_ANIMATION_INDEX : HEAVY_ATTACK_ANIMATION_INDEX);
+                    materialAnimation.ForceUpdate();
+
+                    enemyState = lightAttack ? EnemyState.LightAttack : EnemyState.HeavyAttack;
+                }
+
                 if(toTargetDistance < MOVE_THRESHOLD_RANGE){
-                    if(playerDistance < attackRange){
-                        // face player
-
-                        bool lightAttack = UnityEngine.Random.value <= lightAttackChance;
-
-                        attackTimer.SetDuration(lightAttack ? lightAttackTime : heavyAttackTime);
-                        attackTimer.Start();
-
-                        attackDelayTimer.SetDuration(lightAttack ? lightAttackDelayTime : heavyAttackDelayTime);
-                        attackDelayTimer.Start();
-
-                        // anim
-                    } else {
-                        enemyState = EnemyState.Idle;
-                        // anim?
-                    }
+                    enemyState = EnemyState.Idle;
                 } else {
                     characterController.SimpleMove(toTarget.normalized * moveSpeed);
 

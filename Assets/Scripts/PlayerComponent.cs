@@ -496,4 +496,19 @@ class PlayerComponent : MonoBehaviour {
 
         locationText.enabled = false;
     }
+
+    public void DealDamage(float damage){
+        currentHealth -= damage;
+
+        if(currentHealth < 0){
+            playerState = PlayerState.Dead;
+            // anim
+            return;
+        }
+
+        if(currentStamina < 0.33f){ // Staggering based on stamina
+            playerState = PlayerState.Staggered;
+            // anim
+        }
+    }
 }

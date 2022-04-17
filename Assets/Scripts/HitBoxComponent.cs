@@ -52,10 +52,10 @@ class HitBoxComponent : MonoBehaviour {
                 PlayerComponent playerComponent = other.gameObject.GetComponent<PlayerComponent>();
 
                 if(playerComponent){
-                    // enemyComponent.DealDamage(damage);
-                    //
-                    // GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
-                    // newHitEffects.transform.position = Vector3.Lerp(transform.parent.position, enemyComponent.transform.position, 0.5f);
+                    playerComponent.DealDamage(damage);
+
+                    GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
+                    newHitEffects.transform.position = Vector3.Lerp(transform.parent.position, playerComponent.transform.position, 0.5f);
                 }
             }
         }
