@@ -45,7 +45,10 @@ class HitBoxComponent : MonoBehaviour {
                     enemyComponent.DealDamage(damage);
 
                     GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
-                    newHitEffects.transform.position = Vector3.Lerp(transform.parent.position, enemyComponent.transform.position, 0.5f);
+                    Vector3 position = Vector3.Lerp(transform.parent.position, enemyComponent.transform.position, 0.5f);
+                    position.y = transform.position.y;
+
+                    newHitEffects.transform.position = position;
                 }
             } else {
                 // Look for player component
@@ -55,7 +58,10 @@ class HitBoxComponent : MonoBehaviour {
                     playerComponent.DealDamage(damage);
 
                     GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
-                    newHitEffects.transform.position = Vector3.Lerp(transform.parent.position, playerComponent.transform.position, 0.5f);
+                    Vector3 position = Vector3.Lerp(transform.parent.position, playerComponent.transform.position, 0.5f);
+                    position.y = transform.position.y;
+
+                    newHitEffects.transform.position = position;
                 }
             }
         }

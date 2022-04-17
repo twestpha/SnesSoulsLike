@@ -16,6 +16,7 @@ class PlayerComponent : MonoBehaviour {
     private const int LIGHTATTACK_ANIMATION_INDEX = 5;
     private const int HEAVYATTACK_ANIMATION_INDEX = 6;
     private const int USEITEM_ANIMATION_INDEX     = 7;
+    private const int STAGGER_ANIMATION_INDEX     = 8;
 
     [Header("Movement")]
     public float moveSpeed = 1.0f;
@@ -63,6 +64,10 @@ class PlayerComponent : MonoBehaviour {
     public float itemUseTime;
     public float itemDelayTime;
     public float itemUseHealAmount;
+
+    [Space(10)]
+    public float staggerThreshold = 0.5f;
+    public float staggerTime;
 
     [Header("Camera")]
     public Vector2 cameraDistanceBounds;
@@ -125,6 +130,7 @@ class PlayerComponent : MonoBehaviour {
 
     private Timer itemUseTimer;
     private Timer itemDelayTimer;
+    private Timer staggerTimer;
 
     void Start(){
         player = this;
@@ -137,6 +143,7 @@ class PlayerComponent : MonoBehaviour {
         rollTimer = new Timer(rollTime);
         itemUseTimer = new Timer(itemUseTime);
         itemDelayTimer = new Timer(itemDelayTime);
+        staggerTimer = new Timer(staggerTime);
 
         // Set aspect ratio of camera
         float targetAspect = 8.0f / 7.0f;
@@ -351,6 +358,14 @@ class PlayerComponent : MonoBehaviour {
                 playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
                 playerAnimation.ForceUpdate();
             }
+        } else if(playerState == PlayerState.Staggered){
+            if(staggerTimer.Finished()){
+                playerState = PlayerState.None;
+
+                playerAnimation.looping = true;
+                playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
+                playerAnimation.ForceUpdate();
+            }
         }
 
         // Sprite direction
@@ -506,9 +521,14 @@ class PlayerComponent : MonoBehaviour {
             return;
         }
 
-        if(currentStamina < 0.33f){ // Staggering based on stamina
+        if(currentStamina <= (staggerThreshold * maxStamina)){ // Staggering based on stamina
             playerState = PlayerState.Staggered;
-            // anim
+
+            staggerTimer.Start();
+
+            playerAnimation.looping = false;
+            playerSpriteRotatable.SetAnimationIndex(STAGGER_ANIMATION_INDEX);
+            playerAnimation.ForceUpdate();
         }
     }
 }
