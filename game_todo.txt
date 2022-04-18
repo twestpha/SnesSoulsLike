@@ -10,6 +10,7 @@
 [/] player animations
     [/] dying
         - one direction
+[/] Model
 
 // #################################################################################################
 // Game TODO
@@ -21,7 +22,6 @@
     [x] damaged
     [x] dying
 [x] Lantern Wight
-    [x] Model
     [x] idle
     [x] walk
     [x] attack A
