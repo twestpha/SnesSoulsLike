@@ -1,16 +1,17 @@
 // #################################################################################################
 // Done
 // #################################################################################################
-[/] use equipped item
+[/] player use equipped item
 [/] dialogue for location text
-[/] idle
-[/] walk
+[/] player idle
+[/] player walk
 [/] dialogue for game over/died
-[/] damaged
+[/] player damaged
 [/] player animations
     [/] dying
         - one direction
-[/] Model
+[/] wight Model
+[W] wight walk
 
 // #################################################################################################
 // Game TODO
@@ -23,7 +24,6 @@
     [x] dying
 [x] Lantern Wight
     [x] idle
-    [x] walk
     [x] attack A
     [x] attack B
     [x] damaged
