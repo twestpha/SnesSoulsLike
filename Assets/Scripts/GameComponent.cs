@@ -20,7 +20,8 @@ class GameComponent : MonoBehaviour {
     [Space(10)]
     public Transform respawnTransform;
 
-    private GameObject levelPrefab;
+    private GameObject exteriorInstance;
+    private GameObject interiorInstance;
 
     private int graphicsSettings = 0;
     private Camera playerCamera;
@@ -33,6 +34,8 @@ class GameComponent : MonoBehaviour {
     void Start(){
         locationFound = false;
         gateOpened = false;
+
+        respawnTransform = playerStartTransform; // until overridden by bonfire
 
         // Emulate probable SNES framerate and graphics options by default
         QualitySettings.vSyncCount = 0;
@@ -49,8 +52,8 @@ class GameComponent : MonoBehaviour {
         }
 
         // Setup first level
-        levelPrefab = GameObject.Instantiate(exteriorPrefab);
-        levelPrefab.transform.position = Vector3.zero;
+        exteriorInstance = GameObject.Instantiate(exteriorPrefab);
+        interiorInstance = GameObject.Instantiate(interiorPrefab);
 
         player.transform.position = playerStartTransform.position;
         player.transform.rotation = playerStartTransform.rotation;
@@ -103,5 +106,18 @@ class GameComponent : MonoBehaviour {
 
             RenderSettings.fogMode = FogMode.Exponential; // Actually linear
         }
+    }
+
+    public void ResetLevels(){
+        if(exteriorInstance != null){
+            Destroy(exteriorInstance);
+        }
+
+        if(interiorInstance != null){
+            Destroy(interiorInstance);
+        }
+
+        exteriorInstance = GameObject.Instantiate(exteriorPrefab);
+        interiorInstance = GameObject.Instantiate(interiorPrefab);
     }
 }

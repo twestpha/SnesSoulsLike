@@ -12,6 +12,7 @@
         - one direction
 [/] wight Model
 [W] wight walk
+[/] Dying/Respawning/Resetting world
 
 // #################################################################################################
 // Game TODO
@@ -37,13 +38,5 @@
     [x] damaged
     [x] dying
 
-[x] Music? Sounds?
-
-[x] Dying/Respawning/Resetting world
-
-[x] hud
-    [x] boss/enemy health bar
-
 [x] Tune health and damage to make it just barely beatable
-
 [x] Publish game + assets/concepts + source

@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -143,11 +143,15 @@ class PlayerComponent : MonoBehaviour {
     private Timer itemDelayTimer;
     private Timer staggerTimer;
 
+    private GameComponent gameComponent;
+
     void Start(){
         player = this;
 
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
+
+        gameComponent = GameObject.FindObjectOfType<GameComponent>();
 
         playerHeight = transform.position.y;
 
@@ -405,8 +409,10 @@ class PlayerComponent : MonoBehaviour {
 
         // Camera
         float rotateDirection = 0.0f;
-        if(Input.GetKey(KeyCode.Q)){ rotateDirection = 1.0f; }
-        if(Input.GetKey(KeyCode.W)){ rotateDirection = -1.0f; }
+        if(currentHealth > 0.0f){
+            if(Input.GetKey(KeyCode.Q)){ rotateDirection = 1.0f; }
+            if(Input.GetKey(KeyCode.W)){ rotateDirection = -1.0f; }
+        }
 
         lookAngle = lookAngle + (rotateDirection * rotateSpeed * Time.deltaTime);
 
@@ -549,6 +555,8 @@ class PlayerComponent : MonoBehaviour {
             playerSpriteRotatable.SetAnimationIndex(DEATH_ANIMATION_INDEX);
             playerAnimation.ForceUpdate();
 
+            StartCoroutine(DieCoroutine());
+
             return true;
         }
 
@@ -563,5 +571,77 @@ class PlayerComponent : MonoBehaviour {
         }
 
         return true;
+    }
+
+    public IEnumerator DieCoroutine(){
+
+        // Just wait for a while
+        Timer waitTimer = new Timer(3.0f);
+        waitTimer.Start();
+        while(!waitTimer.Finished()){
+            yield return null;
+        }
+
+        // TODO show death message
+
+        // Fade out
+        Timer fadeTimer = new Timer(1.5f);
+        fadeTimer.Start();
+        while(!fadeTimer.Finished()){
+            float t = 1.0f - fadeTimer.Parameterized();
+            t = Mathf.Round(t * 10.0f) / 10.0f;
+
+            RenderSettings.ambientLight = new Color(t, t, t, 1.0f);
+            yield return null;
+        }
+
+        RenderSettings.ambientLight = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+        // Reset things
+        player.transform.position = gameComponent.respawnTransform.position;
+
+        player.transform.rotation = gameComponent.respawnTransform.rotation;
+        lookAngle = transform.rotation.eulerAngles.y;
+
+        playerSpriteTransform.localRotation = Quaternion.identity;
+        spriteDirection = 0.0f;
+
+        currentHealth = maxHealth;
+        currentStamina = maxStamina;
+
+        hasItem = true; // Reset "estus"
+
+        playerAnimation.looping = true;
+        playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+        playerAnimation.ForceUpdate();
+
+        // Hide messages? Reset Paused? Reset boxes?
+
+        // Reset the levels after a frame, and give it a frame
+        yield return null;
+        gameComponent.ResetLevels();
+        yield return null;
+
+        // Wait in darkness for a sec
+        waitTimer.SetDuration(0.5f);
+        waitTimer.Start();
+        while(!waitTimer.Finished()){
+            yield return null;
+        }
+
+        // Fade in
+        fadeTimer.Start();
+        while(!fadeTimer.Finished()){
+            float t = fadeTimer.Parameterized();
+            t = Mathf.Round(t * 10.0f) / 10.0f;
+
+            RenderSettings.ambientLight = new Color(t, t, t, 1.0f);
+            yield return null;
+        }
+
+        RenderSettings.ambientLight = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+        // Set state after fade in to unlock movement, etc.
+        playerState = PlayerState.None;
     }
 }

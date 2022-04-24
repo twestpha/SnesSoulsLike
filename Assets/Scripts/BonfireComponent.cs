@@ -17,7 +17,7 @@ class BonfireComponent : MonoBehaviour {
             GetComponent<MaterialAnimationComponent>().enabled = true;
 
             GameComponent gameComponent = GameObject.FindObjectOfType<GameComponent>();
-            gameComponent.playerStartTransform = spawnTransform;
+            gameComponent.respawnTransform = spawnTransform;
 
             player.ShowMessage("Devotion Accepted");
         }
