@@ -12,6 +12,7 @@ class GateComponent : MonoBehaviour {
     void Start(){
         if(GameComponent.gateOpened){
             blockingCollider.enabled = false;
+            messageCollider.enabled = false;
 
             materialAnimationA.enabled = true;
             materialAnimationB.enabled = true;

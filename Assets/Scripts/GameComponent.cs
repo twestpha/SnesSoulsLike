@@ -28,9 +28,6 @@ class GameComponent : MonoBehaviour {
     private PixellateAndPalette pixellateEffect;
     private Antialiasing antialiasingEffect;
 
-    [Header("Debug")]
-    public bool debug;
-
     void Start(){
         locationFound = false;
         gateOpened = false;
@@ -44,12 +41,6 @@ class GameComponent : MonoBehaviour {
         playerCamera = player.GetComponentInChildren<Camera>();
         pixellateEffect = playerCamera.GetComponent<PixellateAndPalette>();
         antialiasingEffect = playerCamera.GetComponent<Antialiasing>();
-
-        // Cut off if we're just debug playing
-        if(debug){
-            enabled = false;
-            return;
-        }
 
         // Setup first level
         exteriorInstance = GameObject.Instantiate(exteriorPrefab);

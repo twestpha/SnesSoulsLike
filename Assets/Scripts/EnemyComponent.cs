@@ -214,7 +214,7 @@ class EnemyComponent : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other){
-        if(other.gameObject == player.gameObject && enemyState == EnemyState.Inactive){
+        if(player != null && other.gameObject == player.gameObject && enemyState == EnemyState.Inactive){
             enemyState = EnemyState.Idle;
             // play idle animation
         }

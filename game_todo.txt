@@ -1,10 +1,6 @@
 // #################################################################################################
 // Done
 // #################################################################################################
-[/] player use equipped item
-[/] dialogue for location text
-[/] player idle
-[/] player walk
 [/] dialogue for game over/died
 [/] player damaged
 [/] player animations
@@ -13,10 +9,13 @@
 [/] wight Model
 [W] wight walk
 [/] Dying/Respawning/Resetting world
+[/] "save" opening of gate
+[/] Fix loading of interior
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
+
 
 [x] skeleton
     [x] attack A
