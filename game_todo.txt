@@ -6,16 +6,16 @@
 [/] Dying/Respawning/Resetting world
 [/] "save" opening of gate
 [/] Fix loading of interior
+[/] skeleton attack B
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
-[x] Enemy turns some direction after attacking?
+[x] Enemy sprites flicker some direction after attacking?
 
 [x] skeleton
     [x] skeleton attack A
-    [x] skeleton attack B
     [x] skeleton damaged
     [x] skeleton dying
 [x] Lantern Wight
