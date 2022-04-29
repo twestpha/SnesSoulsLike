@@ -12,6 +12,7 @@
 // Game TODO
 // #################################################################################################
 
+[x] Cooldowns in between enemy attacks?
 [x] Enemy sprites flicker some direction after attacking?
 
 [x] skeleton
