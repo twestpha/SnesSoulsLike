@@ -41,11 +41,13 @@ class EnemyComponent : MonoBehaviour {
     public float lightAttackTime;
     public float lightAttackDelayTime;
     public float lightAttackDuration;
+    public float lightCooldownTime;
 
     [Space(10)]
     public float heavyAttackTime;
     public float heavyAttackDelayTime;
     public float heavyAttackDuration;
+    public float heavyCooldownTime;
 
     public enum EnemyState {
         Inactive,
@@ -76,6 +78,7 @@ class EnemyComponent : MonoBehaviour {
     private Timer attackDelayTimer = new Timer();
     private Timer damageTimer;
     private Timer deathTimer;
+    private Timer cooldownTimer = new Timer();
 
     void Start(){
         player = PlayerComponent.player;
@@ -121,7 +124,7 @@ class EnemyComponent : MonoBehaviour {
                 Vector3 toTarget = moveTargetPosition - transform.position;
                 float toTargetDistance = toTarget.magnitude;
 
-                if(playerDistance <= attackRange){
+                if(playerDistance <= attackRange && cooldownTimer.Finished()){
                     // face player
                     transform.rotation = Quaternion.Euler(
                         transform.rotation.x,
@@ -171,6 +174,9 @@ class EnemyComponent : MonoBehaviour {
                     materialAnimation.looping = true;
                     spriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
                     materialAnimation.ForceUpdate();
+
+                    cooldownTimer.SetDuration(lightCooldownTime);
+                    cooldownTimer.Start();
                 }
             } else if(enemyState == EnemyState.HeavyAttack){
                 // wait for anim, trigger hitbox
@@ -185,6 +191,9 @@ class EnemyComponent : MonoBehaviour {
                     materialAnimation.looping = true;
                     spriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
                     materialAnimation.ForceUpdate();
+
+                    cooldownTimer.SetDuration(heavyCooldownTime);
+                    cooldownTimer.Start();
                 }
             } else if(enemyState == EnemyState.Damaged){
                 if(damageTimer.Finished()){

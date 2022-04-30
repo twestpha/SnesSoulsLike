@@ -7,16 +7,15 @@
 [/] "save" opening of gate
 [/] Fix loading of interior
 [/] skeleton attack B
+[/] skeleton attack A
+[/] Cooldowns in between enemy attacks?
+[W] Enemy sprites flicker some direction after attacking?
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
-[x] Cooldowns in between enemy attacks?
-[x] Enemy sprites flicker some direction after attacking?
-
 [x] skeleton
-    [x] skeleton attack A
     [x] skeleton damaged
     [x] skeleton dying
 [x] Lantern Wight
