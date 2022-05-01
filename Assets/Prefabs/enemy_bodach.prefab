@@ -570,6 +570,63 @@ MonoBehaviour:
       - {fileID: 2100000, guid: 94652a9597e98054a912e896a0580e0a, type: 2}
       - {fileID: 2100000, guid: 86b9e099bae1417438333ea238d38e25, type: 2}
       - {fileID: 2100000, guid: b9c8b696ed2bcdd46a20cb4cc7677be1, type: 2}
+  - rots:
+    - mats:
+      - {fileID: 2100000, guid: 6a1739569eaf8da4fa5c9e38847b35ea, type: 2}
+      - {fileID: 2100000, guid: f2509623cd33b2f49b60cbe646d731ac, type: 2}
+      - {fileID: 2100000, guid: 041c98bfdbde059428c534a0b024f4a9, type: 2}
+      - {fileID: 2100000, guid: 38b6098698b842c4988204653701c34d, type: 2}
+      - {fileID: 2100000, guid: 43ad38ec5a3b2f24fb5429bdf28f9352, type: 2}
+      - {fileID: 2100000, guid: ef87261850c06e547adbfe351f4c3c5e, type: 2}
+    - mats:
+      - {fileID: 2100000, guid: 83cd384b3f343004f90ef75c2fe6cc57, type: 2}
+      - {fileID: 2100000, guid: 0b108ed84c2d3784cb6c91963b95d547, type: 2}
+      - {fileID: 2100000, guid: 31f543e7495831d46b83799f997e2afd, type: 2}
+      - {fileID: 2100000, guid: 6563025a71f4516439fd691bd68c3d7e, type: 2}
+      - {fileID: 2100000, guid: 598327cd04e6c1f4da6c07bf033627be, type: 2}
+      - {fileID: 2100000, guid: 89f3e2d0b44363c44af6beb5b441c1a5, type: 2}
+    - mats:
+      - {fileID: 2100000, guid: c86a2e90cc456f74e8086f0cda01a06a, type: 2}
+      - {fileID: 2100000, guid: 592555f6176cc894db8fd32ad7ac5c12, type: 2}
+      - {fileID: 2100000, guid: d91e4b7a56f706647a11197fd71fa4e9, type: 2}
+      - {fileID: 2100000, guid: b19036d632f743a48b63d54f578e9722, type: 2}
+      - {fileID: 2100000, guid: 5eb25dec97a7da74cbe0ae9b92c213a0, type: 2}
+      - {fileID: 2100000, guid: 92343d2d1e51e7343a8c07c6173eed7a, type: 2}
+    - mats:
+      - {fileID: 2100000, guid: d0b10962b45ac61488fbfe37e3983173, type: 2}
+      - {fileID: 2100000, guid: 2eb943372080a7243a60e5887d66863c, type: 2}
+      - {fileID: 2100000, guid: be2fb1d8b5f27534cb00846e828b7922, type: 2}
+      - {fileID: 2100000, guid: 94a817f27ad21274ab1a4ec446d03dd4, type: 2}
+      - {fileID: 2100000, guid: 0ffcf372b409ec847beddce4008d316c, type: 2}
+      - {fileID: 2100000, guid: 81390dafd5e8c8c44901c5dee6184907, type: 2}
+    - mats:
+      - {fileID: 2100000, guid: 3b52fa03151ba57439c2dd4b1ef74d94, type: 2}
+      - {fileID: 2100000, guid: 796ec6dee71d93247bc661464f28d725, type: 2}
+      - {fileID: 2100000, guid: 392fee9390264734d8b5fa4bf3dae34a, type: 2}
+      - {fileID: 2100000, guid: ef0b3c03a438bfe4d80deaaf7ebcc79b, type: 2}
+      - {fileID: 2100000, guid: 1fa1b75d5c781ab4d858c59dce0dc225, type: 2}
+      - {fileID: 2100000, guid: 7c06c1f24689f7542a0c50d96d39bbda, type: 2}
+    - mats:
+      - {fileID: 2100000, guid: bc2ce672a0fa28344a2522a913027048, type: 2}
+      - {fileID: 2100000, guid: 29752d7f6680eff4a87625a2b52b19c1, type: 2}
+      - {fileID: 2100000, guid: 3d00753293e580e40a4f9493676b79d5, type: 2}
+      - {fileID: 2100000, guid: 74b8dd0a9d0bbb14b981a8428b9cc9ed, type: 2}
+      - {fileID: 2100000, guid: 5ea3f008b5e63fd4f9b6b8cb5725e8de, type: 2}
+      - {fileID: 2100000, guid: 4bfd9b0134f08d74d9da1694c8e5fea4, type: 2}
+    - mats:
+      - {fileID: 2100000, guid: 8870f2911efd205408f1927a59888d10, type: 2}
+      - {fileID: 2100000, guid: 9658870f9ab9165448ed60189bb8acdd, type: 2}
+      - {fileID: 2100000, guid: b65d4272647b14f47a2b95c01698807c, type: 2}
+      - {fileID: 2100000, guid: e207ec3f88d7b944699f6903de4d5e3c, type: 2}
+      - {fileID: 2100000, guid: c8188456929f86c49a555200529a6efd, type: 2}
+      - {fileID: 2100000, guid: 941630e0d4373444fba2a372d3d15feb, type: 2}
+    - mats:
+      - {fileID: 2100000, guid: a12ab8e0cd287194c9554df71ac8a52d, type: 2}
+      - {fileID: 2100000, guid: 2b63e4e90f313c749bcd592b67821a24, type: 2}
+      - {fileID: 2100000, guid: d95764f0a324d75479f727b43fa5bdd1, type: 2}
+      - {fileID: 2100000, guid: 7899ca284cd8e18409a912c5b42a8059, type: 2}
+      - {fileID: 2100000, guid: 1dd2a14ad9fb2364fbf114e5d1465625, type: 2}
+      - {fileID: 2100000, guid: 7e45fa0168798e24d8c425d124e190d4, type: 2}
 --- !u!114 &1421085998561758492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,15 +641,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 50
-  damageChance: 0.5
-  damageTime: 1
+  damageChance: 1
+  damageTime: 0.6
   deathTime: 1
   moveSpeed: 1
   spriteRotateTime: 1
   engageRange: 3
   leashRange: 10
   attackRange: 0.3
-  lightAttackChance: 1
+  lightAttackChance: 0.65
   lightAttackHitBox: {fileID: 5468319828715145666}
   heavyAttackHitBox: {fileID: 4075191245629567485}
   lightAttackTime: 1
