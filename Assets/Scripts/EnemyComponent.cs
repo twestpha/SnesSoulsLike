@@ -5,12 +5,12 @@ class EnemyComponent : MonoBehaviour {
 
     private const float MOVE_THRESHOLD_RANGE = 0.1f;
 
-    private const int IDLE_ANIMATION_INDEX           = 0;
-    private const int WALK_ANIMATION_INDEX           = 1;
-    private const int LIGHT_ATTACK_ANIMATION_INDEX   = 2;
-    private const int HEAVY_ATTACK_ANIMATION_INDEX   = 3;
-    private const int DAMAGED_ATTACK_ANIMATION_INDEX = 4;
-    private const int DEATH_ATTACK_ANIMATION_INDEX   = 5;
+    private const int IDLE_ANIMATION_INDEX         = 0;
+    private const int WALK_ANIMATION_INDEX         = 1;
+    private const int LIGHT_ATTACK_ANIMATION_INDEX = 2;
+    private const int HEAVY_ATTACK_ANIMATION_INDEX = 3;
+    private const int DAMAGED_ANIMATION_INDEX      = 4;
+    private const int DEATH_ANIMATION_INDEX        = 5;
 
     [Header("Health and Damage")]
     public float maxHealth;
@@ -206,17 +206,25 @@ class EnemyComponent : MonoBehaviour {
                     materialAnimation.ForceUpdate();
                 }
             } else if(enemyState == EnemyState.Dead){
-                // play anim, disable lots of things
+                // Do anything?
             }
         }
     }
 
     public void DealDamage(float damage){
+        if(enemyState == EnemyState.Dead){
+            return;
+        }
+
         currentHealth -= damage;
 
         if(currentHealth < 0){
             enemyState = EnemyState.Dead;
-            // anim
+
+            materialAnimation.looping = false;
+            spriteRotatable.SetAnimationIndex(DEATH_ANIMATION_INDEX);
+            materialAnimation.ForceUpdate();
+
             return;
         }
 
@@ -224,7 +232,7 @@ class EnemyComponent : MonoBehaviour {
             enemyState = EnemyState.Damaged;
 
             materialAnimation.looping = false;
-            spriteRotatable.SetAnimationIndex(DAMAGED_ATTACK_ANIMATION_INDEX);
+            spriteRotatable.SetAnimationIndex(DAMAGED_ANIMATION_INDEX);
             materialAnimation.ForceUpdate();
 
             damageTimer.Start();

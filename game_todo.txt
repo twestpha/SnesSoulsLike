@@ -1,29 +1,25 @@
 // #################################################################################################
 // Done
 // #################################################################################################
-[/] wight Model
-[W] wight walk
-[/] Dying/Respawning/Resetting world
-[/] "save" opening of gate
 [/] Fix loading of interior
 [/] skeleton attack B
 [/] skeleton attack A
 [/] Cooldowns in between enemy attacks?
 [W] Enemy sprites flicker some direction after attacking?
+[/] skeleton damaged
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
 [x] skeleton
-    [x] skeleton damaged
-    [x] skeleton dying
+    [x] skeleton death
 [x] Lantern Wight
     [x] Wight idle
     [x] Wight attack A
     [x] Wight attack B
     [x] Wight damaged
-    [x] Wight dying
+    [x] Wight death
 [x] 3 headed skelly
     [x] Model
     [x] idle
@@ -31,7 +27,7 @@
     [x] attack A
     [x] attack B
     [x] damaged
-    [x] dying
+    [x] death
 
 [x] Tune health and damage to make it just barely beatable
 [x] Publish game + assets/concepts + source
