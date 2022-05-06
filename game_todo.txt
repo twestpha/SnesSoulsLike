@@ -7,15 +7,15 @@
 [/] Cooldowns in between enemy attacks?
 [W] Enemy sprites flicker some direction after attacking?
 [/] skeleton damaged
+[/] skeleton death
+[/] skeleton
+[/] Wight idle
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
-[x] skeleton
-    [x] skeleton death
 [x] Lantern Wight
-    [x] Wight idle
     [x] Wight attack A
     [x] Wight attack B
     [x] Wight damaged
