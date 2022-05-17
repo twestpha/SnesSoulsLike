@@ -10,14 +10,14 @@
 [/] skeleton death
 [/] skeleton
 [/] Wight idle
+[/] Wight attack A
+[/] Wight attack B
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
 [x] Lantern Wight
-    [x] Wight attack A
-    [x] Wight attack B
     [x] Wight damaged
     [x] Wight death
 [x] 3 headed skelly
