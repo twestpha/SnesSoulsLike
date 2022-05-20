@@ -1,12 +1,6 @@
 // #################################################################################################
 // Done
 // #################################################################################################
-[/] Fix loading of interior
-[/] skeleton attack B
-[/] skeleton attack A
-[/] Cooldowns in between enemy attacks?
-[W] Enemy sprites flicker some direction after attacking?
-[/] skeleton damaged
 [/] skeleton death
 [/] skeleton
 [/] Wight idle
