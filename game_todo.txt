@@ -12,13 +12,13 @@
 [/] Wight idle
 [/] Wight attack A
 [/] Wight attack B
+[/] Wight damaged
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
 [x] Lantern Wight
-    [x] Wight damaged
     [x] Wight death
 [x] 3 headed skelly
     [x] Model
