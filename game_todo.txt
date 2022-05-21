@@ -7,15 +7,15 @@
 [/] Wight attack A
 [/] Wight attack B
 [/] Wight damaged
+[/] Wight death
+[/] Lantern Wight
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
-[x] Lantern Wight
-    [x] Wight death
 [x] 3 headed skelly
-    [x] Model
+    [x] Design & Model
     [x] idle
     [x] walk
     [x] attack A
