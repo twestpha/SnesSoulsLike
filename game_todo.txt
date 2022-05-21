@@ -9,17 +9,18 @@
 [/] Wight damaged
 [/] Wight death
 [/] Lantern Wight
+[/] Design & Model
+[/] idle
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
 [x] 3 headed skelly
-    [x] Design & Model
-    [x] idle
     [x] walk
     [x] attack A
     [x] attack B
+        dragging and then up and over
     [x] damaged
     [x] death
 
