@@ -464,6 +464,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8890921842767446334, guid: 9cad7997bcf977f4094dd79fc5b88e8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cad7997bcf977f4094dd79fc5b88e8a, type: 3}
 --- !u!1001 &3753819033952951200
