@@ -22,6 +22,7 @@
     [x] attack B
         dragging and then up and over
     [x] damaged
+        no stagger?
     [x] death
     [x] Health Bar, Name, Disappear when dead (player/boss)
 
