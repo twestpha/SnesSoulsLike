@@ -12,6 +12,7 @@
 [/] Design & Model
 [/] idle
 [/] walk
+[W] damaged
 
 // #################################################################################################
 // Game TODO
@@ -21,8 +22,6 @@
     [x] attack A
     [x] attack B
         dragging and then up and over
-    [x] damaged
-        no stagger?
     [x] death
     [x] Health Bar, Name, Disappear when dead (player/boss)
 
