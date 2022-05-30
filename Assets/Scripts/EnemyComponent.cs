@@ -68,6 +68,9 @@ class EnemyComponent : MonoBehaviour {
     public RotatableComponent spriteRotatable;
     public MaterialAnimationComponent materialAnimation;
 
+    [Header("Boss")]
+    public bool isBoss;
+
     private PlayerComponent player;
     private CharacterController characterController;
 
@@ -218,7 +221,7 @@ class EnemyComponent : MonoBehaviour {
 
         currentHealth -= damage;
 
-        if(currentHealth < 0){
+        if(currentHealth <= 0.0f){
             enemyState = EnemyState.Dead;
 
             materialAnimation.looping = false;
@@ -242,7 +245,12 @@ class EnemyComponent : MonoBehaviour {
     void OnTriggerEnter(Collider other){
         if(player != null && other.gameObject == player.gameObject && enemyState == EnemyState.Inactive){
             enemyState = EnemyState.Idle;
-            // play idle animation
+            spriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+            materialAnimation.ForceUpdate();
+
+            if(isBoss){
+                PlayerComponent.player.ShowBossBar(this);
+            }
         }
     }
 }

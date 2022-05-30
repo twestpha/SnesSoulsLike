@@ -103,11 +103,17 @@ class PlayerComponent : MonoBehaviour {
     public Text locationText;
     public Text gameOverText;
 
+    public GameObject bossBarParent;
+    public Image bossBar;
+
     private float spriteDirection;
     private float spriteDirectionVelocity;
 
     private Camera playerCamera;
     private CharacterController characterController;
+
+    private bool fightingBoss;
+    private EnemyComponent enemyBoss;
 
     private bool playerPaused;
     private bool showingMessage;
@@ -435,6 +441,19 @@ class PlayerComponent : MonoBehaviour {
         );
 
         skyPlaneMeshRenderer.material.SetTextureOffset("_MainTex", new Vector2(transform.rotation.eulerAngles.y / 360.0f, 0.0f));
+
+        // Boss bar
+        if(fightingBoss){
+            bossBar.fillAmount = enemyBoss.currentHealth / enemyBoss.maxHealth;
+
+            if(enemyBoss.currentHealth <= 0.0f || currentHealth <= 0.0f){
+                fightingBoss = false;
+                enemyBoss = null;
+
+                bossBar.fillAmount = 1.0f;
+                bossBarParent.SetActive(false);
+            }
+        }
     }
 
     private void Roll(){
@@ -579,10 +598,10 @@ class PlayerComponent : MonoBehaviour {
         Timer waitTimer = new Timer(3.0f);
         waitTimer.Start();
         while(!waitTimer.Finished()){
+            // Enable game over text halfway through
+            gameOverText.enabled = waitTimer.Parameterized() > 0.5f;
             yield return null;
         }
-
-        // TODO show death message
 
         // Fade out
         Timer fadeTimer = new Timer(1.5f);
@@ -616,6 +635,7 @@ class PlayerComponent : MonoBehaviour {
         playerAnimation.ForceUpdate();
 
         // Hide messages? Reset Paused? Reset boxes?
+        gameOverText.enabled = false;
 
         // Reset the levels after a frame, and give it a frame
         yield return null;
@@ -643,5 +663,12 @@ class PlayerComponent : MonoBehaviour {
 
         // Set state after fade in to unlock movement, etc.
         playerState = PlayerState.None;
+    }
+
+    public void ShowBossBar(EnemyComponent enemyBoss_){
+        fightingBoss = true;
+        enemyBoss = enemyBoss_;
+
+        bossBarParent.SetActive(true);
     }
 }
