@@ -13,15 +13,14 @@
 [/] idle
 [/] walk
 [W] damaged
+[/] attack A
 
 // #################################################################################################
 // Game TODO
 // #################################################################################################
 
 [x] 3 headed skelly
-    [x] attack A
     [x] attack B
-        dragging and then up and over
     [x] death
     [x] Health Bar, Name, Disappear when dead (player/boss)
 
