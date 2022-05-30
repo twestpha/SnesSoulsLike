@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7ef03aeb7a0bb4c817047e159cbbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 35
   hitBox: {fileID: 3277766122778149153}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
 --- !u!1 &8093857262558463894
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7ef03aeb7a0bb4c817047e159cbbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 45
   hitBox: {fileID: 4534221967902745126}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
 --- !u!1 &8890921842767446334
@@ -1160,8 +1160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18ac4b12eff65d4b89f0ae47c965cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  currentHealth: 20
+  maxHealth: 220
+  currentHealth: 220
   damageChance: 0
   damageTime: 0
   deathTime: 1
@@ -1170,7 +1170,7 @@ MonoBehaviour:
   engageRange: 3
   leashRange: 20
   attackRange: 0.7
-  lightAttackChance: 0
+  lightAttackChance: 0.65
   lightAttackHitBox: {fileID: 1454611831325319556}
   heavyAttackHitBox: {fileID: 7354340744506139276}
   lightAttackTime: 1.9

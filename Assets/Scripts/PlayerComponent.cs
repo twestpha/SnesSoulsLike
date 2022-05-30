@@ -416,8 +416,8 @@ class PlayerComponent : MonoBehaviour {
         // Camera
         float rotateDirection = 0.0f;
         if(currentHealth > 0.0f){
-            if(Input.GetKey(KeyCode.Q)){ rotateDirection = 1.0f; }
-            if(Input.GetKey(KeyCode.W)){ rotateDirection = -1.0f; }
+            if(Input.GetKey(KeyCode.W)){ rotateDirection = 1.0f; }
+            if(Input.GetKey(KeyCode.Q)){ rotateDirection = -1.0f; }
         }
 
         lookAngle = lookAngle + (rotateDirection * rotateSpeed * Time.deltaTime);
@@ -629,6 +629,7 @@ class PlayerComponent : MonoBehaviour {
         currentStamina = maxStamina;
 
         hasItem = true; // Reset "estus"
+        itemImage.sprite = itemFull;
 
         playerAnimation.looping = true;
         playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
