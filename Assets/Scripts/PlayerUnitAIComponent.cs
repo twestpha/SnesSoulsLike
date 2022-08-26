@@ -54,7 +54,6 @@ class PlayerUnitAIComponent : MonoBehaviour {
         if(mode == Mode.Follow){
             UpdateFollowing();
         }
-
     }
 
     private void UpdateFollowing(){
@@ -67,6 +66,8 @@ class PlayerUnitAIComponent : MonoBehaviour {
         if(inFollowLeash && !inPlayerLeash){
             pickedFollowDirection = FollowDirection.None;
         }
+
+        // TODO reset if can't reach leash in time? Just jump-ahead?
 
         if(!inFollowLeash || !inPlayerLeash){
             if(pickedFollowDirection == FollowDirection.None){

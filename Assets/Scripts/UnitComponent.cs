@@ -6,6 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterController))]
 class UnitComponent : MonoBehaviour {
 
+    private const float DIRECTION_TIME = 0.1f;
+
     public float moveSpeed;
     public float moveSpeedTime;
     public float turnSpeed;
@@ -24,23 +26,24 @@ class UnitComponent : MonoBehaviour {
     private Vector3 moveDirection;
     private CharacterController characterController;
 
-    private Vector3 velocity;
-    private Vector3 acceleration;
+    private float currentMoveSpeed;
+    private float currentMoveAcceleration;
+
+    private Vector3 currentDirection;
+    private Vector3 currentDirectionAcceleration;
 
     void Start(){
         characterController = GetComponent<CharacterController>();
     }
 
     void Update(){
-        // Only accelerate when going from stopped to starting, effectively decelerating immediately
-        if(moveDirection.magnitude > 0.01f){
-            velocity = Vector3.SmoothDamp(velocity, moveDirection.normalized * moveSpeed, ref acceleration, moveSpeedTime);
-        } else {
-            velocity = Vector3.zero;
-        }
+        // Damp move speed and then feed that to current vector so turning isn't so binary
+        currentMoveSpeed = Mathf.SmoothDamp(currentMoveSpeed, moveDirection.magnitude > 0.01f ? moveSpeed : 0.0f, ref currentMoveAcceleration, moveSpeedTime);
+        currentDirection = Vector3.SmoothDamp(currentDirection, moveDirection.normalized, ref currentDirectionAcceleration, DIRECTION_TIME);
 
-        characterController.SimpleMove(velocity);
+        characterController.SimpleMove(currentDirection.normalized * currentMoveSpeed);
 
+        // Flatten move direction and drive the look direction based on that
         Vector3 flatMoveDirection = moveDirection;
         flatMoveDirection.y = 0.0f;
 
