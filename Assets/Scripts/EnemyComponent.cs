@@ -249,7 +249,7 @@ class EnemyComponent : MonoBehaviour {
             materialAnimation.ForceUpdate();
 
             if(isBoss){
-                PlayerComponent.player.ShowBossBar(this);
+                // PlayerComponent.player.ShowBossBar(this);
             }
         }
     }

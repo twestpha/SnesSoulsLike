@@ -10,7 +10,7 @@ class MessageVolumeComponent : MonoBehaviour {
         PlayerComponent player = other.gameObject.GetComponent<PlayerComponent>();
 
         if(player != null){
-            player.ShowMessage(message);
+            // player.ShowMessage(message);
         }
     }
 }

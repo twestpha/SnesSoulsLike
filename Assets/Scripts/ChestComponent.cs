@@ -15,7 +15,7 @@ class ChestComponent : MonoBehaviour {
             GetComponent<MaterialAnimationComponent>().enabled = true;
 
             // Pretend to give the player an item
-            player.ShowMessage("Obtained Flensed Skull");
+            // player.ShowMessage("Obtained Flensed Skull");
         }
     }
 }

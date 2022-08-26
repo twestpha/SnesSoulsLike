@@ -18,10 +18,10 @@ class PlayerUIComponent : MonoBehaviour {
     }
 
     void Update(){
-        float healthPercent = playerComponent.currentHealth / playerComponent.maxHealth;
-        healthBar.fillAmount = Mathf.Round(healthPercent * healthBarWidth) / healthBarWidth;
-
-        float staminaPercent = playerComponent.currentStamina / playerComponent.maxStamina;
-        staminaBar.fillAmount = Mathf.Round(staminaPercent * staminaBarWidth) / staminaBarWidth;
+        // float healthPercent = playerComponent.currentHealth / playerComponent.maxHealth;
+        // healthBar.fillAmount = Mathf.Round(healthPercent * healthBarWidth) / healthBarWidth;
+        //
+        // float staminaPercent = playerComponent.currentStamina / playerComponent.maxStamina;
+        // staminaBar.fillAmount = Mathf.Round(staminaPercent * staminaBarWidth) / staminaBarWidth;
     }
 }

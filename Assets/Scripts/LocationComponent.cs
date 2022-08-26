@@ -11,7 +11,7 @@ class LocationComponent : MonoBehaviour {
 
         if(player != null && !seen){
             seen = true;
-            player.ShowLocation();
+            // player.ShowLocation();
         }
     }
 }

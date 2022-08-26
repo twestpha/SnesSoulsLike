@@ -56,12 +56,12 @@ namespace UnityStandardAssets.ImageEffects
 
                 CreateMaterials();
 
-                if(m_PaletteTexture != previousTexture && m_PaletteTexture != null){
-                    m_PixellateMaterial.SetFloat("_PaletteColorCount", (float)(m_PaletteTexture.width));
-                    m_PixellateMaterial.SetTexture("_Palette", m_PaletteTexture);
-
-                    previousTexture = m_PaletteTexture;
-                }
+                // if(m_PaletteTexture != previousTexture && m_PaletteTexture != null){
+                //     m_PixellateMaterial.SetFloat("_PaletteColorCount", (float)(m_PaletteTexture.width));
+                //     m_PixellateMaterial.SetTexture("_Palette", m_PaletteTexture);
+                //
+                //     previousTexture = m_PaletteTexture;
+                // }
 
                 m_PixellateMaterial.SetFloat("_ResolutionX", (float)(m_ResolutionX));
                 m_PixellateMaterial.SetFloat("_ResolutionY", (float)(m_ResolutionY));

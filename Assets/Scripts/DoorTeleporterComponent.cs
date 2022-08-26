@@ -16,7 +16,7 @@ class DoorTeleporterComponent : MonoBehaviour {
 
     public IEnumerator Teleport(PlayerComponent player){
         // Pause
-        player.SetPaused(true);
+        // player.SetPaused(true);
 
         // Fade out
         Timer fadeTimer = new Timer(1.4f);
@@ -36,7 +36,7 @@ class DoorTeleporterComponent : MonoBehaviour {
         player.transform.rotation = teleportTarget.rotation;
 
         // Unpause
-        player.SetPaused(false);
+        // player.SetPaused(false);
 
         // Fade in
         fadeTimer.Start();

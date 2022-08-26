@@ -35,8 +35,8 @@ class GameComponent : MonoBehaviour {
         respawnTransform = playerStartTransform; // until overridden by bonfire
 
         // Emulate probable SNES framerate and graphics options by default
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 15;
+        // QualitySettings.vSyncCount = 0;
+        // Application.targetFrameRate = 15;
 
         playerCamera = player.GetComponentInChildren<Camera>();
         pixellateEffect = playerCamera.GetComponent<PixellateAndPalette>();

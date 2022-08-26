@@ -19,7 +19,7 @@ class BonfireComponent : MonoBehaviour {
             GameComponent gameComponent = GameObject.FindObjectOfType<GameComponent>();
             gameComponent.respawnTransform = spawnTransform;
 
-            player.ShowMessage("Devotion Accepted");
+            // player.ShowMessage("Devotion Accepted");
         }
     }
 }
