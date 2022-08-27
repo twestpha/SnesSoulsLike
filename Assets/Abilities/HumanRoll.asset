@@ -18,7 +18,7 @@ MonoBehaviour:
   interruptPercent: 1
   movePercentage: 1
   moveDirection: {x: 0, y: 0, z: 1}
-  maxMoveSpeed: 14
+  maxMoveSpeed: 8
   moveSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -41,17 +41,26 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.10630252
     - serializedVersion: 3
-      time: 0.5089866
-      value: 0.06815514
-      inSlope: -0.5067267
-      outSlope: -0.5067267
+      time: 0.26493537
+      value: 0.99136764
+      inSlope: -0.20399372
+      outSlope: -0.20399372
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.23489231
-      outWeight: 0.09214985
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4155506
+      value: 0.44094616
+      inSlope: -3.2511392
+      outSlope: -3.2511392
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09043593
+      outWeight: 0.18683551
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 0.05
       inSlope: 0
       outSlope: 0
       tangentMode: 0
