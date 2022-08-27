@@ -720,6 +720,11 @@ MonoBehaviour:
   spriteRotatable: {fileID: 100591548}
   materialAnimation: {fileID: 100591549}
   isBoss: 0
+  player: {fileID: 0}
+  characterController: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  moveTargetPosition: {x: 0, y: 0, z: 0}
+  attackDamageStarted: 0
 --- !u!114 &100591548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,6 +1337,14 @@ MonoBehaviour:
       - {fileID: 2100000, guid: abef5b879e253cf4f9d1fc609bd7fdb0, type: 2}
       - {fileID: 2100000, guid: 063f3ae7e1b19194b94ac2ce566d55ba, type: 2}
       - {fileID: 2100000, guid: e82a68215a89db2408b6c6ffdee9d730, type: 2}
+  targetTransform: {fileID: 0}
+  rotationIncrementCount: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  degreesPerSprite: 0
+  mesh: {fileID: 0}
+  animationIndex: 0
+  rotationIndex: 0
+  started: 0
 --- !u!114 &100591549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1349,6 +1362,13 @@ MonoBehaviour:
   looping: 1
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &100591550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1668,6 +1688,11 @@ MonoBehaviour:
   spriteRotatable: {fileID: 259013363}
   materialAnimation: {fileID: 259013364}
   isBoss: 0
+  player: {fileID: 0}
+  characterController: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  moveTargetPosition: {x: 0, y: 0, z: 0}
+  attackDamageStarted: 0
 --- !u!114 &259013363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,6 +2297,14 @@ MonoBehaviour:
       - {fileID: 2100000, guid: 5d80923bacaca8f4799cfbfb1317fb08, type: 2}
       - {fileID: 2100000, guid: 509f41701581a674cbbe1739e7bf9b80, type: 2}
       - {fileID: 2100000, guid: 1335b1e754a5e4e47b6b0f9eb0944d41, type: 2}
+  targetTransform: {fileID: 0}
+  rotationIncrementCount: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  degreesPerSprite: 0
+  mesh: {fileID: 0}
+  animationIndex: 0
+  rotationIndex: 0
+  started: 0
 --- !u!114 &259013364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2289,6 +2322,13 @@ MonoBehaviour:
   looping: 1
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &259013365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2540,6 +2580,8 @@ MonoBehaviour:
   damage: 10
   hitBox: {fileID: 300061034}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &300061034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2600,6 +2642,8 @@ MonoBehaviour:
   damage: 10
   hitBox: {fileID: 338031033}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &338031033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2704,6 +2748,11 @@ MonoBehaviour:
   spriteRotatable: {fileID: 354631462}
   materialAnimation: {fileID: 354631463}
   isBoss: 0
+  player: {fileID: 0}
+  characterController: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  moveTargetPosition: {x: 0, y: 0, z: 0}
+  attackDamageStarted: 0
 --- !u!114 &354631462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3308,6 +3357,14 @@ MonoBehaviour:
       - {fileID: 2100000, guid: 5d80923bacaca8f4799cfbfb1317fb08, type: 2}
       - {fileID: 2100000, guid: 509f41701581a674cbbe1739e7bf9b80, type: 2}
       - {fileID: 2100000, guid: 1335b1e754a5e4e47b6b0f9eb0944d41, type: 2}
+  targetTransform: {fileID: 0}
+  rotationIncrementCount: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  degreesPerSprite: 0
+  mesh: {fileID: 0}
+  animationIndex: 0
+  rotationIndex: 0
+  started: 0
 --- !u!114 &354631463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3325,6 +3382,13 @@ MonoBehaviour:
   looping: 1
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &354631464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3705,6 +3769,13 @@ MonoBehaviour:
   looping: 0
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &387531999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4192,6 +4263,8 @@ MonoBehaviour:
   damage: 45
   hitBox: {fileID: 592321743}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &592321743
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4712,6 +4785,8 @@ MonoBehaviour:
   damage: 5
   hitBox: {fileID: 727212537}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &727212537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4992,6 +5067,8 @@ MonoBehaviour:
   damage: 45
   hitBox: {fileID: 865129329}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &865129329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5110,6 +5187,8 @@ MonoBehaviour:
   damage: 10
   hitBox: {fileID: 887523206}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &887523206
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5230,6 +5309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080bb2ace69160548a600492f5227aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  opened: 0
 --- !u!136 &927214826
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5279,6 +5359,13 @@ MonoBehaviour:
   looping: 0
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &927214829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5814,6 +5901,8 @@ MonoBehaviour:
   damage: 5
   hitBox: {fileID: 981311300}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &981311300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6172,6 +6261,8 @@ MonoBehaviour:
   damage: 5
   hitBox: {fileID: 1204405050}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &1204405050
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6313,6 +6404,8 @@ MonoBehaviour:
   damage: 35
   hitBox: {fileID: 1252200950}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &1252200950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6775,6 +6868,11 @@ MonoBehaviour:
   spriteRotatable: {fileID: 1347994131}
   materialAnimation: {fileID: 1347994132}
   isBoss: 0
+  player: {fileID: 0}
+  characterController: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  moveTargetPosition: {x: 0, y: 0, z: 0}
+  attackDamageStarted: 0
 --- !u!114 &1347994131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7387,6 +7485,14 @@ MonoBehaviour:
       - {fileID: 2100000, guid: abef5b879e253cf4f9d1fc609bd7fdb0, type: 2}
       - {fileID: 2100000, guid: 063f3ae7e1b19194b94ac2ce566d55ba, type: 2}
       - {fileID: 2100000, guid: e82a68215a89db2408b6c6ffdee9d730, type: 2}
+  targetTransform: {fileID: 0}
+  rotationIncrementCount: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  degreesPerSprite: 0
+  mesh: {fileID: 0}
+  animationIndex: 0
+  rotationIndex: 0
+  started: 0
 --- !u!114 &1347994132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7404,6 +7510,13 @@ MonoBehaviour:
   looping: 1
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &1347994133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7794,6 +7907,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541254755}
   m_Mesh: {fileID: -1675619295129585197, guid: 84408a17ad0781941a891c836b5a137a, type: 3}
+--- !u!1 &1576305653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1576305656}
+  - component: {fileID: 1576305655}
+  - component: {fileID: 1576305654}
+  m_Layer: 0
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1576305654
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576305653}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8f223330a8ab91544af06ac50d055e3a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1576305655
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576305653}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1576305656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576305653}
+  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 26.508612, y: 1.037, z: 0.793}
+  m_LocalScale: {x: 6.4590006, y: 2.153, z: 2.153}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1585630436
 GameObject:
   m_ObjectHideFlags: 0
@@ -7885,6 +8079,11 @@ MonoBehaviour:
   spriteRotatable: {fileID: 1585630440}
   materialAnimation: {fileID: 1585630441}
   isBoss: 0
+  player: {fileID: 0}
+  characterController: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  moveTargetPosition: {x: 0, y: 0, z: 0}
+  attackDamageStarted: 0
 --- !u!114 &1585630440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8489,6 +8688,14 @@ MonoBehaviour:
       - {fileID: 2100000, guid: 5d80923bacaca8f4799cfbfb1317fb08, type: 2}
       - {fileID: 2100000, guid: 509f41701581a674cbbe1739e7bf9b80, type: 2}
       - {fileID: 2100000, guid: 1335b1e754a5e4e47b6b0f9eb0944d41, type: 2}
+  targetTransform: {fileID: 0}
+  rotationIncrementCount: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  degreesPerSprite: 0
+  mesh: {fileID: 0}
+  animationIndex: 0
+  rotationIndex: 0
+  started: 0
 --- !u!114 &1585630441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8506,6 +8713,13 @@ MonoBehaviour:
   looping: 1
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &1585630442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9182,6 +9396,11 @@ MonoBehaviour:
   spriteRotatable: {fileID: 1788478052}
   materialAnimation: {fileID: 1788478053}
   isBoss: 0
+  player: {fileID: 0}
+  characterController: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  moveTargetPosition: {x: 0, y: 0, z: 0}
+  attackDamageStarted: 0
 --- !u!114 &1788478052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9794,6 +10013,14 @@ MonoBehaviour:
       - {fileID: 2100000, guid: abef5b879e253cf4f9d1fc609bd7fdb0, type: 2}
       - {fileID: 2100000, guid: 063f3ae7e1b19194b94ac2ce566d55ba, type: 2}
       - {fileID: 2100000, guid: e82a68215a89db2408b6c6ffdee9d730, type: 2}
+  targetTransform: {fileID: 0}
+  rotationIncrementCount: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  degreesPerSprite: 0
+  mesh: {fileID: 0}
+  animationIndex: 0
+  rotationIndex: 0
+  started: 0
 --- !u!114 &1788478053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9811,6 +10038,13 @@ MonoBehaviour:
   looping: 1
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &1788478054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9952,6 +10186,8 @@ MonoBehaviour:
   damage: 35
   hitBox: {fileID: 1795512942}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &1795512942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10012,6 +10248,8 @@ MonoBehaviour:
   damage: 45
   hitBox: {fileID: 1852280853}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &1852280853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10080,6 +10318,13 @@ MonoBehaviour:
   looping: 0
   randomStartIndex: 0
   destroyOnFinish: 0
+  frameTime: 0
+  frameIndex: 0
+  finished: 0
+  previousMaterialCount: 0
+  usingMaterials: []
+  meshRenderer: {fileID: 0}
+  rotatable: {fileID: 0}
 --- !u!114 &1871188223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10739,6 +10984,8 @@ MonoBehaviour:
   damage: 35
   hitBox: {fileID: 2039408739}
   hitEffectsPrefab: {fileID: 6445031218757646437, guid: 8cb151dd4df495442aee313463b2a427, type: 3}
+  isPlayer: 0
+  enableDamage: 0
 --- !u!65 &2039408739
 BoxCollider:
   m_ObjectHideFlags: 0

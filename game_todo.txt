@@ -1,1 +1,21 @@
 https://twitter.com/heinn_dev
+
+
+
+
+Dark Souls Animation Tool Notes
+c000.anibnd
+a00_0110 = shield bash/parry
+a00_0130 = hurt reaction
+a00_0140 = shielded hurt reaction
+a00_0160 = got parried
+aXX_0500s= movement
+a00_0700 = roll
+a00_0710 = fat roll
+a00_0720 = super fat roll
+a00_1510 = long fall
+a00_1760 = landing
+a00_6324 = emotes
+a00_7111 = interaction with objects
+a00_7586 = drink flask
+a200_*   = generic moves

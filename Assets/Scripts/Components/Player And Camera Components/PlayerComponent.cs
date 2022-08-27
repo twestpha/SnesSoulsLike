@@ -59,6 +59,10 @@ class PlayerComponent : MonoBehaviour {
         }
 
         units[index].SetMoveDirection(inputDirection);
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            units[index].UseAbility(0);
+        }
     }
 
     public UnitComponent GetCurrentPlayerUnit(){

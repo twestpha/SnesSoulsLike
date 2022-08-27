@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AnimationComponent : MonoBehaviour {
 
-    private const float TRANSITION_TIME = 0.25f;
-
     public GameObject[] rig;
 
     public enum Transition : int {
@@ -221,8 +219,7 @@ public class AnimationComponent : MonoBehaviour {
 
             currentlyPlayingTransition = currentlyPlayingSequence.poses[0].transition;
 
-            // Always transition using the global time
-            animationTimer.SetDuration(TRANSITION_TIME);
+            animationTimer.SetDuration(currentlyPlayingSequence.poses[0].duration);
             animationTimer.Start();
 
             CachePreviousState();
