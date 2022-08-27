@@ -9,8 +9,8 @@ class PlayerUnitAIComponent : MonoBehaviour {
     private const float PLAYER_LEASH_DISTANCE = 3.0f;
     private const float PLAYER_KEEP_DISTANCE = 1.5f;
 
-    private const float MIN_FIDGET_TIME = 0.6f;
-    private const float MAX_FIDGET_TIME = 3.2f;
+    private const float MIN_FIDGET_TIME = 1.5f;
+    private const float MAX_FIDGET_TIME = 6.8f;
     private const float FIDGET_DURATION = 0.08f;
 
     public DetectorComponent detector;

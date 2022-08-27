@@ -23,6 +23,9 @@ class UnitComponent : MonoBehaviour {
 
     public AnimationComponent anim;
 
+    private bool performingAbility;
+
+    // Move attributes
     private Vector3 moveDirection;
     private CharacterController characterController;
 
@@ -37,6 +40,10 @@ class UnitComponent : MonoBehaviour {
     }
 
     void Update(){
+        UpdateMovement();
+    }
+
+    private void UpdateMovement(){
         // Damp move speed and then feed that to current vector so turning isn't so binary
         currentMoveSpeed = Mathf.SmoothDamp(currentMoveSpeed, moveDirection.magnitude > 0.01f ? moveSpeed : 0.0f, ref currentMoveAcceleration, moveSpeedTime);
         currentDirection = Vector3.SmoothDamp(currentDirection, moveDirection.normalized, ref currentDirectionAcceleration, DIRECTION_TIME);
@@ -57,16 +64,19 @@ class UnitComponent : MonoBehaviour {
     }
 
     public void SetMoveDirection(Vector3 moveDirection_){
-        if(moveDirection_.magnitude > 0.01f && moveDirection.magnitude <= 0.01f){
-            if(anim != null && !anim.IsPlayingAnimation("walk")){
-                anim.PlayAnimation("walk");
+        // Move direction can only be externally set when not performing and ability
+        if(!performingAbility){
+            if(moveDirection_.magnitude > 0.01f && moveDirection.magnitude <= 0.01f){
+                if(anim != null && !anim.IsPlayingAnimation("walk")){
+                    anim.PlayAnimation("walk");
+                }
+            } else if(moveDirection_.magnitude <= 0.01f && moveDirection.magnitude < 0.01f){
+                if(anim != null && !anim.IsPlayingAnimation("idle")){
+                    anim.PlayAnimation("idle");
+                }
             }
-        } else if(moveDirection_.magnitude <= 0.01f && moveDirection.magnitude < 0.01f){
-            if(anim != null && !anim.IsPlayingAnimation("idle")){
-                anim.PlayAnimation("idle");
-            }
-        }
 
-        moveDirection = moveDirection_;
+            moveDirection = moveDirection_;
+        }
     }
 }

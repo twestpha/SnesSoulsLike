@@ -20,13 +20,13 @@ class DetectorComponent : MonoBehaviour {
     private void OnTriggerEnter(Collider other){
         UnitComponent otherUnit = other.GetComponent<UnitComponent>();
 
-        Debug.Log(otherUnit);
-
         if(otherUnit != null && otherUnit.team != unit.team){
             enemyUnits.Add(otherUnit);
 
-            foreach(OnEnemyEntered enemyEnteredDelegate in enemyEnteredDelegates){
-                enemyEnteredDelegate();
+            if(enemyEnteredDelegates != null){
+                foreach(OnEnemyEntered enemyEnteredDelegate in enemyEnteredDelegates){
+                    enemyEnteredDelegate();
+                }
             }
         }
     }
