@@ -14,6 +14,7 @@ public class AnimationComponent : MonoBehaviour {
         Spring,
         Bounce,
         Jitter,
+        Overshoot,
     }
 
     private int currentPoseIndex;
@@ -114,6 +115,17 @@ public class AnimationComponent : MonoBehaviour {
         return output;
     }
 
+    private static float Overshoot(float t){
+        float c = 1.1f;
+        float b = 1.9f;
+        float a = 0.77f;
+
+        float tMinusA = (t - a);
+        float tMinusASquared = tMinusA * tMinusA;
+
+        return c - (b * tMinusASquared);
+    }
+
     // TODO don't manually update; hang our update off of a enemy update or something
     // Or some animation update manager, or something.
 	void Update(){
@@ -133,6 +145,8 @@ public class AnimationComponent : MonoBehaviour {
                 param = Bounce(param);
             } else if(currentlyPlayingTransition == Transition.Jitter){
                 param = Jitter(param);
+            } else if(currentlyPlayingTransition == Transition.Overshoot){
+                param = Overshoot(param);
             }
         }
 
@@ -142,7 +156,7 @@ public class AnimationComponent : MonoBehaviour {
 
     public void UpdateJoints(float parameter){
         for(int i = 0, rigLength = rig.Length; i < rigLength; ++i){
-            rig[i].transform.localPosition = Vector3.Lerp(
+            rig[i].transform.localPosition = Vector3.LerpUnclamped(
                 previousPositions[i],
                 currentlyPlayingSequence.poses[currentPoseIndex].positions[i],
                 parameter
@@ -186,6 +200,7 @@ public class AnimationComponent : MonoBehaviour {
 
             } else if(currentlyPlayingSequence.behavior == AnimationSequenceData.FinishBehavior.Stop){
                 currentPoseIndex++;
+                currentlyPlayingTransition = currentlyPlayingSequence.poses[currentPoseIndex].transition;
 
                 if(currentPoseIndex == currentlyPlayingSequence.poses.Length){
                     currentPoseIndex--;

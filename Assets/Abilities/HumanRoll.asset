@@ -18,36 +18,45 @@ MonoBehaviour:
   interruptPercent: 1
   movePercentage: 1
   moveDirection: {x: 0, y: 0, z: 1}
-  maxMoveSpeed: 6
+  maxMoveSpeed: 14
   moveSpeedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0059890747
-      value: 0.5
-      inSlope: 2.26568
-      outSlope: 2.26568
-      tangentMode: 34
+      time: 0.000038146973
+      value: 0.3
+      inSlope: 12.271444
+      outSlope: 12.271444
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.04710876
     - serializedVersion: 3
-      time: 0.21919464
-      value: 0.9830556
-      inSlope: 0.5033262
-      outSlope: 0.5033262
-      tangentMode: 34
+      time: 0.1779862
+      value: 0.9954152
+      inSlope: 0.051097617
+      outSlope: 0.051097617
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.10630252
+    - serializedVersion: 3
+      time: 0.5089866
+      value: 0.06815514
+      inSlope: -0.5067267
+      outSlope: -0.5067267
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.23489231
+      outWeight: 0.09214985
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.2590277
-      outSlope: -1.2590277
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.15694396
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

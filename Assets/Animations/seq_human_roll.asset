@@ -17,3 +17,5 @@ MonoBehaviour:
   poses:
   - {fileID: 11400000, guid: 2f0b18bb8b1922b4aaafb7bddc9b8997, type: 2}
   - {fileID: 11400000, guid: df518c7d3634b4c43912a8db49728e79, type: 2}
+  - {fileID: 11400000, guid: e5da5368d03160741a9816017cddfe19, type: 2}
+  - {fileID: 11400000, guid: ef6a5f675e2048d43914873f57dec015, type: 2}
