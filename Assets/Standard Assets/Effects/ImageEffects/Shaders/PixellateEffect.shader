@@ -43,6 +43,9 @@ SubShader {
 
 				float4 col = tex2D(_MainTex, float2(screenPixelX, screenPixelY));
 
+				// Arbitrarily chosen 400-color pseudo palettization
+				col = floor(col * 20.0) / 20.0;
+
 				// if(_PaletteColorCount <= 0){
 					return col;
 				// } else {

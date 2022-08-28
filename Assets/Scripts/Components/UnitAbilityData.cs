@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class UnitAbilityData : ScriptableObject {
 
-    // TODO loc name, description, sprite
+    // TODO loc name, description, sprite, cooldown
 
     [Header("Casting")]
     public bool castOnButtonUp; // As opposed to button down
@@ -36,6 +36,10 @@ public class UnitAbilityData : ScriptableObject {
     // How long (if at all) should the unit's weapon be able to deal damage
     public Vector2 damageRangePercent;
     // TODO weapon motion blur/streak effect amount over time (using line renderer?)
+
+    [Header("Collision")]
+    public Vector2 collisionResizeRangePercent;
+    public float resizeHeight;
 
     [Header("Spawning Prefab")]
     public float spawnTimePercent;

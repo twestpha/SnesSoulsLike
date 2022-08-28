@@ -71,12 +71,8 @@ CGINCLUDE
 		float fogFac = 0.0;
 		if (_SceneFogMode.x == 1) // stepped
 		{
-			// Custom stepped
+			// factor = (end-z)/(end-start) = z * (-1/(end-start)) + (end/(end-start))
 			fogFac = coord * _SceneFogParams.z + _SceneFogParams.w;
-
-			float t = fogFac * 6.0;
-			t = trunc(t);
-			fogFac = t / 6.0;
 		}
 		if (_SceneFogMode.x == 2) // linear
 		{

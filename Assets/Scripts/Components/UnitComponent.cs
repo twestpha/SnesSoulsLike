@@ -29,6 +29,8 @@ class UnitComponent : MonoBehaviour {
     private UnitAbilityData currentlyPerformingAbility;
     private Timer abilityTimer = new Timer();
 
+    private float originalCharacterHeight;
+
     // Move attributes
     private Vector3 moveDirection;
     private CharacterController characterController;
@@ -41,6 +43,8 @@ class UnitComponent : MonoBehaviour {
 
     void Start(){
         characterController = GetComponent<CharacterController>();
+
+        originalCharacterHeight = characterController.height;
     }
 
     void Update(){
@@ -54,12 +58,14 @@ class UnitComponent : MonoBehaviour {
     }
 
     private void UpdateAbility(){
+        float abilityT = abilityTimer.Parameterized();
+
         // Update movement from ability
-        if(abilityTimer.Parameterized() <= currentlyPerformingAbility.movePercentage){
+        if(abilityT <= currentlyPerformingAbility.movePercentage){
             float abilityMoveSpeed =
               currentlyPerformingAbility.maxMoveSpeed *
               currentlyPerformingAbility.moveSpeedCurve.Evaluate(
-                abilityTimer.Parameterized() / currentlyPerformingAbility.movePercentage
+                abilityT / currentlyPerformingAbility.movePercentage
             );
 
             characterController.SimpleMove(moveDirection.normalized * abilityMoveSpeed);
@@ -67,16 +73,47 @@ class UnitComponent : MonoBehaviour {
             moveDirection = Vector3.zero;
         }
 
-        // Once finished, clear ability, velocity, and return to idle
+        // Update collision height/center from ability
+        if(currentlyPerformingAbility.collisionResizeRangePercent.x <= abilityT
+           && abilityT <= currentlyPerformingAbility.collisionResizeRangePercent.y){
+            characterController.center = new Vector3(
+                characterController.center.x,
+                currentlyPerformingAbility.resizeHeight / 2.0f,
+                characterController.center.z
+            );
+
+            characterController.height = currentlyPerformingAbility.resizeHeight;
+        } else {
+            characterController.center = new Vector3(
+                characterController.center.x,
+                originalCharacterHeight / 2.0f,
+                characterController.center.z
+            );
+
+            characterController.height = originalCharacterHeight;
+        }
+
+        // All done
         if(abilityTimer.Finished()){
+            // Clear ability
             performingAbility = false;
             currentlyPerformingAbility = null;
 
+            // Clear velocity and reset animation to idle
             moveDirection = Vector3.zero;
 
             if(anim != null && !anim.IsPlayingAnimation("idle")){
                 anim.PlayAnimation("idle");
             }
+
+            // Reset character controller
+            characterController.center = new Vector3(
+                characterController.center.x,
+                originalCharacterHeight / 2.0f,
+                characterController.center.z
+            );
+
+            characterController.height = originalCharacterHeight;
         }
     }
 
