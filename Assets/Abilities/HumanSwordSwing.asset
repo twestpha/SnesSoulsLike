@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b84136c1c96049a9d3770d57fcbf3, type: 3}
+  m_Name: HumanSwordSwing
+  m_EditorClassIdentifier: 
+  castOnButtonUp: 0
+  castIndicatorPrefab: {fileID: 0}
+  abilityDuration: 1.5
+  interruptPercent: 1
+  movePercentage: 1
+  moveDirection: {x: 0, y: 0, z: 1}
+  maxMoveSpeed: 4
+  moveSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0016237497
+      value: -0.004954815
+      inSlope: 0.13005525
+      outSlope: 0.13005525
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.31192535
+    - serializedVersion: 3
+      time: 0.15189055
+      value: 0.08716622
+      inSlope: 2.724145
+      outSlope: 2.724145
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4455073
+    - serializedVersion: 3
+      time: 0.30265653
+      value: 0.99765694
+      inSlope: 0.18178634
+      outSlope: 0.18178634
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.9578657
+      outWeight: 0.45974877
+    - serializedVersion: 3
+      time: 0.40397367
+      value: 0.99980134
+      inSlope: 0.067006394
+      outSlope: 0.067006394
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.58386457
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.5724471
+      value: 0.27480835
+      inSlope: -1.2348679
+      outSlope: -1.2348679
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.27404332
+      outWeight: 0.046218906
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.08444095
+      outSlope: -0.08444095
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13258226
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animationName: swordswing
+  invincibleRangePercent: {x: 0, y: 0}
+  damageRangePercent: {x: 0, y: 0}
+  spawnTimePercent: 0
+  spawnPrefab: {fileID: 0}
+  spawnOffset: {x: 0, y: 0, z: 0}

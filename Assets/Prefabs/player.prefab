@@ -1194,7 +1194,7 @@ Transform:
   - {fileID: 969305328}
   m_Father: {fileID: 567613452683896482}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 57.663, y: -577.193, z: -623.791}
+  m_LocalEulerAnglesHint: {x: 158.534, y: -597.822, z: -563.872}
 --- !u!1 &4034643221312114033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1255,7 @@ Transform:
   - {fileID: 3211829284276878290}
   m_Father: {fileID: 2108539910621928927}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5.534, y: 86.1, z: -138.671}
+  m_LocalEulerAnglesHint: {x: -21.983, y: -21.501, z: -188.622}
 --- !u!1 &5211245426784814303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1398,8 @@ MonoBehaviour:
     sequence: {fileID: 11400000, guid: a28b7c519f7ee5548ac0723e67399ec0, type: 2}
   - name: roll
     sequence: {fileID: 11400000, guid: 3af8b500f476c1246b161ea73dc86b0c, type: 2}
+  - name: swordswing
+    sequence: {fileID: 11400000, guid: 99f0f6a79f69d28408c412cfa9486688, type: 2}
 --- !u!114 &2588829403605559987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,6 +1489,7 @@ MonoBehaviour:
   anim: {fileID: 5334345938419094467}
   equippedAbilities:
   - {fileID: 11400000, guid: 61d3c45007ada78499feb3139e52ed74, type: 2}
+  - {fileID: 11400000, guid: e6fe9066ee39046428872ff8344f59b2, type: 2}
 --- !u!114 &382766045
 MonoBehaviour:
   m_ObjectHideFlags: 0

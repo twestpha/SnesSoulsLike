@@ -200,10 +200,13 @@ public class AnimationComponent : MonoBehaviour {
 
             } else if(currentlyPlayingSequence.behavior == AnimationSequenceData.FinishBehavior.Stop){
                 currentPoseIndex++;
-                currentlyPlayingTransition = currentlyPlayingSequence.poses[currentPoseIndex].transition;
+
+                if(currentPoseIndex < currentlyPlayingSequence.poses.Length){
+                    currentlyPlayingTransition = currentlyPlayingSequence.poses[currentPoseIndex].transition;
+                }
 
                 if(currentPoseIndex == currentlyPlayingSequence.poses.Length){
-                    currentPoseIndex--;
+                    currentPoseIndex = currentlyPlayingSequence.poses.Length - 1;
 
                     if(returnToIdleOnFinish){
                         PlayAnimation("idle", false);

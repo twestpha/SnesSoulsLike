@@ -63,6 +63,10 @@ class PlayerComponent : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Alpha1)){
             units[index].UseAbility(0);
         }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            units[index].UseAbility(1);
+        }
     }
 
     public UnitComponent GetCurrentPlayerUnit(){
