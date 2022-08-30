@@ -75,7 +75,8 @@ class UnitComponent : MonoBehaviour {
 
         // Update collision height/center from ability
         if(currentlyPerformingAbility.collisionResizeRangePercent.x <= abilityT
-           && abilityT <= currentlyPerformingAbility.collisionResizeRangePercent.y){
+           && abilityT <= currentlyPerformingAbility.collisionResizeRangePercent.y
+           && currentlyPerformingAbility.collisionResizeRangePercent.y > 0.0f){
             characterController.center = new Vector3(
                 characterController.center.x,
                 currentlyPerformingAbility.resizeHeight / 2.0f,

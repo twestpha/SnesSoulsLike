@@ -18,7 +18,7 @@ MonoBehaviour:
   interruptPercent: 1
   movePercentage: 1
   moveDirection: {x: 0, y: 0, z: 1}
-  maxMoveSpeed: 4
+  maxMoveSpeed: 0
   moveSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -82,6 +82,8 @@ MonoBehaviour:
   animationName: swordswing
   invincibleRangePercent: {x: 0, y: 0}
   damageRangePercent: {x: 0, y: 0}
+  collisionResizeRangePercent: {x: 0, y: 0}
+  resizeHeight: 0
   spawnTimePercent: 0
   spawnPrefab: {fileID: 0}
   spawnOffset: {x: 0, y: 0, z: 0}

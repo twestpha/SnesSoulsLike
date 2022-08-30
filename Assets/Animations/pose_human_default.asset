@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f431b04b88d764685cd614a4a3d883, type: 3}
   m_Name: pose_human_default
   m_EditorClassIdentifier: 
-  locked: 0
+  locked: 1
   transition: 0
   duration: 1
   positions:
