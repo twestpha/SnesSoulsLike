@@ -62,7 +62,7 @@ public class AnimationComponent : MonoBehaviour {
     #if UNITY_EDITOR
     [ContextMenu("Test Animation")]
     void TestAnimationIdle(){
-        PlayAnimation("test", false);
+        PlayAnimation("test", true);
     }
     #endif
 

@@ -75,14 +75,14 @@ class PlayerUnitAIComponent : MonoBehaviour {
                 followPosition = GetFollowPosition();
             }
 
-            unit.SetMoveDirection(toFollowPosition.normalized);
+            unit.SetInputDirection(toFollowPosition.normalized);
 
             // Always clear fidgeting while moving
             fidgetStarted = false;
             fidgetHappening = false;
         } else {
             pickedFollowDirection = FollowDirection.None;
-            unit.SetMoveDirection(Vector3.zero);
+            unit.SetInputDirection(Vector3.zero);
 
             if(!fidgetStarted){
                 fidgetStarted = true;
@@ -93,22 +93,24 @@ class PlayerUnitAIComponent : MonoBehaviour {
         }
 
         if(fidgetStarted && !fidgetHappening && fidgetWaitTimer.Finished()){
-            fidgetHappening = true;
-            fidgetDurationTimer.Start();
+            // I think we just request playing one of n fidget animations...
 
-            fidgetDirection = new Vector3(
-                UnityEngine.Random.Range(-1.0f, 1.0f),
-                0.0f,
-                UnityEngine.Random.Range(-1.0f, 1.0f)
-            );
+            // fidgetHappening = true;
+            // fidgetDurationTimer.Start();
+            //
+            // fidgetDirection = new Vector3(
+            //     UnityEngine.Random.Range(-1.0f, 1.0f),
+            //     0.0f,
+            //     UnityEngine.Random.Range(-1.0f, 1.0f)
+            // );
         } else if(fidgetHappening){
-            unit.SetMoveDirection(fidgetDirection);
-
-            if(fidgetDurationTimer.Finished()){
-                fidgetStarted = false;
-                fidgetHappening = false;
-                unit.SetMoveDirection(Vector3.zero);
-            }
+            // unit.SetInputDirection(fidgetDirection);
+            //
+            // if(fidgetDurationTimer.Finished()){
+            //     fidgetStarted = false;
+            //     fidgetHappening = false;
+            //     unit.SetInputDirection(Vector3.zero);
+            // }
         }
     }
 

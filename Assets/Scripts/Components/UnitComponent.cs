@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,14 +7,24 @@ using UnityEngine.UI;
 class UnitComponent : MonoBehaviour {
 
     private const float DIRECTION_TIME = 0.1f;
+    private const float ABILITY_DIRECTION_TIME = 0.05f;
 
     public float moveSpeed;
     public float moveSpeedTime;
     public float turnSpeed;
 
+    public Vector2 damageTimeRange;
+
     public enum Team {
         Player,
         Enemy,
+    }
+
+    public enum UnitState {
+        Idle,
+        PerformingAbility,
+        Damaged,
+        Dead,
     }
 
     public Team team;
@@ -25,36 +35,80 @@ class UnitComponent : MonoBehaviour {
 
     public UnitAbilityData[] equippedAbilities;
 
-    private bool performingAbility;
-    private UnitAbilityData currentlyPerformingAbility;
-    private Timer abilityTimer = new Timer();
+    private UnitState unitState;
 
     private float originalCharacterHeight;
-
-    // Move attributes
-    private Vector3 moveDirection;
-    private CharacterController characterController;
-
     private float currentMoveSpeed;
     private float currentMoveAcceleration;
 
-    private Vector3 currentDirection;
-    private Vector3 currentDirectionAcceleration;
+    private Vector3 inputDirection;
+    private Vector3 previousNonZeroInputDirection;
+
+
+    private Vector3 abilityMoveDirection;
+    private Vector3 currentMoveDirection;
+    private Vector3 previousMoveDirection;
+    private Vector3 currentMoveDirectionAcceleration;
+
+    private HealthComponent health;
+    private CharacterController characterController;
+    private UnitAbilityData currentlyPerformingAbility;
+
+    private Timer abilityTimer = new Timer();
+    private Timer damageTimer = new Timer();
 
     void Start(){
         characterController = GetComponent<CharacterController>();
-
         originalCharacterHeight = characterController.height;
+
+        health = GetComponent<HealthComponent>();
+        health.RegisterOnDamagedDelegate(OnDamaged);
+        health.RegisterOnKilledDelegate(OnKilled);
     }
 
     void Update(){
-        if(performingAbility){
-            UpdateAbility();
-        } else {
+        if(unitState == UnitState.Idle){
             UpdateMovement();
+        } else if(unitState == UnitState.PerformingAbility){
+            UpdateAbility();
+        } else if(unitState == UnitState.Damaged){
+            UpdateDamaging();
+        } else if(unitState == UnitState.Damaged){
+            // Nothing for now
+        }
+    }
+
+    private void UpdateMovement(){
+        previousMoveDirection = currentMoveDirection;
+
+        // Damp move speed and then feed that to current vector so turning isn't so binary
+        currentMoveSpeed = Mathf.SmoothDamp(currentMoveSpeed, inputDirection.magnitude > 0.01f ? moveSpeed : 0.0f, ref currentMoveAcceleration, moveSpeedTime);
+        currentMoveDirection = Vector3.SmoothDamp(currentMoveDirection, inputDirection, ref currentMoveDirectionAcceleration, DIRECTION_TIME);
+
+        characterController.SimpleMove(currentMoveDirection.normalized * currentMoveSpeed);
+
+        // Flatten move direction and drive the look direction based on that
+        Vector3 flatMoveDirection = currentMoveDirection;
+        flatMoveDirection.y = 0.0f;
+
+        if(flatMoveDirection.sqrMagnitude > 0.1f){
+            rootTransform.rotation = Quaternion.RotateTowards(
+                rootTransform.rotation,
+                Quaternion.LookRotation(flatMoveDirection),
+                turnSpeed * Time.deltaTime
+            );
         }
 
-        UpdateDirection();
+        // Play walk/idle animation based on previous and current movement magnitudes
+        if(currentMoveDirection.magnitude > 0.01f && previousMoveDirection.magnitude <= 0.01f){
+            if(anim != null && !anim.IsPlayingAnimation("walk")){
+                anim.PlayAnimation("walk");
+            }
+        } else if(previousMoveDirection.magnitude <= 0.01f && currentMoveDirection.magnitude < 0.01f){
+            if(anim != null && !anim.IsPlayingAnimation("idle")){
+                anim.PlayAnimation("idle");
+            }
+        }
     }
 
     private void UpdateAbility(){
@@ -68,9 +122,10 @@ class UnitComponent : MonoBehaviour {
                 abilityT / currentlyPerformingAbility.movePercentage
             );
 
-            characterController.SimpleMove(moveDirection.normalized * abilityMoveSpeed);
+            characterController.SimpleMove(abilityMoveDirection.normalized * abilityMoveSpeed);
         } else {
-            moveDirection = Vector3.zero;
+            abilityMoveDirection = Vector3.zero;
+            currentMoveDirection = Vector3.zero;
         }
 
         // Update collision height/center from ability
@@ -94,14 +149,30 @@ class UnitComponent : MonoBehaviour {
             characterController.height = originalCharacterHeight;
         }
 
+        // Drive move direction towards ability move direction over time to make character's turning smoother
+        currentMoveDirection = Vector3.SmoothDamp(currentMoveDirection, abilityMoveDirection.normalized, ref currentMoveDirectionAcceleration, ABILITY_DIRECTION_TIME);
+
+        // Flatten move direction and drive the look direction based on that
+        Vector3 flatMoveDirection = currentMoveDirection;
+        flatMoveDirection.y = 0.0f;
+
+        if(flatMoveDirection.sqrMagnitude > 0.1f){
+            rootTransform.rotation = Quaternion.RotateTowards(
+                rootTransform.rotation,
+                Quaternion.LookRotation(flatMoveDirection),
+                turnSpeed * Time.deltaTime
+            );
+        }
+
         // All done
         if(abilityTimer.Finished()){
             // Clear ability
-            performingAbility = false;
+            unitState = UnitState.Idle;
             currentlyPerformingAbility = null;
 
             // Clear velocity and reset animation to idle
-            moveDirection = Vector3.zero;
+            abilityMoveDirection = Vector3.zero;
+            currentMoveDirection = Vector3.zero;
 
             if(anim != null && !anim.IsPlayingAnimation("idle")){
                 anim.PlayAnimation("idle");
@@ -118,42 +189,21 @@ class UnitComponent : MonoBehaviour {
         }
     }
 
-    private void UpdateMovement(){
-        // Damp move speed and then feed that to current vector so turning isn't so binary
-        currentMoveSpeed = Mathf.SmoothDamp(currentMoveSpeed, moveDirection.magnitude > 0.01f ? moveSpeed : 0.0f, ref currentMoveAcceleration, moveSpeedTime);
-        currentDirection = Vector3.SmoothDamp(currentDirection, moveDirection.normalized, ref currentDirectionAcceleration, DIRECTION_TIME);
+    private void UpdateDamaging(){
+        if(damageTimer.Finished()){
+            unitState = UnitState.Idle;
 
-        characterController.SimpleMove(currentDirection.normalized * currentMoveSpeed);
-    }
-
-    private void UpdateDirection(){
-        // Flatten move direction and drive the look direction based on that
-        Vector3 flatMoveDirection = moveDirection;
-        flatMoveDirection.y = 0.0f;
-
-        if(flatMoveDirection.sqrMagnitude > 0.1f){
-            rootTransform.rotation = Quaternion.RotateTowards(
-                rootTransform.rotation,
-                Quaternion.LookRotation(flatMoveDirection),
-                turnSpeed * Time.deltaTime
-            );
+            if(anim != null){
+                anim.PlayAnimation("idle");
+            }
         }
     }
 
-    public void SetMoveDirection(Vector3 moveDirection_){
-        // Move direction can only be externally set when not performing and ability
-        if(!performingAbility){
-            if(moveDirection_.magnitude > 0.01f && moveDirection.magnitude <= 0.01f){
-                if(anim != null && !anim.IsPlayingAnimation("walk")){
-                    anim.PlayAnimation("walk");
-                }
-            } else if(moveDirection_.magnitude <= 0.01f && moveDirection.magnitude < 0.01f){
-                if(anim != null && !anim.IsPlayingAnimation("idle")){
-                    anim.PlayAnimation("idle");
-                }
-            }
+    public void SetInputDirection(Vector3 inputDirection_){
+        inputDirection = inputDirection_;
 
-            moveDirection = moveDirection_;
+        if(inputDirection.sqrMagnitude > 0.01f){
+            previousNonZeroInputDirection = inputDirection;
         }
     }
 
@@ -162,14 +212,14 @@ class UnitComponent : MonoBehaviour {
             return;
         }
 
-        // If already performing ability, wait until interruptable
-        if(performingAbility && abilityTimer.Parameterized() < currentlyPerformingAbility.interruptPercent){
+        // If already performing ability, check if interruptable
+        if(unitState == UnitState.PerformingAbility && abilityTimer.Parameterized() < currentlyPerformingAbility.interruptPercent){
             return;
         }
 
         // TODO stamina costs?
 
-        performingAbility = true;
+        unitState = UnitState.PerformingAbility;
         currentlyPerformingAbility = equippedAbilities[index];
 
         abilityTimer.SetDuration(currentlyPerformingAbility.abilityDuration);
@@ -181,7 +231,40 @@ class UnitComponent : MonoBehaviour {
             }
         }
 
-        // Transform movement direction into root transform space
-        moveDirection = rootTransform.TransformDirection(currentlyPerformingAbility.moveDirection);
+        // Get ability in terms of last non zero input direction, but don't commit to the
+        // rotation yet; let that happen passively.
+        Vector3 inputDirection = previousNonZeroInputDirection;
+        inputDirection.y = 0.0f;
+
+        Quaternion originalRotation = rootTransform.rotation;
+        rootTransform.rotation = Quaternion.LookRotation(inputDirection);
+
+        abilityMoveDirection = rootTransform.TransformDirection(currentlyPerformingAbility.moveDirection);
+        rootTransform.rotation = originalRotation;
+    }
+
+    void OnDamaged(HealthComponent health){
+        if(unitState != UnitState.Damaged){
+            // On damage, always clear current ability and movement
+            if(unitState == UnitState.PerformingAbility){
+                currentlyPerformingAbility = null;
+                abilityMoveDirection = Vector3.zero;
+            }
+
+            // Set state and clear directions
+            unitState = UnitState.Damaged;
+            currentMoveDirection = Vector3.zero;
+
+            damageTimer.SetDuration(UnityEngine.Random.Range(damageTimeRange.x, damageTimeRange.y));
+            damageTimer.Start();
+
+            if(anim != null){
+                anim.PlayAnimation("damaged");
+            }
+        }
+    }
+
+    void OnKilled(HealthComponent health){
+
     }
 }

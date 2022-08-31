@@ -21,7 +21,7 @@ class PlayerComponent : MonoBehaviour {
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.E)){
-            units[index].SetMoveDirection(Vector3.zero);
+            units[index].SetInputDirection(Vector3.zero);
             units[index].GetComponent<PlayerUnitAIComponent>().enabled = true;
             cameras[index].gameObject.SetActive(false);
 
@@ -32,7 +32,7 @@ class PlayerComponent : MonoBehaviour {
         }
 
         if(Input.GetKeyDown(KeyCode.Q)){
-            units[index].SetMoveDirection(Vector3.zero);
+            units[index].SetInputDirection(Vector3.zero);
             units[index].GetComponent<PlayerUnitAIComponent>().enabled = true;
             cameras[index].gameObject.SetActive(false);
 
@@ -58,7 +58,7 @@ class PlayerComponent : MonoBehaviour {
             inputDirection += cameras[index].transform.right;
         }
 
-        units[index].SetMoveDirection(inputDirection);
+        units[index].SetInputDirection(inputDirection);
 
         if(Input.GetKeyDown(KeyCode.Alpha1)){
             units[index].UseAbility(0);
