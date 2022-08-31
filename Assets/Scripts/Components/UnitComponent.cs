@@ -13,7 +13,13 @@ class UnitComponent : MonoBehaviour {
     public float moveSpeedTime;
     public float turnSpeed;
 
-    public Vector2 damageTimeRange;
+    [Serializable]
+    public class DamageReaction {
+        public float time;
+        public string animation;
+    }
+
+    public DamageReaction[] damageReactions;
 
     public enum Team {
         Player,
@@ -255,11 +261,14 @@ class UnitComponent : MonoBehaviour {
             unitState = UnitState.Damaged;
             currentMoveDirection = Vector3.zero;
 
-            damageTimer.SetDuration(UnityEngine.Random.Range(damageTimeRange.x, damageTimeRange.y));
+            // Pick damage reaction
+            DamageReaction pickedDamageReaction = damageReactions[UnityEngine.Random.Range(0, damageReactions.Length)];
+
+            damageTimer.SetDuration(pickedDamageReaction.time);
             damageTimer.Start();
 
             if(anim != null){
-                anim.PlayAnimation("damaged");
+                anim.PlayAnimation(pickedDamageReaction.animation);
             }
         }
     }

@@ -1451,7 +1451,9 @@ MonoBehaviour:
   moveSpeed: 4
   moveSpeedTime: 0.1
   turnSpeed: 720
-  damageTimeRange: {x: 0.15, y: 0.35}
+  damageReactions:
+  - time: 0.2
+    animation: damaged
   team: 0
   rootTransform: {fileID: 5880857953624382461}
   anim: {fileID: 5334345938419094467}
