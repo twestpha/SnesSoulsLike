@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 368d58fc6a3a84948a11d4dcd64f118e, type: 3}
-  m_Name: seq_human_damaged
+  m_Script: {fileID: 11500000, guid: fecc0f1449622aa41b8b4fa15e1fb685, type: 3}
+  m_Name: TestWeapon
   m_EditorClassIdentifier: 
-  behavior: 2
-  speedMultiplier: 1
-  poses:
-  - {fileID: 11400000, guid: e68d1455cc9c7e048b96c464489ac18a, type: 2}
-  - {fileID: 11400000, guid: 0d2bd37da4a515a46ae9812c5849c189, type: 2}
+  weaponPrefab: {fileID: 2685558694296695755, guid: c3a9f4fff00d4c74489d2a3342b7501e, type: 3}

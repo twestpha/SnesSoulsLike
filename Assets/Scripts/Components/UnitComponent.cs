@@ -41,7 +41,6 @@ class UnitComponent : MonoBehaviour {
     private Vector3 inputDirection;
     private Vector3 previousNonZeroInputDirection;
 
-
     private Vector3 abilityMoveDirection;
     private Vector3 currentMoveDirection;
     private Vector3 previousMoveDirection;
@@ -50,6 +49,7 @@ class UnitComponent : MonoBehaviour {
     private HealthComponent health;
     private CharacterController characterController;
     private UnitAbilityData currentlyPerformingAbility;
+    private WeaponComponent weapon;
 
     private Timer abilityTimer = new Timer();
     private Timer damageTimer = new Timer();
@@ -61,6 +61,8 @@ class UnitComponent : MonoBehaviour {
         health = GetComponent<HealthComponent>();
         health.RegisterOnDamagedDelegate(OnDamaged);
         health.RegisterOnKilledDelegate(OnKilled);
+
+        weapon = GetComponent<WeaponComponent>();
     }
 
     void Update(){
@@ -143,6 +145,16 @@ class UnitComponent : MonoBehaviour {
 
             characterController.height = originalCharacterHeight;
         }
+
+        // Update weapon sharpness
+        if(currentlyPerformingAbility.weaponSharpRangePercent.x <= abilityT
+           && abilityT <= currentlyPerformingAbility.weaponSharpRangePercent.y
+           && currentlyPerformingAbility.weaponSharpRangePercent.y > 0.0f){
+            weapon.SetSharp(true);
+        } else {
+            weapon.SetSharp(false);
+        }
+
 
         // Drive move direction towards ability move direction over time to make character's turning smoother
         currentMoveDirection = Vector3.SmoothDamp(currentMoveDirection, abilityMoveDirection.normalized, ref currentMoveDirectionAcceleration, ABILITY_DIRECTION_TIME);
