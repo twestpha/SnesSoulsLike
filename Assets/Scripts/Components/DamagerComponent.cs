@@ -7,21 +7,33 @@ class DamagerComponent : MonoBehaviour {
 
     public float tempDamageAmount;
 
-    // Damagers don't care about team, but they can't hurt their owner
     private UnitComponent ownerUnit;
+    private BoxCollider damagerCollider;
 
     void Start(){
         ownerUnit = GetComponentInParent<UnitComponent>();
+        damagerCollider = GetComponent<BoxCollider>();
     }
 
     private void OnTriggerEnter(Collider other){
         UnitComponent otherUnit = other.GetComponentInParent<UnitComponent>();
 
-        if(otherUnit != null && otherUnit != ownerUnit){
+        if(otherUnit != null && otherUnit.team != ownerUnit.team){
             HealthComponent health = otherUnit.GetComponent<HealthComponent>();
 
             if(health != null){
-                health.DealDamage(tempDamageAmount);
+                // Derive the collision position roughly using the nearest position on opposite box
+                // colliders centroid. Fall back simply to the other collider's world position
+                Vector3 damagePosition = other.transform.position;
+
+                if(other is BoxCollider otherBoxCollider){
+                    Vector3 selfOntoOther = otherBoxCollider.ClosestPointOnBounds(transform.position);
+                    Vector3 otherOntoSelf = damagerCollider.ClosestPointOnBounds(other.transform.position);
+
+                    damagePosition = (selfOntoOther + otherOntoSelf) / 2.0f;
+                }
+
+                health.DealDamage(tempDamageAmount, damagePosition);
             }
         }
     }

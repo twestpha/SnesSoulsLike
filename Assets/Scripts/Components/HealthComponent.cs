@@ -8,6 +8,8 @@ class HealthComponent : MonoBehaviour {
     public float maxHealth;
     public float currentHealth;
 
+    public GameObject damageParticles;
+
     public delegate void OnDamaged(HealthComponent damage);
     public delegate void OnKilled(HealthComponent damage);
 
@@ -34,11 +36,30 @@ class HealthComponent : MonoBehaviour {
         killedDelegates.Add(d);
     }
 
-    public void DealDamage(float amount){
+    public void DealDamage(float amount, Vector3 position){
         currentHealth -= amount;
 
-        foreach(OnDamaged damagedDelegate in damagedDelegates){
-            damagedDelegate(this);
+        if(damagedDelegates != null){
+            foreach(OnDamaged damagedDelegate in damagedDelegates){
+                damagedDelegate(this);
+            }
         }
+
+        if(currentHealth < 0.0f){
+            currentHealth = 0.0f;
+
+            if(killedDelegates != null){
+                foreach(OnKilled killedDelegate in killedDelegates){
+                    killedDelegate(this);
+                }
+            }
+        }// else {
+            GameObject newDamageParticles = GameObject.Instantiate(damageParticles);
+            newDamageParticles.transform.position = position;
+        // }
+    }
+
+    public float GetCurrentHealthPercentage(){
+        return currentHealth / maxHealth;
     }
 }

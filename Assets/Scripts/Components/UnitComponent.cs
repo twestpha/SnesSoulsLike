@@ -13,14 +13,6 @@ class UnitComponent : MonoBehaviour {
     public float moveSpeedTime;
     public float turnSpeed;
 
-    [Serializable]
-    public class DamageReaction {
-        public float time;
-        public string animation;
-    }
-
-    public DamageReaction[] damageReactions;
-
     public enum Team {
         Player,
         Enemy,
@@ -29,7 +21,6 @@ class UnitComponent : MonoBehaviour {
     public enum UnitState {
         Idle,
         PerformingAbility,
-        Damaged,
         Dead,
     }
 
@@ -77,9 +68,7 @@ class UnitComponent : MonoBehaviour {
             UpdateMovement();
         } else if(unitState == UnitState.PerformingAbility){
             UpdateAbility();
-        } else if(unitState == UnitState.Damaged){
-            UpdateDamaging();
-        } else if(unitState == UnitState.Damaged){
+        } else if(unitState == UnitState.Dead){
             // Nothing for now
         }
     }
@@ -195,16 +184,6 @@ class UnitComponent : MonoBehaviour {
         }
     }
 
-    private void UpdateDamaging(){
-        if(damageTimer.Finished()){
-            unitState = UnitState.Idle;
-
-            if(anim != null){
-                anim.PlayAnimation("idle");
-            }
-        }
-    }
-
     public void SetInputDirection(Vector3 inputDirection_){
         inputDirection = inputDirection_;
 
@@ -250,30 +229,14 @@ class UnitComponent : MonoBehaviour {
     }
 
     void OnDamaged(HealthComponent health){
-        if(unitState != UnitState.Damaged){
-            // On damage, always clear current ability and movement
-            if(unitState == UnitState.PerformingAbility){
-                currentlyPerformingAbility = null;
-                abilityMoveDirection = Vector3.zero;
-            }
 
-            // Set state and clear directions
-            unitState = UnitState.Damaged;
-            currentMoveDirection = Vector3.zero;
-
-            // Pick damage reaction
-            DamageReaction pickedDamageReaction = damageReactions[UnityEngine.Random.Range(0, damageReactions.Length)];
-
-            damageTimer.SetDuration(pickedDamageReaction.time);
-            damageTimer.Start();
-
-            if(anim != null){
-                anim.PlayAnimation(pickedDamageReaction.animation);
-            }
-        }
     }
 
     void OnKilled(HealthComponent health){
+        unitState = UnitState.Dead;
+    }
 
+    public bool IsDead(){
+        return unitState == UnitState.Dead;
     }
 }

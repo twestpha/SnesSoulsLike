@@ -1,3 +1,22 @@
+====================================================================================================
+Done
+====================================================================================================
+
+====================================================================================================
+TODO
+====================================================================================================
+[x] Tone and Art Direction
+
+[x] Character sheet
+    - rpg stats that affect things
+[x] Weapons
+    - Doesn't assume moveset, those are unlocked as abilities
+    - Just a shape and collider; damage is influenced by rpg stats and weapon stats
+    - Equip and Unequip from data, data holds prefab model
+    - Weapon component gets talked to by abilities, enabling the collider as needed
+
+
+
 https://twitter.com/heinn_dev
 
 
