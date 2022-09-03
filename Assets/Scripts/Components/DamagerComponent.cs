@@ -48,6 +48,9 @@ class DamagerComponent : MonoBehaviour {
                     }
 
                     health.DealDamage(tempDamageAmount, damagePosition);
+
+                    // Unsharp if damage is dealt until next time enabled
+                    sharp = false;
                 }
             }
         }

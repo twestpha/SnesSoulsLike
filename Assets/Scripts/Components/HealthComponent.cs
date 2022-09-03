@@ -37,6 +37,10 @@ class HealthComponent : MonoBehaviour {
     }
 
     public void DealDamage(float amount, Vector3 position){
+        if(currentHealth < 0.0f){
+            return;
+        }
+
         currentHealth -= amount;
 
         if(damagedDelegates != null){
@@ -46,8 +50,6 @@ class HealthComponent : MonoBehaviour {
         }
 
         if(currentHealth < 0.0f){
-            currentHealth = 0.0f;
-
             if(killedDelegates != null){
                 foreach(OnKilled killedDelegate in killedDelegates){
                     killedDelegate(this);

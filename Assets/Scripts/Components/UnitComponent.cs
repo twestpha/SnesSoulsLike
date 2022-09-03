@@ -197,15 +197,17 @@ class UnitComponent : MonoBehaviour {
     }
 
     public void SetInputDirection(Vector3 inputDirection_){
-        inputDirection = inputDirection_;
+        if(unitState != UnitState.Dead){
+            inputDirection = inputDirection_;
 
-        if(inputDirection.sqrMagnitude > 0.01f){
-            previousNonZeroInputDirection = inputDirection;
+            if(inputDirection.sqrMagnitude > 0.01f){
+                previousNonZeroInputDirection = inputDirection;
+            }
         }
     }
 
     public void UseAbility(int index){
-        if(index < 0 || index >= equippedAbilities.Length || equippedAbilities[index] == null){
+        if(unitState == UnitState.Dead || index < 0 || index >= equippedAbilities.Length || equippedAbilities[index] == null){
             return;
         }
 
@@ -246,6 +248,12 @@ class UnitComponent : MonoBehaviour {
 
     void OnKilled(HealthComponent health){
         unitState = UnitState.Dead;
+        inputDirection = Vector3.zero;
+
+        if(anim != null){
+            // TODO have multiple death animations
+            anim.PlayAnimation("death");
+        }
     }
 
     public bool IsDead(){

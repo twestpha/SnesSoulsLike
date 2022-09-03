@@ -1,20 +1,24 @@
 ====================================================================================================
 Done
 ====================================================================================================
-
-====================================================================================================
-TODO
-====================================================================================================
-[x] Tone and Art Direction
-
-[x] Character sheet
-    - rpg stats that affect things
-[x] Weapons
+[/] Tone and Art Direction
+[/] Weapons
     - Doesn't assume moveset, those are unlocked as abilities
     - Just a shape and collider; damage is influenced by rpg stats and weapon stats
     - Equip and Unequip from data, data holds prefab model
     - Weapon component gets talked to by abilities, enabling the collider as needed
 
+====================================================================================================
+TODO
+====================================================================================================
+
+[/] Unit death
+
+[x] Animation Hitstop from damager?
+[x] Character sheet
+    Implement character data; have relevant things pull from it
+    Have temp overrides that don't write back to the data; used for weapon and equipment for now
+[T] Test out a round of combat using some preset rough stats
 
 
 https://twitter.com/heinn_dev
