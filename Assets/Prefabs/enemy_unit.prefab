@@ -630,8 +630,8 @@ MonoBehaviour:
     sequence: {fileID: 11400000, guid: 3af8b500f476c1246b161ea73dc86b0c, type: 2}
   - name: swordswing
     sequence: {fileID: 11400000, guid: 99f0f6a79f69d28408c412cfa9486688, type: 2}
-  - name: damaged
-    sequence: {fileID: 11400000, guid: 8254a0d422ef8954e8a0dd3b605789a3, type: 2}
+  - name: death
+    sequence: {fileID: 11400000, guid: 55fc1331865c7e64cafd735445343432, type: 2}
 --- !u!114 &1273220293890407633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterWeaponTransform: {fileID: 1225523632654274014}
-  startingWeaponData: {fileID: 11400000, guid: e6c83bb60a1bd384684dea9819c4da59, type: 2}
+  startingWeaponData: {fileID: 11400000, guid: 68a423c968b46b14f9267bf88f638ab9, type: 2}
 --- !u!1 &7301235586313760883
 GameObject:
   m_ObjectHideFlags: 0

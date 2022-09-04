@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e115222eae23414bb1d73232f24c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitStop: 1
-  tempDamageAmount: 15
+  hitStop: 0
+  tempDamageAmount: 5
   sharp: 0
 --- !u!65 &3818556113821645953
 BoxCollider:
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5834627226645349766}
   m_Layer: 0
-  m_Name: sword
+  m_Name: enemy_sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
