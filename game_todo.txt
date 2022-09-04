@@ -7,6 +7,8 @@ Done
 [W] Animation Hitstop from damager
 [/] Implement character data; have relevant things pull from it
 [/] Test out a round of combat using some preset rough stats
+[W] Test out pre-render baking and projecting onto models to get the pre-rendered look with models
+    - it didn't look bad, but was too labor intensive and too little control
 
 ====================================================================================================
 TODO
@@ -15,6 +17,8 @@ TODO
 [x] Give player characters more distance to player, don't be so snuggly
 [x] Lerp camera rather than cut?
 [x] Snap ability targeting very softly towards nearby enemies
+
+[x] Camera controls
 
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting
@@ -33,8 +37,20 @@ TODO
     - no animations; can't get in the way of gameplay
     - hitstop feels non thematic, matrix-y, and isn't tenable for splitscreen
 
-[x] Test out pre-render baking and projecting onto models to get the pre-rendered look with models
+[W] Continue look development on models to get the feeling of the games in the way I like
+    What parts of that do I like from the original diablo/d2?
+        - Implied detail. The pixels aren't literally showing it, but the subtle variations of colors suggest it
+        - Material response to light, including shiny metal materials and cloth absorption
 
+    Here's the pipeline I have in mind, what works so far:
+        Hi-res model + sculpt with textures
+        Auto-unwrap
+        Manually model low poly
+        Carefully manually unwrap
+        Select high (one mesh, combined) and then low
+        Bake, full render, selected to active
+        Export texture, low to game engine
+        Use Mobile/VertexLit shader
 
 https://twitter.com/heinn_dev
 
