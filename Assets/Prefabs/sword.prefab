@@ -95,8 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e115222eae23414bb1d73232f24c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitStop: 1
-  tempDamageAmount: 15
+  tempDamageAmount: 4
   sharp: 0
 --- !u!65 &3818556113821645953
 BoxCollider:

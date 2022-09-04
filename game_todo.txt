@@ -5,15 +5,35 @@ Done
 [/] Weapons
 [/] Unit death
 [W] Animation Hitstop from damager
+[/] Implement character data; have relevant things pull from it
+[/] Test out a round of combat using some preset rough stats
 
 ====================================================================================================
 TODO
 ====================================================================================================
 
+[x] Give player characters more distance to player, don't be so snuggly
+[x] Lerp camera rather than cut?
+[x] Snap ability targeting very softly towards nearby enemies
+
+[x] Allow player AI to use abilities
+    - Also, have the enemy that targets them notify them, so they can look more like they're fighting
+      rather than weird directed graphs?
+
+[x] Equipment Aesthetic component
+    - Body type, skin texture
+    - Equip armors, clothes, etc
+    - pulls from/to inventory system too
 [x] Character sheet
-    Implement character data; have relevant things pull from it
-    Have temp overrides that don't write back to the data; used for weapon and equipment for now
-[T] Test out a round of combat using some preset rough stats
+    [x] Next; Have temp overrides that don't write back to the data; used for weapon and equipment for now
+
+[x] Simple combo system; chain moves for smoother flashier bits
+
+[x] Selling the hits needs to be done with sounds and blood effects
+    - no animations; can't get in the way of gameplay
+    - hitstop feels non thematic, matrix-y, and isn't tenable for splitscreen
+
+[x] Test out pre-render baking and projecting onto models to get the pre-rendered look with models
 
 
 https://twitter.com/heinn_dev

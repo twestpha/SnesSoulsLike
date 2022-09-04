@@ -35,7 +35,7 @@ public class UnitAbilityData : ScriptableObject {
     public Vector2 invincibleRangePercent;
     // How long (if at all) should the unit's weapon be able to deal damage
     public Vector2 weaponSharpRangePercent;
-    // TODO weapon motion blur/streak effect amount over time (using line renderer?)
+    // TODO weapon motion blur/streak effect amount over time (using line renderer?)    
 
     [Header("Collision")]
     public Vector2 collisionResizeRangePercent;

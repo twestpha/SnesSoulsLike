@@ -1684,11 +1684,20 @@ MonoBehaviour:
   moveSpeedTime: 0.1
   turnSpeed: 720
   team: 0
-  rootTransform: {fileID: 5836551712224566578}
-  anim: {fileID: 5433028502139737356}
+  baseStatSoul: 0
+  currentStatSoul: 0
+  baseStatForce: 0
+  currentStatForce: 0
+  baseStatPrecision: 0
+  currentStatPrecision: 0
+  baseStatFortitude: 0
+  currentStatFortitude: 0
+  coreStatAppraisal: 0
   equippedAbilities:
   - {fileID: 11400000, guid: 61d3c45007ada78499feb3139e52ed74, type: 2}
   - {fileID: 11400000, guid: e6fe9066ee39046428872ff8344f59b2, type: 2}
+  rootTransform: {fileID: 5836551712224566578}
+  anim: {fileID: 5433028502139737356}
 --- !u!114 &99811455318658322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,8 +1723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db2451eafdc4fb48b1a3f323e16dcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  currentHealth: 20
+  maxHealth: 70
+  currentHealth: 70
   damageParticles: {fileID: 3741154830504359846, guid: 90a4a4ac5323c314ab889a869d2754ce, type: 3}
 --- !u!114 &422631755662075226
 MonoBehaviour:

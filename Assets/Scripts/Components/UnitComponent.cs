@@ -3,6 +3,19 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Team {
+    Player,
+    Enemy,
+}
+
+public enum StatusEffect {
+    Slowed,
+    Rooted,
+    Stunned,
+    Feared,
+    Silenced,
+}
+
 [RequireComponent(typeof(CharacterController))]
 class UnitComponent : MonoBehaviour {
 
@@ -13,24 +26,41 @@ class UnitComponent : MonoBehaviour {
     public float moveSpeedTime;
     public float turnSpeed;
 
-    public enum Team {
-        Player,
-        Enemy,
-    }
-
     public enum UnitState {
         Idle,
         PerformingAbility,
         Dead,
     }
 
+    [Header("Character Sheet")]
     public Team team;
 
+    [Space(10)]
+    public float baseStatSoul;
+    public float currentStatSoul;
+
+    [Space(10)]
+    public float baseStatForce;
+    public float currentStatForce;
+
+    [Space(10)]
+    public float baseStatPrecision;
+    public float currentStatPrecision;
+
+    [Space(10)]
+    public float baseStatFortitude;
+    public float currentStatFortitude;
+
+    [Space(10)]
+    public float coreStatAppraisal;
+
+    [Space(10)]
+    public UnitAbilityData[] equippedAbilities;
+
+    [Header("Game Connections")]
     public Transform rootTransform;
 
     public AnimationComponent anim;
-
-    public UnitAbilityData[] equippedAbilities;
 
     private UnitState unitState;
 
