@@ -9,12 +9,17 @@ Done
 [/] Test out a round of combat using some preset rough stats
 [W] Test out pre-render baking and projecting onto models to get the pre-rendered look with models
     - it didn't look bad, but was too labor intensive and too little control
+[/] Continue look development on models to get the feeling of the games in the way I like
+[/] Better temp controls, current ones are frustrating
+[/] Give player characters more distance to player, don't be so snuggly
 
 ====================================================================================================
 TODO
 ====================================================================================================
 
-[x] Give player characters more distance to player, don't be so snuggly
+[x] Put together a castle ruins tileset to start building levels with to really test out art pipeline
+    [x] Figure out core reference; storytelling hook is it's one of the strongholds to hold out against the demon hordes that fell long ago
+
 [x] Lerp camera rather than cut?
 [x] Snap ability targeting very softly towards nearby enemies
 
@@ -25,9 +30,15 @@ TODO
       rather than weird directed graphs?
 
 [x] Equipment Aesthetic component
-    - Body type, skin texture
+    - Body type
     - Equip armors, clothes, etc
     - pulls from/to inventory system too
+    - layered character material
+        - bottom layer skin color
+        - painted features; probably just face and eyes, underclothes
+        - armor layer pants
+        - armor layer shirt
+
 [x] Character sheet
     [x] Next; Have temp overrides that don't write back to the data; used for weapon and equipment for now
 
@@ -37,20 +48,22 @@ TODO
     - no animations; can't get in the way of gameplay
     - hitstop feels non thematic, matrix-y, and isn't tenable for splitscreen
 
-[W] Continue look development on models to get the feeling of the games in the way I like
-    What parts of that do I like from the original diablo/d2?
-        - Implied detail. The pixels aren't literally showing it, but the subtle variations of colors suggest it
-        - Material response to light, including shiny metal materials and cloth absorption
+====================================================================================================
+NOTES
+====================================================================================================
 
-    Here's the pipeline I have in mind, what works so far:
-        Hi-res model + sculpt with textures
-        Auto-unwrap
-        Manually model low poly
-        Carefully manually unwrap
-        Select high (one mesh, combined) and then low
-        Bake, full render, selected to active
-        Export texture, low to game engine
-        Use Mobile/VertexLit shader
+Here's the art pipeline so far:
+    Hi-res model + sculpt (no specular possible)
+    Unwrap, texture
+    Set up lighting
+    Manually model low poly equivalent
+    Carefully manually unwrap, try for pixel alignment
+    Select high (one mesh, combined) and then low
+    Bake, full render, selected to active
+    Export texture, low poly model to game engine
+    Use Mobile/VertexLit shader in game (has shadows and basic lighting, but no fresnel)
+
+
 
 https://twitter.com/heinn_dev
 

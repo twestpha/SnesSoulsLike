@@ -6,8 +6,8 @@ using UnityEngine.UI;
 class PlayerUnitAIComponent : MonoBehaviour {
 
     private const float FOLLOW_LEASH_DISTANCE = 1.0f;
-    private const float PLAYER_LEASH_DISTANCE = 3.0f;
-    private const float PLAYER_KEEP_DISTANCE = 1.5f;
+    private const float PLAYER_LEASH_DISTANCE = 4.0f;
+    private const float PLAYER_KEEP_DISTANCE = 3.0f;
 
     private const float MIN_FIDGET_TIME = 1.5f;
     private const float MAX_FIDGET_TIME = 6.8f;
@@ -93,24 +93,24 @@ class PlayerUnitAIComponent : MonoBehaviour {
         }
 
         if(fidgetStarted && !fidgetHappening && fidgetWaitTimer.Finished()){
-            // I think we just request playing one of n fidget animations...
+            // Later, pick between movement fidgets and playing a fidget animation
 
-            // fidgetHappening = true;
-            // fidgetDurationTimer.Start();
-            //
-            // fidgetDirection = new Vector3(
-            //     UnityEngine.Random.Range(-1.0f, 1.0f),
-            //     0.0f,
-            //     UnityEngine.Random.Range(-1.0f, 1.0f)
-            // );
+            fidgetHappening = true;
+            fidgetDurationTimer.Start();
+
+            fidgetDirection = new Vector3(
+                UnityEngine.Random.Range(-1.0f, 1.0f),
+                0.0f,
+                UnityEngine.Random.Range(-1.0f, 1.0f)
+            );
         } else if(fidgetHappening){
-            // unit.SetInputDirection(fidgetDirection);
-            //
-            // if(fidgetDurationTimer.Finished()){
-            //     fidgetStarted = false;
-            //     fidgetHappening = false;
-            //     unit.SetInputDirection(Vector3.zero);
-            // }
+            unit.SetInputDirection(fidgetDirection);
+
+            if(fidgetDurationTimer.Finished()){
+                fidgetStarted = false;
+                fidgetHappening = false;
+                unit.SetInputDirection(Vector3.zero);
+            }
         }
     }
 

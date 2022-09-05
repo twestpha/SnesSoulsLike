@@ -60,11 +60,11 @@ class PlayerComponent : MonoBehaviour {
 
         units[index].SetInputDirection(inputDirection);
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
+        if(Input.GetKeyDown(KeyCode.Space)){
             units[index].UseAbility(0);
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
+        if(Input.GetKeyDown(KeyCode.Mouse0)){
             units[index].UseAbility(1);
         }
     }

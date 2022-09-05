@@ -43,31 +43,28 @@ SubShader {
 
 				float4 col = tex2D(_MainTex, float2(screenPixelX, screenPixelY));
 
-				// Arbitrarily chosen 400-color pseudo palettization
-				col = floor(col * 20.0) / 20.0;
-
-				// if(_PaletteColorCount <= 0){
+				if(_PaletteColorCount <= 0){
 					return col;
-				// } else {
-				// 	float halfPalletePixelWidth = (1.0 / _PaletteColorCount) / 2.0f;
-				// 	float nearestColorDistance = 999999.0;
-				// 	float4 nearestColor = float4(0.0, 0.0, 0.0, 0.0);
-				//
-				// 	int paletteColorCountInt = (int)(_PaletteColorCount);
-				//
-				// 	for(int p = 0; p < paletteColorCountInt; p++){
-				// 		float2 palleteUv = float2((p / _PaletteColorCount) + halfPalletePixelWidth, 0.5);
-				// 		float4 paletteColor = tex2D(_Palette, palleteUv);
-				// 		float colorDistance = FastDistance(col, paletteColor);
-				//
-				// 		if(colorDistance <= nearestColorDistance){
-				// 			nearestColorDistance = colorDistance;
-				// 			nearestColor = paletteColor;
-				// 		}
-				// 	}
-				//
-				// 	return nearestColor;
-				// }
+				} else {
+					float halfPalletePixelWidth = (1.0 / _PaletteColorCount) / 2.0f;
+					float nearestColorDistance = 999999.0;
+					float4 nearestColor = float4(0.0, 0.0, 0.0, 0.0);
+
+					int paletteColorCountInt = (int)(_PaletteColorCount);
+
+					for(int p = 0; p < paletteColorCountInt; p++){
+						float2 palleteUv = float2((p / _PaletteColorCount) + halfPalletePixelWidth, 0.5);
+						float4 paletteColor = tex2D(_Palette, palleteUv);
+						float colorDistance = FastDistance(col, paletteColor);
+
+						if(colorDistance <= nearestColorDistance){
+							nearestColorDistance = colorDistance;
+							nearestColor = paletteColor;
+						}
+					}
+
+					return nearestColor;
+				}
 			}
 		ENDCG
 
