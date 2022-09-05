@@ -12,6 +12,8 @@ Done
 [/] Continue look development on models to get the feeling of the games in the way I like
 [/] Better temp controls, current ones are frustrating
 [/] Give player characters more distance to player, don't be so snuggly
+[/] Pillar
+[/] Stairway (diablo 1 styled)
 
 ====================================================================================================
 TODO
@@ -22,8 +24,12 @@ TODO
     [x] Floor, Wall, Ceiling tiles
     [x] Prop List
         [x] Hanging vines/root
-        [x] Pillar
-        [x] Stairway (diablo 1 styled)
+        [x] Stairway (standing)
+        [x] Bookshelves (destructable?)
+        [x] Treasure chest (global)
+        [x] Lantern or light
+        [x] Desk (destructable)
+        [x] Chair (destructable)
 
 [x] Lerp camera rather than cut?
 [x] Snap ability targeting very softly towards nearby enemies
