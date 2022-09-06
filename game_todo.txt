@@ -14,6 +14,8 @@ Done
 [/] Give player characters more distance to player, don't be so snuggly
 [/] Pillar
 [/] Stairway (diablo 1 styled)
+[/] Floor tiles
+[/] Lerp camera rather than cut
 
 ====================================================================================================
 TODO
@@ -21,20 +23,23 @@ TODO
 
 [x] Put together a castle ruins tileset to start building levels with to really test out art pipeline
     [/] Figure out core reference; storytelling hook is it's one of the strongholds to hold out against the demon hordes that fell long ago
-    [x] Floor, Wall, Ceiling tiles
+    [x] Wall, Ceiling tiles
     [x] Prop List
         [x] Hanging vines/root
-        [x] Stairway (standing)
+        [x] Stairway (double/triple wide with banister)
+        [x] Stairway ceiling connector
+        [x] Doorway
+        [x] Lamp pole with light
+    [x] Global Props
         [x] Bookshelves (destructable?)
         [x] Treasure chest (global)
-        [x] Lantern or light
         [x] Desk (destructable)
         [x] Chair (destructable)
 
-[x] Lerp camera rather than cut?
-[x] Snap ability targeting very softly towards nearby enemies
-
 [x] Camera controls
+[x] Camera Raycasting
+
+[x] Snap ability targeting very softly towards nearby enemies
 
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting
@@ -60,6 +65,12 @@ TODO
     [x] Next; Have temp overrides that don't write back to the data; used for weapon and equipment for now
 
 [x] Simple combo system; chain moves for smoother flashier bits
+[x] More temp abilities
+    [x] icicle magic with slow
+    [x] Ground bash stun
+    [x] Knife teleport
+
+[x] Dialogue system for NPCs
 
 [x] Selling the hits needs to be done with sounds and blood effects
     - no animations; can't get in the way of gameplay
@@ -79,6 +90,15 @@ Here's the art pipeline so far:
     Bake, full render, selected to active
     Export texture, low poly model to game engine
     Use Mobile/VertexLit shader in game (has shadows and basic lighting, but no fresnel)
+
+Story ideas
+    - Years ago, the hubris of man sought to conquer hell, so they opened a giant portal and marched in
+    - Demons all to happy to kill every last one of them, despite them getting pretty far in
+    - As they fell back, humanity had to build forts and temples to hold them back, but they eventually won out
+    - After defeat, demons wandered off to infest other parts of the world, leaving behind ruined vestiges where humans cling without their knowledge or care
+    - Goal is to face the lords, gather the power, and dive into hell driving them back and closing the gate
+        - idea: Sacrifice self (and save game?) to close the gate?
+    - Angels are actually genuinely a myth
 
 
 
