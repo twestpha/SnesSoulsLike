@@ -61,6 +61,7 @@ class UnitComponent : MonoBehaviour {
     public Transform rootTransform;
 
     public AnimationComponent anim;
+    public DetectorComponent detector;
 
     private UnitState unitState;
 
@@ -261,8 +262,29 @@ class UnitComponent : MonoBehaviour {
         }
 
         // Get ability in terms of last non zero input direction, but don't commit to the
-        // rotation yet; let that happen passively.
+        // rotation yet; let that happen passively. If there's a detector and an enemy within a
+        // snap angle, snap to that enemy when casting
+
         Vector3 inputDirection = previousNonZeroInputDirection;
+
+        if(detector != null && currentlyPerformingAbility.snapToEnemyAngle > 0.0f){
+            float minAngle = 9999999.0f;
+            UnitComponent minAngleEnemy = null;
+
+            foreach(UnitComponent enemyUnit in detector.GetEnemyUnits()){
+                float angleToEnemy = Vector3.Angle(rootTransform.forward, enemyUnit.transform.position - transform.position);
+
+                if(angleToEnemy < minAngle && angleToEnemy < currentlyPerformingAbility.snapToEnemyAngle){
+                    minAngle = angleToEnemy;
+                    minAngleEnemy = enemyUnit;
+                }
+            }
+
+            if(minAngleEnemy != null){
+                inputDirection = (minAngleEnemy.transform.position - transform.position);
+            }
+        }
+
         inputDirection.y = 0.0f;
 
         Quaternion originalRotation = rootTransform.rotation;

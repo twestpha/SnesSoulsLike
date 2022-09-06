@@ -16,6 +16,7 @@ Done
 [/] Stairway (diablo 1 styled)
 [/] Floor tiles
 [/] Lerp camera rather than cut
+[/] Snap ability targeting very softly towards nearby enemies
 
 ====================================================================================================
 TODO
@@ -39,7 +40,6 @@ TODO
 [x] Camera controls
 [x] Camera Raycasting
 
-[x] Snap ability targeting very softly towards nearby enemies
 
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting

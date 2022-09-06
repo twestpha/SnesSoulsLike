@@ -732,6 +732,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6fe9066ee39046428872ff8344f59b2, type: 2}
   rootTransform: {fileID: 7195411462978194847}
   anim: {fileID: 8665307086950598049}
+  detector: {fileID: 3100693555420749023}
 --- !u!114 &5216383440991973576
 MonoBehaviour:
   m_ObjectHideFlags: 0
