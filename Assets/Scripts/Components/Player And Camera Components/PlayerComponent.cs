@@ -12,6 +12,9 @@ class PlayerComponent : MonoBehaviour {
     public UnitComponent[] units;
     public Transform[] cameraTargetTransforms;
 
+    private UnitComponent currentUnit;
+    private PlayerUnitAIComponent currentPlayerAI;
+
     public Transform cameraTransform;
 
     private int index;
@@ -19,49 +22,61 @@ class PlayerComponent : MonoBehaviour {
     private Timer cameraMoveTimer = new Timer(CAMERA_MOVE_TIME);
 
     private Vector3 previousCameraPosition;
-    private Vector3 previousCameraForward;
+    private Quaternion previousCameraRotation;
 
-    void Start(){
+    void Awake(){
         player = this;
     }
 
+    void Start(){
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        currentUnit = units[0];
+        currentPlayerAI = currentUnit.GetComponent<PlayerUnitAIComponent>();
+
+        currentPlayerAI.SetSelected();
+
+        // Snap camera instantly on frame 1
+        previousCameraPosition = cameraTargetTransforms[0].position;
+        previousCameraRotation = cameraTargetTransforms[0].rotation;
+    }
+
     void Update(){
-        if(Input.GetKeyDown(KeyCode.E)){
-            units[index].SetInputDirection(Vector3.zero);
-            units[index].GetComponent<PlayerUnitAIComponent>().enabled = true;
+        UpdatePlayerInputs();
+        UpdateCamera();
+    }
 
-            index = (index + units.Length + 1) % units.Length;
-
-            units[index].GetComponent<PlayerUnitAIComponent>().enabled = false;
-
-            cameraMoveTimer.Start();
-
-            previousCameraPosition = cameraTransform.position;
-            previousCameraForward = cameraTransform.forward;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Q)){
-            units[index].SetInputDirection(Vector3.zero);
-            units[index].GetComponent<PlayerUnitAIComponent>().enabled = true;
-
-            index = (index + units.Length - 1) % units.Length;
-
-            units[index].GetComponent<PlayerUnitAIComponent>().enabled = false;
-
-            cameraMoveTimer.Start();
-
-            previousCameraPosition = cameraTransform.position;
-            previousCameraForward = cameraTransform.forward;
-        }
+    private void UpdateCamera(){
+        // TODO if can't draw a environment raycast between them, fade in/out instead, that'll feel much more polished in the future
 
         // Camera movement
         float cameraT = CustomMath.EaseInOut(cameraMoveTimer.Parameterized());
 
         Vector3 cameraTargetPosition = cameraTargetTransforms[index].position;
-        Vector3 cameraTargetOrientation = cameraTargetTransforms[index].forward;
+        Quaternion cameraTargetRotation = cameraTargetTransforms[index].rotation;
 
         cameraTransform.position = Vector3.Lerp(previousCameraPosition, cameraTargetPosition, cameraT);
-        cameraTransform.rotation = Quaternion.LookRotation(Vector3.Lerp(previousCameraForward, cameraTargetOrientation, cameraT));
+        cameraTransform.rotation = Quaternion.Slerp(previousCameraRotation, cameraTargetRotation, cameraT);
+
+        // Camera input to pass to current player
+        Vector3 tempMouseInput = new Vector3(
+            Input.GetAxis("Mouse Y") * -100.0f,
+            Input.GetAxis("Mouse X") * 100.0f,
+            0.0f
+        );
+
+        currentPlayerAI.SetCameraVelocity(tempMouseInput);
+    }
+
+    private void UpdatePlayerInputs(){
+        if(Input.GetKeyDown(KeyCode.E)){
+            ChangeCurrentPlayer(1);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q)){
+            ChangeCurrentPlayer(-1);
+        }
 
         // Player Input
         Vector3 inputDirection = Vector3.zero;
@@ -79,18 +94,35 @@ class PlayerComponent : MonoBehaviour {
             inputDirection += cameraTargetTransforms[index].transform.right;
         }
 
-        units[index].SetInputDirection(inputDirection);
+        currentUnit.SetInputDirection(inputDirection);
 
         if(Input.GetKeyDown(KeyCode.Space)){
-            units[index].UseAbility(0);
+            currentUnit.UseAbility(0);
         }
 
         if(Input.GetKeyDown(KeyCode.Mouse0)){
-            units[index].UseAbility(1);
+            currentUnit.UseAbility(1);
         }
     }
 
+    private void ChangeCurrentPlayer(int direction){
+
+        currentUnit.SetInputDirection(Vector3.zero);
+        currentPlayerAI.SetUnselected();
+
+        index = (index + units.Length + direction) % units.Length;
+
+        currentUnit = units[index];
+        currentPlayerAI = currentUnit.GetComponent<PlayerUnitAIComponent>();
+        currentPlayerAI.SetSelected();
+
+        cameraMoveTimer.Start();
+
+        previousCameraPosition = cameraTransform.position;
+        previousCameraRotation = cameraTransform.rotation;
+    }
+
     public UnitComponent GetCurrentPlayerUnit(){
-        return units[index];
+        return currentUnit;
     }
 }

@@ -247,8 +247,6 @@ class UnitComponent : MonoBehaviour {
             return;
         }
 
-        // TODO stamina costs?
-
         unitState = UnitState.PerformingAbility;
         currentlyPerformingAbility = equippedAbilities[index];
 

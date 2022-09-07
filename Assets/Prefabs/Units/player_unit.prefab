@@ -805,12 +805,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5836551712403134850}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 121e3bd9a6025f0469adbb345d73366d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   detector: {fileID: 1739308776465583218}
+  cameraRigTransform: {fileID: 4201149986654073057}
+  cameraTargetTransform: {fileID: 3329720648113429332}
 --- !u!114 &8881368239507988581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1126,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7757362009958389593}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64ba2627ae2f2f546982b67ff8cf1e05, type: 3}
   m_Name: 
