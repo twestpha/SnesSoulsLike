@@ -586,7 +586,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4201149986654073057}
-  - component: {fileID: 8983031965838964712}
   m_Layer: 0
   m_Name: camera_rig
   m_TagString: Untagged
@@ -609,19 +608,6 @@ Transform:
   m_Father: {fileID: 5836551712403134853}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8983031965838964712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5582645374046840072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ba2627ae2f2f546982b67ff8cf1e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraMoveTime: 0.15
 --- !u!1 &5836551712224566577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1083,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3329720648113429332}
-  - component: {fileID: 7357140666203772721}
   m_Layer: 0
   m_Name: camera_target_position
   m_TagString: Untagged
@@ -1119,19 +1104,6 @@ Transform:
   m_Father: {fileID: 4201149986654073057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7357140666203772721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7757362009958389593}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ba2627ae2f2f546982b67ff8cf1e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraMoveTime: 0.15
 --- !u!1 &8129204698511776240
 GameObject:
   m_ObjectHideFlags: 0

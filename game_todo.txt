@@ -8,20 +8,21 @@ Done
 [/] Floor tiles
 [/] Lerp camera rather than cut
 [/] Snap ability targeting very softly towards nearby enemies
+[/] Figure out core reference; storytelling hook is it's one of the strongholds to hold out against the demon hordes that fell long ago
+[/] Lamp pole with light
 
 ====================================================================================================
 TODO
 ====================================================================================================
 
 [x] Put together a castle ruins tileset to start building levels with to really test out art pipeline
-    [/] Figure out core reference; storytelling hook is it's one of the strongholds to hold out against the demon hordes that fell long ago
-    [x] Wall, Ceiling tiles
+    [x] Wall tiles
+    [x] Ceiling tiles
     [x] Prop List
         [x] Hanging vines/root
         [x] Stairway (double/triple wide with banister)
         [x] Stairway ceiling connector
         [x] Doorway
-        [x] Lamp pole with light
     [x] Global Props
         [x] Bookshelves (destructable?)
         [x] Treasure chest (global)
