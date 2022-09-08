@@ -10,6 +10,8 @@ Done
 [/] Snap ability targeting very softly towards nearby enemies
 [/] Figure out core reference; storytelling hook is it's one of the strongholds to hold out against the demon hordes that fell long ago
 [/] Lamp pole with light
+[/] Camera controls
+[/] Camera Raycasting
 
 ====================================================================================================
 TODO
@@ -28,9 +30,6 @@ TODO
         [x] Treasure chest (global)
         [x] Desk (destructable)
         [x] Chair (destructable)
-
-[x] Camera controls
-[x] Camera Raycasting
 
 [x] Basic player UI
     - All three characters' health, and which one's selected

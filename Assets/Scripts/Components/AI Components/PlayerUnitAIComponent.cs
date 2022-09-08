@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 class PlayerUnitAIComponent : MonoBehaviour {
 
+    private const int ENVIRONMENT_LAYER_MASK = 1 << 3;
+
     private const float FOLLOW_LEASH_DISTANCE = 1.0f;
     private const float PLAYER_LEASH_DISTANCE = 4.0f;
     private const float PLAYER_KEEP_DISTANCE = 3.0f;
@@ -13,10 +15,7 @@ class PlayerUnitAIComponent : MonoBehaviour {
     private const float MAX_FIDGET_TIME = 6.8f;
     private const float FIDGET_DURATION = 0.08f;
 
-    private const float MAX_PITCH_UP = 10.0f;
-    private const float MAX_PITCH_DOWN = -10.0f;
-
-    private const float CAMERA_SENSITIVITY = 1.0f;
+    private const float CAMERA_SENSITIVITY = 5.0f;
 
     public DetectorComponent detector;
 
@@ -137,20 +136,21 @@ class PlayerUnitAIComponent : MonoBehaviour {
     }
 
     private void UpdateCamera(){
-        // Move camera rig around using velocity, clamping it in the pitch axis
+        // Move camera rig around using velocity/ Fuck the pitch axis?
         Vector3 currentEulerAngles = cameraRigTransform.rotation.eulerAngles;
-
-        // ANGLE CLAMPING FUCKING SUCKS
-        // MAX_PITCH_UP
-        // MAX_PITCH_DOWN
-        // CAMERA_SENSITIVITY
-
+        currentEulerAngles.y += cameraVelocity.y * CAMERA_SENSITIVITY;
         cameraRigTransform.rotation = Quaternion.Euler(currentEulerAngles);
 
         // Then, raycast backward towards the camera and move the position forward based on the
         // distance returned from that
 
-        // ...
+        RaycastHit hit;
+        Vector3 localCameraDirection = cameraRigTransform.TransformDirection(cameraDirection);
+        if(Physics.Raycast(cameraRigTransform.position, localCameraDirection, out hit, cameraDistance, ENVIRONMENT_LAYER_MASK, QueryTriggerInteraction.Ignore)){
+            cameraTargetTransform.position = hit.point - (localCameraDirection * 0.1f); // Move a little back towards; prevents camera clipping sometimes
+        } else {
+            cameraTargetTransform.position = cameraRigTransform.position + (localCameraDirection * cameraDistance);
+        }
     }
 
     //##############################################################################################

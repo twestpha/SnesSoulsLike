@@ -61,8 +61,8 @@ class PlayerComponent : MonoBehaviour {
 
         // Camera input to pass to current player
         Vector3 tempMouseInput = new Vector3(
-            Input.GetAxis("Mouse Y") * -100.0f,
-            Input.GetAxis("Mouse X") * 100.0f,
+            Input.GetAxis("Mouse Y"),
+            Input.GetAxis("Mouse X"),
             0.0f
         );
 
