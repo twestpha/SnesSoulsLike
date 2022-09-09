@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a10dc0aa0abf44c863f4d73a1b1254, type: 3}
+  m_Name: master_palette
+  m_EditorClassIdentifier: 
+  floorPrefab: {fileID: 8756971830345090186, guid: fb772cfa4504d484b83f7d5edf66c64f, type: 3}
+  wallPrefab: {fileID: 8251542368279161739, guid: bd7f91df14912ad4d8358616418e54d7, type: 3}
+  ceilingPrefab: {fileID: 0}
+  entries:
+  - name: empty
+    entryType: 0
+    materials: []
+  - name: fortress_basic_floor
+    entryType: 1
+    materials:
+    - {fileID: 2100000, guid: c4ce36d503495d94dbd44ece95f5e3fd, type: 2}
+    - {fileID: 2100000, guid: 546e78df35418e74188145dc545a5de9, type: 2}
+    - {fileID: 2100000, guid: 8cda8a08352b8b44488bf33c437dcfca, type: 2}
+    - {fileID: 2100000, guid: 0e2dd7f0037484246aa96271c0c74b5a, type: 2}
+  - name: fortress_basic_wall
+    entryType: 2
+    materials:
+    - {fileID: 2100000, guid: e2c5bbb42cb8d5b41ab173b416b502ea, type: 2}

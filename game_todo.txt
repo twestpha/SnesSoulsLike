@@ -31,6 +31,12 @@ TODO
         [x] Desk (destructable)
         [x] Chair (destructable)
 
+[x] Map generator utilities
+    - use this to generate simple floors, walls, and ceilings
+    - use as first-pass elements; enhance with props and special tiles for extra goodness
+    - Tiled generation for a "floor", which builds walls, floors, and ceiling with 2 layers, at it's current height
+    - Use tilemap for better art; corners and lighting and such
+
 [x] Basic player UI
     - All three characters' health, and which one's selected
 
@@ -39,6 +45,7 @@ TODO
       rather than weird directed graphs?
     - Better pathfinding using waypoint nodes
     - Less dumb follow behaviour
+    - clear on selection changed too
 
 [x] Equipment Aesthetic component
     - Body type
@@ -49,12 +56,6 @@ TODO
         - painted features; probably just face and eyes, underclothes
         - armor layer pants
         - armor layer shirt
-
-[x] Map generator utilities
-    - use this to generate simple floors, walls, and ceilings
-    - use as first-pass elements; enhance with props and special tiles for extra goodness
-    - Tiled generation for a "floor", which builds walls, floors, and ceiling with 2 layers, at it's current height
-    - Use tilemap for better art; corners and lighting and such
 
 [x] Character sheet
     [x] Next; Have temp overrides that don't write back to the data; used for weapon and equipment for now
