@@ -68,6 +68,8 @@ TODO
 
 [x] Dialogue system for NPCs
 
+[x] Ladders
+
 [x] Selling the hits needs to be done with sounds and blood effects
     - no animations; can't get in the way of gameplay
     - hitstop feels non thematic, matrix-y, and isn't tenable for splitscreen

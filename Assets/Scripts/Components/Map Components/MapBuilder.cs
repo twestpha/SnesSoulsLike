@@ -12,6 +12,7 @@ using UnityEditor;
 public class MapBuilder : MonoBehaviour {
 
     public float tileUnitScale = 2.0f;
+    public float ceilingHeight = 3.99f;
 
     public TextAsset mapFile;
     public MapPaletteData palette;
@@ -58,8 +59,6 @@ public class MapBuilder : MonoBehaviour {
                     tilePrefab = palette.floorPrefab;
                 } else if(entry.entryType == EntryType.Wall){
                     tilePrefab = palette.wallPrefab;
-                } else if(entry.entryType == EntryType.Ceiling){
-                    tilePrefab = palette.ceilingPrefab;
                 }
 
                 // Spawn as a prefab, so changes to it still reflect in editor
@@ -78,7 +77,31 @@ public class MapBuilder : MonoBehaviour {
                 newTile.name = gameObject.name + "_" + nameId;
 
                 newTile.transform.parent = transform;
-                newTile.transform.localPosition = new Vector3((float)(k) * tileUnitScale, 0.0f, -(float)(i) * tileUnitScale);
+                newTile.transform.localPosition = new Vector3(
+                    (float)(k) * tileUnitScale,
+                    transform.position.y,
+                    -(float)(i) * tileUnitScale
+                );
+
+                if(entry.useCeiling){
+                    GameObject newCeilingTile = (GameObject)(PrefabUtility.InstantiatePrefab(palette.ceilingPrefab));
+
+                    newCeilingTile.transform.parent = transform;
+                    newCeilingTile.transform.localPosition = new Vector3(
+                        (float)(k) * tileUnitScale,
+                        transform.position.y + ceilingHeight,
+                        -(float)(i) * tileUnitScale
+                    );
+                    newCeilingTile.transform.parent = newTile.transform;
+
+                    if(entry.ceilingMaterials != null){
+                        MeshRenderer[] newCeilingTileMeshRenderers = newCeilingTile.GetComponentsInChildren<MeshRenderer>();
+
+                        foreach(MeshRenderer newCeilingTileMeshRenderer in newCeilingTileMeshRenderers){
+                            newCeilingTileMeshRenderer.material = entry.ceilingMaterials[UnityEngine.Random.Range(0, entry.ceilingMaterials.Length)];
+                        }
+                    }
+                }
             }
         }
     }

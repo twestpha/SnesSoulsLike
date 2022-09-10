@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 8756971830345090186, guid: fb772cfa4504d484b83f7d5edf66c64f, type: 3}
   wallPrefab: {fileID: 8251542368279161739, guid: bd7f91df14912ad4d8358616418e54d7, type: 3}
-  ceilingPrefab: {fileID: 0}
+  ceilingPrefab: {fileID: 2693279860205822000, guid: af291a179ddd0754499938dc51cc9fe3, type: 3}
   entries:
   - name: empty
     entryType: 0
     materials: []
+    useCeiling: 0
+    ceilingMaterials: []
   - name: fortress_basic_floor
     entryType: 1
     materials:
@@ -26,7 +28,12 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 546e78df35418e74188145dc545a5de9, type: 2}
     - {fileID: 2100000, guid: 8cda8a08352b8b44488bf33c437dcfca, type: 2}
     - {fileID: 2100000, guid: 0e2dd7f0037484246aa96271c0c74b5a, type: 2}
+    useCeiling: 1
+    ceilingMaterials:
+    - {fileID: 2100000, guid: 6f155f2c96826b74897934b7171dff7b, type: 2}
   - name: fortress_basic_wall
     entryType: 2
     materials:
     - {fileID: 2100000, guid: e2c5bbb42cb8d5b41ab173b416b502ea, type: 2}
+    useCeiling: 0
+    ceilingMaterials: []

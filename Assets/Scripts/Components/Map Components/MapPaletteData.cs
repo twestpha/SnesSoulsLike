@@ -7,7 +7,6 @@ public enum EntryType {
     Empty,
     Floor,
     Wall,
-    Ceiling
 }
 
 [Serializable]
@@ -15,6 +14,8 @@ public class PalletteEntry {
     public string name;
     public EntryType entryType;
     public Material[] materials;
+    public bool useCeiling;
+    public Material[] ceilingMaterials;
 }
 
 [CreateAssetMenu(fileName = "MapPaletteData", menuName = "Map/Map Palette Data", order = 1)]
