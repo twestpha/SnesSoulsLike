@@ -4,24 +4,21 @@ using UnityEngine.UI;
 
 class PlayerUIComponent : MonoBehaviour {
 
-    public Image healthBar;
-    public Image staminaBar;
+    public Image[] selectionPips;
+    public Image[] healthBars;
 
     public PlayerComponent playerComponent;
 
-    private float healthBarWidth;
-    private float staminaBarWidth;
-
     void Start(){
-        healthBarWidth = healthBar.GetComponent<RectTransform>().rect.width;
-        staminaBarWidth = staminaBar.GetComponent<RectTransform>().rect.width;
+        playerComponent = GetComponentInParent<PlayerComponent>();
     }
 
     void Update(){
-        // float healthPercent = playerComponent.currentHealth / playerComponent.maxHealth;
-        // healthBar.fillAmount = Mathf.Round(healthPercent * healthBarWidth) / healthBarWidth;
-        //
-        // float staminaPercent = playerComponent.currentStamina / playerComponent.maxStamina;
-        // staminaBar.fillAmount = Mathf.Round(staminaPercent * staminaBarWidth) / staminaBarWidth;
+        UnitComponent currentUnit = playerComponent.GetCurrentPlayerUnit();
+
+        for(int i = 0, count = playerComponent.units.Length; i < count; ++i){
+            selectionPips[i].enabled = playerComponent.units[i] == currentUnit;
+            healthBars[i].fillAmount = playerComponent.units[i].GetComponent<HealthComponent>().GetCurrentHealthPercentage();
+        }
     }
 }

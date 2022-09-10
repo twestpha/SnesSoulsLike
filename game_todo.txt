@@ -12,14 +12,20 @@ Done
 [/] Lamp pole with light
 [/] Camera controls
 [/] Camera Raycasting
+[/] Map generator utilities
+    - use this to generate simple floors, walls, and ceilings
+    - use as first-pass elements; enhance with props and special tiles for extra goodness
+    - Tiled generation for a "floor", which builds walls, floors, and ceiling with 2 layers, at it's current height
+    - Use tilemap for better art; corners and lighting and such
+[/] Wall tiles
+[/] Ceiling tiles
 
 ====================================================================================================
 TODO
 ====================================================================================================
 
 [x] Put together a castle ruins tileset to start building levels with to really test out art pipeline
-    [x] Wall tiles
-    [x] Ceiling tiles
+    [x] Test pre-rendering with specularity/metallic
     [x] Prop List
         [x] Hanging vines/root
         [x] Stairway (double/triple wide with banister)
@@ -31,14 +37,18 @@ TODO
         [x] Desk (destructable)
         [x] Chair (destructable)
 
-[x] Map generator utilities
-    - use this to generate simple floors, walls, and ceilings
-    - use as first-pass elements; enhance with props and special tiles for extra goodness
-    - Tiled generation for a "floor", which builds walls, floors, and ceiling with 2 layers, at it's current height
-    - Use tilemap for better art; corners and lighting and such
-
 [x] Basic player UI
     - All three characters' health, and which one's selected
+
+[x] Map making using torches and braziers?
+    - All characters have torches in dungeons
+        - dungeon-specific animation variants only for walk and idle
+    - torches no longer finite
+    - model + effects
+    - A dedicated control for lighting animation
+    - braziers that can be lit
+
+[x] Basic Enemy
 
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting
@@ -67,6 +77,7 @@ TODO
     [x] Knife teleport
 
 [x] Dialogue system for NPCs
+    - simple and stupid
 
 [x] Ladders
 
