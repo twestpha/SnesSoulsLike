@@ -16,8 +16,8 @@ TagManager:
   - Waypoint
   - Damager
   - Damageable
-  - 
-  - 
+  - Fire
+  - FireDetector
   - 
   - 
   - 
