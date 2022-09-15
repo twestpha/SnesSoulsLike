@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,6 +19,7 @@ public class WaypointBuilder : MonoBehaviour {
         foreach(WaypointComponent waypointA in childWaypoints){
             // Clear previous
             waypointA.connectedWaypoints = new WaypointComponent[0];
+            List<WaypointComponent> waypointAList = new List<WaypointComponent>();
 
             foreach(WaypointComponent waypointB in childWaypoints){
                 if(waypointA != waypointB){
@@ -25,15 +27,13 @@ public class WaypointBuilder : MonoBehaviour {
 
                     RaycastHit hit;
                     if(!Physics.Raycast(waypointA.transform.position, toWaypointB, out hit, toWaypointB.magnitude, PHYSICS_ENVIRONMENT_LAYER_MASK, QueryTriggerInteraction.Ignore)){
-                        List<WaypointComponent> waypointAList = new List<WaypointComponent>(waypointA.connectedWaypoints);
                         waypointAList.Add(waypointB);
-                        waypointA.connectedWaypoints = waypointAList.ToArray();
                     }
-                    // } else {
-                    //     Debug.Log(waypointA + " -> " + waypointB + " X " + hit.collider.gameObject);
-                    // }
                 }
             }
+
+            waypointAList = waypointAList.OrderBy(x => (waypointA.transform.position - x.transform.position).magnitude).ToList();
+            waypointA.connectedWaypoints = waypointAList.ToArray();
         }
 
         Debug.Log("Generated " + childWaypoints.Length + " waypoints");

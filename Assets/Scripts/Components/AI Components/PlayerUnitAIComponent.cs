@@ -44,6 +44,8 @@ class PlayerUnitAIComponent : MonoBehaviour {
     private FollowDirection pickedFollowDirection;
     private Vector3 followPosition;
 
+    private Timer followResetTimer = new Timer();
+
     // Fidgeting
     private bool fidgetStarted;
     private bool fidgetHappening;
@@ -88,15 +90,24 @@ class PlayerUnitAIComponent : MonoBehaviour {
             pickedFollowDirection = FollowDirection.None;
         }
 
-        // TODO reset if can't reach leash in time? Just jump-ahead?
-
         if(!inFollowLeash || !inPlayerLeash){
             if(pickedFollowDirection == FollowDirection.None){
                 pickedFollowDirection = (FollowDirection)(UnityEngine.Random.Range(1, 6));
                 followPosition = GetFollowPosition();
+
+                float timeToFollowPosition = (followPosition - transform.position).magnitude / unit.moveSpeed;
+                followResetTimer.SetDuration(timeToFollowPosition + 2.0f); // Plus a little buffer
+                followResetTimer.Start();
             }
 
             unit.SetInputDirection(toFollowPosition.normalized);
+
+            if(followResetTimer.Finished()){
+                // TODO rework to line of sight, and if no line of sight switch to different follow mode to path incrementally
+                Debug.Log("RESET");
+                pickedFollowDirection = FollowDirection.None;
+                // WaypointComponent.PathfindBetweenPositions(transform.position, new Vector3(72.9f, 1.0f, -6.2f));
+            }
 
             // Always clear fidgeting while moving
             fidgetStarted = false;

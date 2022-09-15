@@ -14,7 +14,15 @@ class WaypointComponent : MonoBehaviour {
         WaypointComponent originWaypoint = GetClosestWaypointInView(origin);
         WaypointComponent destinationWaypoint = GetClosestWaypointInView(destination);
 
-        // Recursively iterate connectedWaypoints until destination found
+        if(originWaypoint == null || destinationWaypoint == null){
+            return null;
+        }
+
+        Debug.DrawLine(origin, originWaypoint.transform.position, Color.red, 100.0f, false);
+        Debug.DrawLine(destination, destinationWaypoint.transform.position, Color.red, 100.0f, false);
+
+        // Recursively iterate connectedWaypoints until destination found. This doesn't find the
+        // shortest path, but it finds the path real damn fast, so I'm kinda ok with it...
         HashSet<WaypointComponent> searchedWaypoints = new HashSet<WaypointComponent>();
         Dictionary<WaypointComponent, WaypointComponent> directedPath = new Dictionary<WaypointComponent, WaypointComponent>();
 
@@ -32,6 +40,10 @@ class WaypointComponent : MonoBehaviour {
             }
 
             waypointPath.Add(originWaypoint.transform.position);
+        }
+
+        for(int i = 1, count = waypointPath.Count; i < count; ++i){
+            Debug.DrawLine(waypointPath[i - 1], waypointPath[i], Color.red, 100.0f, false);
         }
 
         return waypointPath;
@@ -53,7 +65,25 @@ class WaypointComponent : MonoBehaviour {
     }
 
     public static WaypointComponent GetClosestWaypointInView(Vector3 position){
-        return null;
+        WaypointComponent[] allWayPoints = FindObjectsOfType<WaypointComponent>();
+
+        float minWaypointDistance = float.MaxValue;
+        WaypointComponent closestWaypointInView = null;
+
+        foreach(WaypointComponent waypoint in allWayPoints){
+            Vector3 toWaypoint = waypoint.transform.position - position;
+            float distance = toWaypoint.magnitude;
+
+            if(distance < minWaypointDistance){
+                RaycastHit hit;
+                if(!Physics.Raycast(position, toWaypoint, out hit, distance, PHYSICS_ENVIRONMENT_LAYER_MASK, QueryTriggerInteraction.Ignore)){
+                    minWaypointDistance = distance;
+                    closestWaypointInView = waypoint;
+                }
+            }
+        }
+
+        return closestWaypointInView;
     }
 
     #if UNITY_EDITOR
