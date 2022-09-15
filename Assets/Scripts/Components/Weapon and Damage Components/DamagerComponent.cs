@@ -30,6 +30,11 @@ class DamagerComponent : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other){
         if(sharp){
+            // Skip character controllers
+            if(other is CharacterController){
+                return;
+            }
+
             UnitComponent otherUnit = other.GetComponentInParent<UnitComponent>();
 
             if(otherUnit != null && otherUnit.team != ownerUnit.team){
