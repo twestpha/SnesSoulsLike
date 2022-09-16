@@ -37,6 +37,8 @@ class DamagerComponent : MonoBehaviour {
 
             UnitComponent otherUnit = other.GetComponentInParent<UnitComponent>();
 
+            Debug.Log(other + ", " + other.gameObject + ", " + otherUnit);
+
             if(otherUnit != null && otherUnit.team != ownerUnit.team){
                 HealthComponent health = otherUnit.GetComponent<HealthComponent>();
 
