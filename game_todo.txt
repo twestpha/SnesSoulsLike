@@ -38,6 +38,8 @@ TODO
         [x] Desk (destructable)
         [x] Chair (destructable)
 
+[x] Is lock on working?
+
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting
       rather than weird directed graphs?

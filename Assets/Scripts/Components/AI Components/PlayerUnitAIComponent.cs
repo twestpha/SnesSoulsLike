@@ -104,7 +104,7 @@ class PlayerUnitAIComponent : MonoBehaviour {
 
             if(followResetTimer.Finished()){
                 // TODO rework to line of sight, and if no line of sight switch to different follow mode to path incrementally
-                Debug.Log("RESET");
+                // Debug.Log("RESET");
                 pickedFollowDirection = FollowDirection.None;
                 // WaypointComponent.PathfindBetweenPositions(transform.position, new Vector3(72.9f, 1.0f, -6.2f));
             }
