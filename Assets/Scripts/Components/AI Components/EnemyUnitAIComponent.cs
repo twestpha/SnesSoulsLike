@@ -68,6 +68,7 @@ class EnemyUnitAIComponent : MonoBehaviour {
         detector.RegisterOnEnemyEnteredDelegate(OnEnemyEntered);
         enemyState = EnemyState.Idle;
         unit.enabled = false;
+        unit.anim.enabled = false;
         enabled = false;
     }
 
@@ -118,6 +119,7 @@ class EnemyUnitAIComponent : MonoBehaviour {
             } else {
                 enemyState = EnemyState.Idle;
                 unit.enabled = false;
+                unit.anim.enabled = false;
                 enabled = false;
             }
         } else if(enemyState == EnemyState.SeekingTarget){
@@ -182,6 +184,8 @@ class EnemyUnitAIComponent : MonoBehaviour {
     private void OnEnemyEntered(){
         enabled = true;
         unit.enabled = true;
+        unit.anim.enabled = true;
+
         enemyState = EnemyState.LookingForTarget;
     }
 }

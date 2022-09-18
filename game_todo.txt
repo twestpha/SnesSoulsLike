@@ -10,6 +10,7 @@ Done
 [/] Map making using torches and braziers?
 [/] Better pathfinding using waypoint nodes
 [/] Hanging vines/root
+[/] rat weapons
 
 ====================================================================================================
 TODO
@@ -32,9 +33,8 @@ TODO
 [x] Gross death gibs
 
 [x] Rat
-    [x] weapons
-    [x] Animations
-    [x] Abilities
+    [x] rat Animations
+    [x] rat Abilities
 
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting
