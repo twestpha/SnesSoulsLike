@@ -304,6 +304,8 @@ class UnitComponent : MonoBehaviour {
             // TODO have multiple death animations
             anim.PlayAnimation("death");
         }
+
+        characterController.enabled = false;
     }
 
     public bool IsDead(){
