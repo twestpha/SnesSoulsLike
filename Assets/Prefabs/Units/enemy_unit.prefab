@@ -1129,7 +1129,7 @@ MonoBehaviour:
     sequence: {fileID: 11400000, guid: 8763246fb5c9fab49a9321cc87d500b7, type: 2}
   - name: walk
     sequence: {fileID: 11400000, guid: 2c021b2f94fba6a43b070ab1bc08bee1, type: 2}
-  - name: swordswing
+  - name: stab
     sequence: {fileID: 11400000, guid: 9f42665b44db1d4409b305b0e66e7c59, type: 2}
   - name: death
     sequence: {fileID: 11400000, guid: 71768bcb003413b4baaafe29a0af416d, type: 2}
@@ -1230,8 +1230,7 @@ MonoBehaviour:
   currentStatFortitude: 0
   coreStatAppraisal: 0
   equippedAbilities:
-  - {fileID: 11400000, guid: 61d3c45007ada78499feb3139e52ed74, type: 2}
-  - {fileID: 11400000, guid: e6fe9066ee39046428872ff8344f59b2, type: 2}
+  - {fileID: 11400000, guid: 5618a817c0330f447a2fd168ea1c44e8, type: 2}
   rootTransform: {fileID: 7195411462978194847}
   anim: {fileID: 8665307086950598049}
   detector: {fileID: 3100693555420749023}
@@ -1265,13 +1264,9 @@ MonoBehaviour:
   detector: {fileID: 3100693555420749023}
   abilityHints:
   - weight: 0.1
-    usageRange: {x: 0.5, y: 1.5}
-    away: 1
-    abilityTime: 1.2
-  - weight: 0.9
-    usageRange: {x: 2, y: 3}
+    usageRange: {x: 0.75, y: 1.25}
     away: 0
-    abilityTime: 2
+    abilityTime: 1.5
   enemyState: 0
   fleeHealthPercentage: 0
   leaderUnit: {fileID: 3741154830504359846, guid: 90a4a4ac5323c314ab889a869d2754ce, type: 3}

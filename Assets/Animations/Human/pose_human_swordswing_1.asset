@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locked: 1
   transition: 2
-  duration: 0.3
+  duration: 0.2
   positions:
   - {x: 0, y: -0.078, z: 0}
   - {x: -0.056, y: -0.301, z: 0.884}

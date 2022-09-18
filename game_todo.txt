@@ -11,6 +11,7 @@ Done
 [/] Better pathfinding using waypoint nodes
 [/] Hanging vines/root
 [/] rat weapons
+[/] rat Animations
 
 ====================================================================================================
 TODO
@@ -33,7 +34,6 @@ TODO
 [x] Gross death gibs
 
 [x] Rat
-    [x] rat Animations
     [x] rat Abilities
 
 [x] Allow player AI to use abilities
@@ -42,7 +42,7 @@ TODO
     - Less dumb follow behaviour
     - clear on selection changed too
 
-[x] Basic Enemy
+[x] Clean up/create tiled tileset
 
 [x] Equipment Aesthetic component
     - Body type
