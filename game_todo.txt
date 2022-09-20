@@ -12,6 +12,8 @@ Done
 [/] Hanging vines/root
 [/] rat weapons
 [/] rat Animations
+[/] rat Abilities
+[/] Is ability lock on working?
 
 ====================================================================================================
 TODO
@@ -30,11 +32,7 @@ TODO
         [x] Desk (destructable)
         [x] Chair (destructable)
 
-[x] Is ability lock on working?
 [x] Gross death gibs
-
-[x] Rat
-    [x] rat Abilities
 
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting
