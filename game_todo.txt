@@ -14,6 +14,7 @@ Done
 [/] rat Animations
 [/] rat Abilities
 [/] Is ability lock on working?
+[/] Doorway
 
 ====================================================================================================
 TODO
@@ -24,8 +25,7 @@ TODO
     [x] Prop List
         [x] Stairway (double/triple wide with banister)
         [x] Stairway ceiling connector
-        [x] Doorway
-            - openable door... how to do?
+        [x] openable door... how to do?
     [x] Global Props
         [x] Bookshelves (destructable?)
         [x] Treasure chest (global)
