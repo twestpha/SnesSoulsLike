@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 class FireComponent : MonoBehaviour {
 
+    public bool startOnFire;
+
     public float delayTime;
 
     public GameObject scaledObject;
@@ -13,6 +15,12 @@ class FireComponent : MonoBehaviour {
     public GameObject[] fireObjects;
 
     private bool lit;
+
+    void Start(){
+        if(startOnFire){
+            OnTriggerEnter(null);
+        }
+    }
 
     private void OnTriggerEnter(Collider other){
         if(!lit){
