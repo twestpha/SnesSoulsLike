@@ -15,10 +15,17 @@ Done
 [/] rat Abilities
 [/] Is ability lock on working?
 [/] Doorway
+[/] Gross death gibs
 
 ====================================================================================================
 TODO
 ====================================================================================================
+
+[x] Tiny Slice
+    [x] Enemies with attacks and HP damage in
+    [x] Dropping gold
+
+    [x] Town map that refills health
 
 [x] Put together a castle ruins tileset to start building levels with to really test out art pipeline
     [x] Test pre-rendering with specularity/metallic
@@ -32,7 +39,6 @@ TODO
         [x] Desk (destructable)
         [x] Chair (destructable)
 
-[x] Gross death gibs
 
 [x] Allow player AI to use abilities
     - Also, have the enemy that targets them notify them, so they can look more like they're fighting
