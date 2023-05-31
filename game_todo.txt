@@ -21,11 +21,13 @@ Done
 TODO
 ====================================================================================================
 
-[x] Tiny Slice
-    [x] Enemies with attacks and HP damage in
-    [x] Dropping gold
+[x] Core Gameplay
+    - Combat is ok; it's a bit take-a-hit, give-a-hit
+    - too many things happening, and standing still just lets them hit you...
+        - Enemies have chance to miss?
+        - Player units have tons of health and damage, enemies have little health and damage
 
-    [x] Town map that refills health
+    - Multiple characters hard to manage and buggy feeling
 
 [x] Put together a castle ruins tileset to start building levels with to really test out art pipeline
     [x] Test pre-rendering with specularity/metallic

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castOnButtonUp: 0
   castIndicatorPrefab: {fileID: 0}
-  snapToEnemyAngle: 45
+  snapToEnemyAngle: 180
   abilityDuration: 1
   interruptPercent: 0.7
   movePercentage: 1

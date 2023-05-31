@@ -22,6 +22,8 @@ class UnitComponent : MonoBehaviour {
     private const float DIRECTION_TIME = 0.1f;
     private const float ABILITY_DIRECTION_TIME = 0.05f;
 
+    private const float ABILITY_SNAP_RANGE = 3.0f;
+
     public float moveSpeed;
     public float moveSpeedTime;
     public float turnSpeed;
@@ -270,9 +272,14 @@ class UnitComponent : MonoBehaviour {
             UnitComponent minAngleEnemy = null;
 
             foreach(UnitComponent enemyUnit in detector.GetEnemyUnits()){
-                float angleToEnemy = Vector3.Angle(rootTransform.forward, enemyUnit.transform.position - transform.position);
+                Vector3 toEnemy = enemyUnit.transform.position - transform.position;
+                float angleToEnemy = Vector3.Angle(rootTransform.forward, toEnemy);
+                Debug.Log(enemyUnit.gameObject + " -> " + angleToEnemy + " (" + currentlyPerformingAbility.snapToEnemyAngle + ")");
 
-                if(angleToEnemy < minAngle && angleToEnemy < currentlyPerformingAbility.snapToEnemyAngle){
+                if(!enemyUnit.IsDead()
+                   && toEnemy.magnitude < ABILITY_SNAP_RANGE
+                   && angleToEnemy < minAngle
+                   && angleToEnemy < currentlyPerformingAbility.snapToEnemyAngle){
                     minAngle = angleToEnemy;
                     minAngleEnemy = enemyUnit;
                 }

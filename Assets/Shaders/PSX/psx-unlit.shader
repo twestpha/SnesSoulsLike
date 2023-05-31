@@ -33,6 +33,27 @@ Shader "psx/unlit" {
 	{
 		v2f o;
 
+		// change this from camera forward to camera -> object vector
+		const float3 forwardVector = -UNITY_MATRIX_IT_MV[2].xyz; // camera forward
+		// this is a littly fucky, so we're just doing inverse camera for now :P
+		// float3 forwardVector = _WorldSpaceCameraPos - (mul(unity_ObjectToWorld, v.vertex).xyz - v.vertex.xyz);
+		// forwardVector.y = 0.0;
+
+		const float3 rightVector = normalize(cross(forwardVector,  half3(0, 1, 0)));
+		const float3 localUpVector = normalize(cross(forwardVector,  rightVector));
+
+		float3 position = 0;
+		position += vertex.pos.x * rightVector;
+		position += vertex.pos.y * localUpVector;
+		position += vertex.pos.z * forwardVector;
+		vertex.pos = float4(position, 1);
+		vertex.normal = forwardVector;
+
+		void vert (inout appdata_t v, out Input o){
+			UNITY_INITIALIZE_OUTPUT(Input, o);
+			Billboard(v);
+		}
+
 		//Vertex snapping
 		float4 snapToPixel = UnityObjectToClipPos(v.vertex);
 		float4 vertex = snapToPixel;
@@ -42,13 +63,13 @@ Shader "psx/unlit" {
 		vertex.xyz *= snapToPixel.w;
 		o.pos = vertex;
 
-		//Vertex lighting 
+		//Vertex lighting
 		o.color = v.color*UNITY_LIGHTMODEL_AMBIENT;;
 
 		float distance = length(mul(UNITY_MATRIX_MV,v.vertex));
 
 		//Affine Texture Mapping
-		float4 affinePos = vertex;//vertex;				
+		float4 affinePos = vertex;//vertex;
 		o.uv_MainTex = TRANSFORM_TEX(v.texcoord, _MainTex);
 		o.uv_MainTex *= distance + (vertex.w*(UNITY_LIGHTMODEL_AMBIENT.a * 8)) / distance / 2;
 		o.normal = distance + (vertex.w*(UNITY_LIGHTMODEL_AMBIENT.a * 8)) / distance / 2;
