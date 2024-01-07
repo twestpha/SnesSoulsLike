@@ -87,8 +87,9 @@ class PlayerComponent : MonoBehaviour {
 
     [Header("Sprites and Animation")]
     public Transform playerSpriteTransform;
-    public RotatableComponent playerSpriteRotatable;
-    public MaterialAnimationComponent playerAnimation;
+    public CharacterRenderable characterRenderable;
+    // public RotatableComponent playerSpriteRotatable;
+    // public MaterialAnimationComponent playerAnimation;
 
     public AnimationCurve rollSpeedCurve;
 
@@ -236,9 +237,9 @@ class PlayerComponent : MonoBehaviour {
                 } else {
                     playerState = PlayerState.Ducking;
 
-                    playerAnimation.looping = false;
-                    playerSpriteRotatable.SetAnimationIndex(DUCK_ANIMATION_INDEX);
-                    playerAnimation.ForceUpdate();
+                    // playerAnimation.looping = false;
+                    // playerSpriteRotatable.SetAnimationIndex(DUCK_ANIMATION_INDEX);
+                    // playerAnimation.ForceUpdate();
 
                     hurtBox.size = duckingHurtBoxSize;
                     hurtBox.center = duckingHurtBoxCenter;
@@ -253,9 +254,9 @@ class PlayerComponent : MonoBehaviour {
 
                     currentStamina -= lightAttackStaminaCost;
 
-                    playerAnimation.looping = false;
-                    playerSpriteRotatable.SetAnimationIndex(LIGHTATTACK_ANIMATION_INDEX);
-                    playerAnimation.ForceUpdate();
+                    // playerAnimation.looping = false;
+                    // playerSpriteRotatable.SetAnimationIndex(LIGHTATTACK_ANIMATION_INDEX);
+                    // playerAnimation.ForceUpdate();
 
                     attackTimer.SetDuration(lightAttackTime);
                     attackDelayTimer.SetDuration(lightAttackDelayTime);
@@ -264,9 +265,9 @@ class PlayerComponent : MonoBehaviour {
 
                     currentStamina -= heavyAttackStaminaCost;
 
-                    playerAnimation.looping = false;
-                    playerSpriteRotatable.SetAnimationIndex(HEAVYATTACK_ANIMATION_INDEX);
-                    playerAnimation.ForceUpdate();
+                    // playerAnimation.looping = false;
+                    // playerSpriteRotatable.SetAnimationIndex(HEAVYATTACK_ANIMATION_INDEX);
+                    // playerAnimation.ForceUpdate();
 
                     attackTimer.SetDuration(heavyAttackTime);
                     attackDelayTimer.SetDuration(heavyAttackDelayTime);
@@ -278,9 +279,9 @@ class PlayerComponent : MonoBehaviour {
             } else if(useItem && hasItem){
                 playerState = PlayerState.UsingItem;
 
-                playerAnimation.looping = false;
-                playerSpriteRotatable.SetAnimationIndex(USEITEM_ANIMATION_INDEX);
-                playerAnimation.ForceUpdate();
+                // playerAnimation.looping = false;
+                // playerSpriteRotatable.SetAnimationIndex(USEITEM_ANIMATION_INDEX);
+                // playerAnimation.ForceUpdate();
 
                 itemUseTimer.Start();
                 itemDelayTimer.Start();
@@ -290,16 +291,10 @@ class PlayerComponent : MonoBehaviour {
 
                 if(movementInput && !movingAnimation){
                     movingAnimation = true;
-
-                    playerAnimation.looping = true;
-                    playerSpriteRotatable.SetAnimationIndex(WALK_ANIMATION_INDEX);
-                    playerAnimation.ForceUpdate();
+                    characterRenderable.PlayAnimation(AnimationComponent.Sequence.Walk);
                 } else if(!movementInput && movingAnimation){
                     movingAnimation = false;
-
-                    playerAnimation.looping = true;
-                    playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
-                    playerAnimation.ForceUpdate();
+                    characterRenderable.PlayAnimation(AnimationComponent.Sequence.Idle);
                 }
             }
         } else if(playerState == PlayerState.Rolling){
@@ -312,28 +307,28 @@ class PlayerComponent : MonoBehaviour {
             if(rollTimer.Finished()){
                 playerState = PlayerState.None;
 
-                playerAnimation.looping = true;
+                // playerAnimation.looping = true;
 
                 if(movementInput){
-                    playerSpriteRotatable.SetAnimationIndex(WALK_ANIMATION_INDEX);
+                    // playerSpriteRotatable.SetAnimationIndex(WALK_ANIMATION_INDEX);
                 } else {
-                    playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+                    // playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
                 }
 
-                playerAnimation.ForceUpdate();
+                // playerAnimation.ForceUpdate();
             }
         } else if(playerState == PlayerState.Ducking){
             if(!duckRoll){
                 playerState = PlayerState.None;
 
                 if(movementInput){
-                    playerAnimation.looping = true;
-                    playerSpriteRotatable.SetAnimationIndex(WALK_ANIMATION_INDEX);
+                    // playerAnimation.looping = true;
+                    // playerSpriteRotatable.SetAnimationIndex(WALK_ANIMATION_INDEX);
                 } else {
-                    playerAnimation.looping = false;
-                    playerSpriteRotatable.SetAnimationIndex(UNDUCK_ANIMATION_INDEX);
+                    // playerAnimation.looping = false;
+                    // playerSpriteRotatable.SetAnimationIndex(UNDUCK_ANIMATION_INDEX);
                 }
-                playerAnimation.ForceUpdate();
+                // playerAnimation.ForceUpdate();
 
                 hurtBox.size = originalHurtBoxSize;
                 hurtBox.center = originalHurtBoxCenter;
@@ -356,9 +351,9 @@ class PlayerComponent : MonoBehaviour {
             if(attackTimer.Finished()){
                 playerState = PlayerState.None;
 
-                playerAnimation.looping = true;
-                playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
-                playerAnimation.ForceUpdate();
+                // playerAnimation.looping = true;
+                // playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
+                // playerAnimation.ForceUpdate();
             }
         } else if(playerState == PlayerState.HeavyAttack){
             if(!attackDamageStarted && attackDelayTimer.Finished()){
@@ -369,9 +364,9 @@ class PlayerComponent : MonoBehaviour {
             if(attackTimer.Finished()){
                 playerState = PlayerState.None;
 
-                playerAnimation.looping = true;
-                playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
-                playerAnimation.ForceUpdate();
+                // playerAnimation.looping = true;
+                // playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
+                // playerAnimation.ForceUpdate();
             }
         } else if(playerState == PlayerState.UsingItem){
             if(itemDelayTimer.Finished() && hasItem){
@@ -383,17 +378,17 @@ class PlayerComponent : MonoBehaviour {
             if(itemUseTimer.Finished()){
                 playerState = PlayerState.None;
 
-                playerAnimation.looping = true;
-                playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
-                playerAnimation.ForceUpdate();
+                // playerAnimation.looping = true;
+                // playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
+                // playerAnimation.ForceUpdate();
             }
         } else if(playerState == PlayerState.Staggered){
             if(staggerTimer.Finished()){
                 playerState = PlayerState.None;
 
-                playerAnimation.looping = true;
-                playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
-                playerAnimation.ForceUpdate();
+                // playerAnimation.looping = true;
+                // playerSpriteRotatable.SetAnimationIndex(movementInput ? WALK_ANIMATION_INDEX : IDLE_ANIMATION_INDEX);
+                // playerAnimation.ForceUpdate();
             }
         }
 
@@ -470,17 +465,17 @@ class PlayerComponent : MonoBehaviour {
         characterController.height = originalRadiusAndHeight.y;
         characterController.center = originalCharacterControllerCenter;
 
-        playerAnimation.looping = false;
-        playerSpriteRotatable.SetAnimationIndex(ROLL_ANIMATION_INDEX);
-        playerAnimation.ForceUpdate();
+        // playerAnimation.looping = false;
+        // playerSpriteRotatable.SetAnimationIndex(ROLL_ANIMATION_INDEX);
+        // playerAnimation.ForceUpdate();
     }
 
     public void SetPaused(bool newPaused){
         playerPaused = newPaused;
 
-        playerAnimation.looping = true;
-        playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
-        playerAnimation.ForceUpdate();
+        // playerAnimation.looping = true;
+        // playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+        // playerAnimation.ForceUpdate();
 
         // Fixes up camera jitter when un pausing
         if(!playerPaused){
@@ -570,9 +565,9 @@ class PlayerComponent : MonoBehaviour {
         if(currentHealth < 0){
             playerState = PlayerState.Dead;
 
-            playerAnimation.looping = false;
-            playerSpriteRotatable.SetAnimationIndex(DEATH_ANIMATION_INDEX);
-            playerAnimation.ForceUpdate();
+            // playerAnimation.looping = false;
+            // playerSpriteRotatable.SetAnimationIndex(DEATH_ANIMATION_INDEX);
+            // playerAnimation.ForceUpdate();
 
             StartCoroutine(DieCoroutine());
 
@@ -584,9 +579,9 @@ class PlayerComponent : MonoBehaviour {
 
             staggerTimer.Start();
 
-            playerAnimation.looping = false;
-            playerSpriteRotatable.SetAnimationIndex(STAGGER_ANIMATION_INDEX);
-            playerAnimation.ForceUpdate();
+            // playerAnimation.looping = false;
+            // playerSpriteRotatable.SetAnimationIndex(STAGGER_ANIMATION_INDEX);
+            // playerAnimation.ForceUpdate();
         }
 
         return true;
@@ -631,9 +626,9 @@ class PlayerComponent : MonoBehaviour {
         hasItem = true; // Reset "estus"
         itemImage.sprite = itemFull;
 
-        playerAnimation.looping = true;
-        playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
-        playerAnimation.ForceUpdate();
+        // playerAnimation.looping = true;
+        // playerSpriteRotatable.SetAnimationIndex(IDLE_ANIMATION_INDEX);
+        // playerAnimation.ForceUpdate();
 
         // Hide messages? Reset Paused? Reset boxes?
         gameOverText.enabled = false;

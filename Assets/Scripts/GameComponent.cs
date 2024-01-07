@@ -43,11 +43,11 @@ class GameComponent : MonoBehaviour {
         antialiasingEffect = playerCamera.GetComponent<Antialiasing>();
 
         // Setup first level
-        exteriorInstance = GameObject.Instantiate(exteriorPrefab);
-        interiorInstance = GameObject.Instantiate(interiorPrefab);
+        // exteriorInstance = GameObject.Instantiate(exteriorPrefab);
+        // interiorInstance = GameObject.Instantiate(interiorPrefab);
 
-        player.transform.position = playerStartTransform.position;
-        player.transform.rotation = playerStartTransform.rotation;
+        // player.transform.position = playerStartTransform.position;
+        // player.transform.rotation = playerStartTransform.rotation;
     }
 
     void Update(){

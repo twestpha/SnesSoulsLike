@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368d58fc6a3a84948a11d4dcd64f118e, type: 3}
+  m_Name: seq_player_walk
+  m_EditorClassIdentifier: 
+  behavior: 0
+  timeBetweenPoses: 0.1
+  poses:
+  - {fileID: 11400000, guid: 2f0c6741a5c689b4784d3b505c54c406, type: 2}
+  - {fileID: 11400000, guid: 69822e244b6116f448ea9fb8e0a6f770, type: 2}
+  - {fileID: 11400000, guid: 062447a933107514da824eab8c4cdae8, type: 2}
+  - {fileID: 11400000, guid: ae423f92e07b2374382189f2123495d7, type: 2}
+  - {fileID: 11400000, guid: 0019351d9c8fd64418a256dbc480a07a, type: 2}
+  - {fileID: 11400000, guid: 3eba90a5c209f4744944e98f8bb407e5, type: 2}
+  transitions: 070000000700000007000000070000000700000007000000
