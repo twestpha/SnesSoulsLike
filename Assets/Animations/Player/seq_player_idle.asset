@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: seq_player_idle
   m_EditorClassIdentifier: 
   behavior: 0
-  timeBetweenPoses: 0.25
+  timeBetweenPoses: 0.15
   poses:
   - {fileID: 11400000, guid: c48e574d37d150948996262eb1edad39, type: 2}
+  - {fileID: 11400000, guid: 77ae489e360ed014a8e9f4f6e16ca99f, type: 2}
   - {fileID: 11400000, guid: 54bc6dd2f541e9746a5f669e50c75b45, type: 2}
-  transitions: 0700000007000000
+  - {fileID: 11400000, guid: 580980ed3f62d864e890512a89ef858f, type: 2}
+  transitions: 07000000070000000700000007000000
