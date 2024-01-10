@@ -91,4 +91,10 @@ class CharacterRenderingManager : MonoBehaviour {
         characterSlots[slotIndex].slotComponent.slotCamera.enabled = false;
         characterSlots[slotIndex].inUse = false;
     }
+
+    public void UpdateCameraForRenderable(int slotIndex, float cameraAngle){
+        Debug.Assert(characterSlots[slotIndex].inUse);
+
+        characterSlots[slotIndex].slotComponent.cameraOrigin.transform.localRotation = Quaternion.Euler(0.0f, cameraAngle, 0.0f);
+    }
 }

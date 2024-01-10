@@ -36,7 +36,7 @@ class GameComponent : MonoBehaviour {
 
         // Emulate probable SNES framerate and graphics options by default
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 15;
+        Application.targetFrameRate = 24; // for now?
 
         playerCamera = player.GetComponentInChildren<Camera>();
         pixellateEffect = playerCamera.GetComponent<PixellateAndPalette>();

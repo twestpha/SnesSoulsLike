@@ -16,9 +16,9 @@ MonoBehaviour:
   timeBetweenPoses: 0.1
   poses:
   - {fileID: 11400000, guid: 2f0c6741a5c689b4784d3b505c54c406, type: 2}
-  - {fileID: 11400000, guid: 69822e244b6116f448ea9fb8e0a6f770, type: 2}
-  - {fileID: 11400000, guid: 062447a933107514da824eab8c4cdae8, type: 2}
-  - {fileID: 11400000, guid: ae423f92e07b2374382189f2123495d7, type: 2}
-  - {fileID: 11400000, guid: 0019351d9c8fd64418a256dbc480a07a, type: 2}
-  - {fileID: 11400000, guid: 3eba90a5c209f4744944e98f8bb407e5, type: 2}
+  - {fileID: 11400000, guid: b36f04be5549f604fb783da3b328435a, type: 2}
+  - {fileID: 11400000, guid: ff176c3686db95c4595235e98469bb53, type: 2}
+  - {fileID: 11400000, guid: 4829bc38d53393741a027c4fe5ffd61b, type: 2}
+  - {fileID: 11400000, guid: 0501ccebbc0e893478599a59dbb2b587, type: 2}
+  - {fileID: 11400000, guid: 707d5faf9c7476a4b97ef177cf814cde, type: 2}
   transitions: 070000000700000007000000070000000700000007000000
