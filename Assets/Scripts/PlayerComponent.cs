@@ -168,22 +168,22 @@ class PlayerComponent : MonoBehaviour {
         staggerTimer = new Timer(staggerTime);
 
         // Set aspect ratio of camera
-        float targetAspect = 8.0f / 7.0f;
-        float windowAspect = (float) Screen.width / (float) Screen.height;
-        float scaleHeight = windowAspect / targetAspect;
-
-        float scaleWidth = 1.0f / scaleHeight;
-
-        Rect rect = playerCamera.rect;
-
-        rect.width = scaleWidth;
-        rect.height = 1.0f;
-        rect.x = (1.0f - scaleWidth) / 2.0f;
-        rect.y = 0;
+        // float targetAspect = 8.0f / 7.0f;
+        // float windowAspect = (float) Screen.width / (float) Screen.height;
+        // float scaleHeight = windowAspect / targetAspect;
+        // 
+        // float scaleWidth = 1.0f / scaleHeight;
+        // 
+        // Rect rect = playerCamera.rect;
+        // 
+        // rect.width = scaleWidth;
+        // rect.height = 1.0f;
+        // rect.x = (1.0f - scaleWidth) / 2.0f;
+        // rect.y = 0;
 
         lookAngle = transform.rotation.eulerAngles.y;
 
-        playerCamera.rect = rect;
+        // playerCamera.rect = rect;
     }
 
     void Update(){
