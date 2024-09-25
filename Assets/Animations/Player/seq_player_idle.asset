@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368d58fc6a3a84948a11d4dcd64f118e, type: 3}
   m_Name: seq_player_idle
   m_EditorClassIdentifier: 
-  behavior: 0
-  timeBetweenPoses: 0.15
+  behavior: 1
+  timeBetweenPoses: 0.2
   poses:
-  - {fileID: 11400000, guid: c48e574d37d150948996262eb1edad39, type: 2}
-  - {fileID: 11400000, guid: 77ae489e360ed014a8e9f4f6e16ca99f, type: 2}
-  - {fileID: 11400000, guid: 54bc6dd2f541e9746a5f669e50c75b45, type: 2}
-  - {fileID: 11400000, guid: 580980ed3f62d864e890512a89ef858f, type: 2}
-  transitions: 07000000070000000700000007000000
+  - {fileID: 11400000, guid: 0717ad8d036aa2d4f9e5912c7dd16be4, type: 2}
+  - {fileID: 11400000, guid: 9e0397c8392c16747a4d764525d34b90, type: 2}
+  - {fileID: 11400000, guid: 1d39e5c7edc84e144b0b8ebce776b4ca, type: 2}
+  transitions: 070000000700000007000000

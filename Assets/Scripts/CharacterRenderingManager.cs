@@ -5,12 +5,13 @@ class CharacterRenderingManager : MonoBehaviour {
 
     public const int MAX_CHARACTER_SLOTS = 8;
 
-    public const int RT_RESOLUTION = 128; // pixels
+    public const int DEFAULT_RESOLUTION = 128; // pixels
 
     public static CharacterRenderingManager instance;
 
     private struct CharacterSlot {
         public bool inUse;
+        public int resolution;
         public RenderTexture renderTexture;
         public CharacterSlotComponent slotComponent;
         public GameObject characterPrefabInstance;
@@ -27,10 +28,11 @@ class CharacterRenderingManager : MonoBehaviour {
 
         for(int i = 0; i < MAX_CHARACTER_SLOTS; ++i){
             characterSlots[i].inUse = false;
+            characterSlots[i].resolution = DEFAULT_RESOLUTION;
 
             characterSlots[i].renderTexture = RenderTexture.GetTemporary(
-                RT_RESOLUTION,
-                RT_RESOLUTION,
+                DEFAULT_RESOLUTION,
+                DEFAULT_RESOLUTION,
                 0,
                 RenderTextureFormat.Default,
                 RenderTextureReadWrite.Default,
@@ -49,10 +51,26 @@ class CharacterRenderingManager : MonoBehaviour {
         }
     }
 
-    public bool RequestCharacterSlot(CharacterRenderable characterRenderable, out int slotIndex){
+    public bool RequestCharacterSlot(CharacterRenderable characterRenderable, int resolution, out int slotIndex){
         for(int i = 0; i < MAX_CHARACTER_SLOTS; ++i){
             if(!characterSlots[i].inUse){
                 characterSlots[i].inUse = true;
+                
+                if(characterSlots[i].resolution != resolution){
+                    characterSlots[i].renderTexture.Release();
+                    
+                    characterSlots[i].renderTexture = RenderTexture.GetTemporary(
+                        resolution,
+                        resolution,
+                        0,
+                        RenderTextureFormat.Default,
+                        RenderTextureReadWrite.Default,
+                        1 // NO AA
+                    );
+                    
+                    characterSlots[i].renderTexture.filterMode = FilterMode.Point;
+                    characterSlots[i].slotComponent.slotCamera.targetTexture = characterSlots[i].renderTexture;
+                }
 
                 GameObject characterPrefabInstance = GameObject.Instantiate(characterRenderable.characterPrefab);
                 characterPrefabInstance.transform.parent = characterSlots[i].slotComponent.characterOrigin.transform;

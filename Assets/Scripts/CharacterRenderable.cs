@@ -1,12 +1,17 @@
 using System;
 using UnityEngine;
 
+enum CharacterRenderableSize {
+    Normal,
+    Large,
+}
+
 class CharacterRenderable : MonoBehaviour {
 
     public const float CAMERA_ANGLE_COUNT = 8.0f;
 
     public MeshRenderer characterMesh;
-    public float characterSize;
+    public CharacterRenderableSize characterSize;
 
     [Space(10)]
     public bool alwaysRender;
@@ -34,7 +39,7 @@ class CharacterRenderable : MonoBehaviour {
     public void RequestSlot(){
         manager = CharacterRenderingManager.instance;
 
-        if(manager.RequestCharacterSlot(this, out renderableSlot)){
+        if(manager.RequestCharacterSlot(this, GetResolutionForCharacterSize(characterSize), out renderableSlot)){
             characterTexture = manager.GetRenderTextureAtSlot(renderableSlot);
             characterInstance = manager.GetCharacterInstanceAtSlot(renderableSlot);
 
@@ -97,6 +102,16 @@ class CharacterRenderable : MonoBehaviour {
                 return;
             }
         }
+    }
+    
+    public static int GetResolutionForCharacterSize(CharacterRenderableSize size){
+        if(size == CharacterRenderableSize.Normal){
+            return 128;
+        } else if(size == CharacterRenderableSize.Large){
+            return 256;
+        }
+        
+        return 128;
     }
 
     public void PlayAnimation(AnimationComponent.Sequence seq, bool idleOnFinish = false){

@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: seq_player_walk
   m_EditorClassIdentifier: 
   behavior: 0
-  timeBetweenPoses: 0.1
+  timeBetweenPoses: 0.25
   poses:
-  - {fileID: 11400000, guid: 2f0c6741a5c689b4784d3b505c54c406, type: 2}
-  - {fileID: 11400000, guid: b36f04be5549f604fb783da3b328435a, type: 2}
-  - {fileID: 11400000, guid: ff176c3686db95c4595235e98469bb53, type: 2}
-  - {fileID: 11400000, guid: 4829bc38d53393741a027c4fe5ffd61b, type: 2}
-  - {fileID: 11400000, guid: 0501ccebbc0e893478599a59dbb2b587, type: 2}
-  - {fileID: 11400000, guid: 707d5faf9c7476a4b97ef177cf814cde, type: 2}
-  transitions: 070000000700000007000000070000000700000007000000
+  - {fileID: 11400000, guid: eb9662c31927eb34aba6a3637deed03a, type: 2}
+  - {fileID: 11400000, guid: 6cbf97b1cb8c2eb4c9fa819fc2b29370, type: 2}
+  - {fileID: 11400000, guid: 14d5ef0d30db2e146916def4bfe555f5, type: 2}
+  - {fileID: 11400000, guid: 92c76c3c85ea22d4388a75f29a4333bc, type: 2}
+  transitions: 07000000070000000700000007000000
