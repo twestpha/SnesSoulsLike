@@ -69,8 +69,9 @@ Shader "Custom/Billboard" {
             }
 
             void surf (Input IN, inout SurfaceOutput o) {
-                o.Emission = tex2D(_Emit, IN.uv_MainTex).rgb;
+                // o.Emission = tex2D(_Emit, IN.uv_MainTex).rgb;
                 fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
+                o.Emission = c.rgb;
                 o.Albedo = c.rgb;
                 o.Alpha = c.a;
             }

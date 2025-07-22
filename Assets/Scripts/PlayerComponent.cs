@@ -8,6 +8,7 @@ class PlayerComponent : MonoBehaviour {
 
     private const int IGNORE_CAMERA_LAYER_MASK = 1 << 3;
 
+    // Pull these into a better enum, refactor PlayAnimation() in renderable with them :P
     private const int IDLE_ANIMATION_INDEX        = 0;
     private const int ROLL_ANIMATION_INDEX        = 1;
     private const int DUCK_ANIMATION_INDEX        = 2;

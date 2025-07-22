@@ -26,7 +26,7 @@ class CharacterRenderable : MonoBehaviour {
     private int renderableSlot = -1;
     private RenderTexture characterTexture;
     private GameObject characterInstance;
-    private AnimationComponent animationComponent;
+    private Animator animator;
 
     void Start(){
         cachedMainCamera = Camera.main;
@@ -43,7 +43,7 @@ class CharacterRenderable : MonoBehaviour {
             characterTexture = manager.GetRenderTextureAtSlot(renderableSlot);
             characterInstance = manager.GetCharacterInstanceAtSlot(renderableSlot);
 
-            animationComponent = characterInstance.GetComponentInChildren<AnimationComponent>();
+            animator = characterInstance.GetComponentInChildren<Animator>();
 
             characterMesh.material.mainTexture = characterTexture;
             characterMesh.enabled = true;
@@ -115,8 +115,31 @@ class CharacterRenderable : MonoBehaviour {
     }
 
     public void PlayAnimation(AnimationComponent.Sequence seq, bool idleOnFinish = false){
+        // refactor now ignores the "idleOnFinish", sorry
+        
         if(renderableSlot != -1){
-            animationComponent.PlayAnimation(seq, idleOnFinish);
+            // public enum Sequence : int {
+            //     Invalid = -1,
+            //     Idle,
+            //     Walk,
+            //     Aim,
+            //     Attack,
+            //     Flinch,
+            //     Dead,
+            //     Surrender,
+            //     Shoot,
+            //     Magic,
+            // 
+            //     Count, // 7 for now
+            // }
+            
+            // animationComponent.PlayAnimation(seq, idleOnFinish);
+            if(seq == AnimationComponent.Sequence.Idle){
+                animator.SetBool("walking", false);
+            } else if(seq == AnimationComponent.Sequence.Walk){
+                animator.SetBool("walking", true);
+            }
+            // TODO the rest
         }
     }
 }

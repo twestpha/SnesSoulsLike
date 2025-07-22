@@ -28,6 +28,9 @@ public class AnimationComponent : MonoBehaviour {
         Flinch,
         Dead,
         Surrender,
+        Roll,
+        Shoot,
+        Magic,
 
         Count, // 7 for now
     }

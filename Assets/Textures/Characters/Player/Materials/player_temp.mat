@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: player_placeholder
+  m_Name: player_temp
   m_Shader: {fileID: 4800000, guid: 26430cfebacbbef45bd6c8f6e61d7433, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

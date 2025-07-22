@@ -4,14 +4,17 @@ using UnityEngine;
 class CharacterRenderingManager : MonoBehaviour {
 
     public const int MAX_CHARACTER_SLOTS = 8;
+    public const float RENDER_TIME = 1.0f / 8.0f; // 8 fps
 
     public const int DEFAULT_RESOLUTION = 128; // pixels
+    public const int ANTI_ALIASING = 8;
 
     public static CharacterRenderingManager instance;
 
     private struct CharacterSlot {
         public bool inUse;
         public int resolution;
+        public Timer renderTimer;
         public RenderTexture renderTexture;
         public CharacterSlotComponent slotComponent;
         public GameObject characterPrefabInstance;
@@ -29,6 +32,7 @@ class CharacterRenderingManager : MonoBehaviour {
         for(int i = 0; i < MAX_CHARACTER_SLOTS; ++i){
             characterSlots[i].inUse = false;
             characterSlots[i].resolution = DEFAULT_RESOLUTION;
+            characterSlots[i].renderTimer = new Timer(RENDER_TIME);
 
             characterSlots[i].renderTexture = RenderTexture.GetTemporary(
                 DEFAULT_RESOLUTION,
@@ -36,13 +40,13 @@ class CharacterRenderingManager : MonoBehaviour {
                 0,
                 RenderTextureFormat.Default,
                 RenderTextureReadWrite.Default,
-                1 // NO AA
+                ANTI_ALIASING
             );
             characterSlots[i].renderTexture.filterMode = FilterMode.Point;
 
             GameObject slotInstance = GameObject.Instantiate(characterSlotPrototype);
             slotInstance.transform.parent = transform;
-            slotInstance.transform.localPosition = new Vector3(((float) i) * 20.0f, 0.0f, 0.0f);
+            slotInstance.transform.localPosition = new Vector3(((float) i) * 30.0f, 0.0f, 0.0f);
 
             slotInstance.SetActive(true);
 
@@ -50,7 +54,7 @@ class CharacterRenderingManager : MonoBehaviour {
             characterSlots[i].slotComponent.slotCamera.targetTexture = characterSlots[i].renderTexture;
         }
     }
-
+    
     public bool RequestCharacterSlot(CharacterRenderable characterRenderable, int resolution, out int slotIndex){
         for(int i = 0; i < MAX_CHARACTER_SLOTS; ++i){
             if(!characterSlots[i].inUse){
@@ -65,7 +69,7 @@ class CharacterRenderingManager : MonoBehaviour {
                         0,
                         RenderTextureFormat.Default,
                         RenderTextureReadWrite.Default,
-                        1 // NO AA
+                        ANTI_ALIASING
                     );
                     
                     characterSlots[i].renderTexture.filterMode = FilterMode.Point;
@@ -78,8 +82,11 @@ class CharacterRenderingManager : MonoBehaviour {
                 characterPrefabInstance.transform.localRotation = Quaternion.identity;
 
                 characterSlots[i].characterPrefabInstance = characterPrefabInstance;
+                
+                characterSlots[i].renderTimer.Start();
 
-                characterSlots[i].slotComponent.slotCamera.enabled = true;
+                characterSlots[i].slotComponent.slotCamera.enabled = false;
+                characterSlots[i].slotComponent.slotCamera.Render();
 
                 slotIndex = i;
                 return true;
@@ -88,6 +95,17 @@ class CharacterRenderingManager : MonoBehaviour {
 
         slotIndex = -1;
         return false;
+    }
+    
+    void Update(){
+        for(int i = 0; i < MAX_CHARACTER_SLOTS; ++i){
+            if(characterSlots[i].inUse){
+                if(characterSlots[i].renderTimer.Finished()){
+                    characterSlots[i].renderTimer.Start();
+                    characterSlots[i].slotComponent.slotCamera.Render();
+                }
+            }
+        }
     }
 
     public RenderTexture GetRenderTextureAtSlot(int slotIndex){
