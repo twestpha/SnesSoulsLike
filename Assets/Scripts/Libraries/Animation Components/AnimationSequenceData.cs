@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AnimationSequence", menuName = "Animation/Animation Sequence", order = 2)]
+// [CreateAssetMenu(fileName = "AnimationSequence", menuName = "Animation/Animation Sequence", order = 2)]
 [System.Serializable]
 public class AnimationSequenceData : ScriptableObject {
     public enum FinishBehavior : int {

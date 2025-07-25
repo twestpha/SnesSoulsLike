@@ -1,27 +1,40 @@
-// #################################################################################################
-// Done
-// #################################################################################################
-[/] skeleton death
-[/] skeleton
-[/] Wight idle
-[/] Wight attack A
-[/] Wight attack B
-[/] Wight damaged
-[/] Wight death
-[/] Lantern Wight
-[/] Design & Model
-[/] idle
-[/] walk
-[W] damaged
-[/] attack A
-[/] attack B
-[/] death
-[/] 3 headed skelly
-[/] Health Bar, Name, Disappear when dead (player/boss)
 
-// #################################################################################################
-// Game TODO
-// #################################################################################################
+[/] Some simple area to explore, just something other than a flat plane
+[/] deer model, animations, character slot
+[/] simple AI navigation, enemy
 
-[x] Tune health and damage to make it just barely beatable
-[x] Publish game + assets/concepts + source
+[x] Basic game loop start
+    [x] Items that use ability? how to equip and use properly?
+        - right hand, left hand buttons?
+    [x] damage and shooting
+    [x] Dropping loot
+
+[x] Rework stamina to be non-regenerating and take items
+
+
+Pillar: A simulation of a dark fantasy world
+
+Verbs
+    - Collect, pickup
+    - Dodge
+    - Hide
+    - Use item (Attack, Shoot, Cast Spell, Eat)
+    - equipping/unequipping
+    - drop item
+    - Talk
+    - Use world object
+    - have passive abilities (items carried in inventory? slots for passives on player?)
+    - MISSING: Climbing a ladder, Jumping, Crouching
+    
+ImSim type things
+    - Blood on seals to open them
+    - Yelling to get creature's attention
+    - Place trap
+    - Picking up herbs and meat... cooking it?
+    - making a fire and saving at it
+    - Classes but only because of starting equipment
+    - place objects to summon creatures, foul rituals
+    - groups of random loot tables by type and quality for easy authoring chests
+        - consumables
+        - weapons/armor
+        - progression (this is a bigger complexity... how far should this span?)
