@@ -7,8 +7,6 @@ public enum AnimationState {
     Idle,
     Walk,
     Roll,
-    Duck,
-    UnDuck,
     LightAttack,
     HeavyAttack,
     Aim,
@@ -39,45 +37,8 @@ class PlayerComponent : MonoBehaviour {
     public float maxStamina;
     public float currentStamina;
 
-    [Header("Hurt Box and Ducking")]
+    [Header("Hurt Box")]
     public BoxCollider hurtBox;
-
-    [Space(10)]
-    public Vector3 originalHurtBoxCenter;
-    public Vector3 originalHurtBoxSize;
-
-    [Space(10)]
-    public Vector3 duckingHurtBoxCenter;
-    public Vector3 duckingHurtBoxSize;
-
-    [Space(10)]
-    public Vector2 originalRadiusAndHeight;
-    public Vector3 originalCharacterControllerCenter;
-
-    [Space(10)]
-    public Vector2 duckingRadiusAndHeight;
-    public Vector3 duckingCharacterControllerCenter;
-
-    [Header("Hit Boxes and Attacking")]
-    public HitBoxComponent lightAttackHitBox;
-    public HitBoxComponent heavyAttackHitBox;
-
-    [Space(10)]
-    public float lightAttackTime;
-    public float lightAttackDelayTime;
-    public float lightAttackDuration;
-    public float lightAttackStaminaCost;
-
-    [Space(10)]
-    public float heavyAttackTime;
-    public float heavyAttackDelayTime;
-    public float heavyAttackDuration;
-    public float heavyAttackStaminaCost;
-
-    [Space(10)]
-    public float itemUseTime;
-    public float itemDelayTime;
-    public float itemUseHealAmount;
 
     [Space(10)]
     public float staggerThreshold = 0.5f;
@@ -113,6 +74,8 @@ class PlayerComponent : MonoBehaviour {
 
     private Camera playerCamera;
     private CharacterController characterController;
+    private InventoryComponent inventory;
+    private AbilityComponent ability;
 
     private bool fightingBoss;
     private CreatureComponent bossCreature;
@@ -123,12 +86,9 @@ class PlayerComponent : MonoBehaviour {
 
     public enum PlayerState {
         None,
-        Ducking,
         Rolling,
-        LightAttack,
-        HeavyAttack,
+        UsingAbility,
         Staggered,
-        UsingItem,
         Dead,
     }
 
@@ -158,33 +118,17 @@ class PlayerComponent : MonoBehaviour {
 
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
-
-        gameComponent = GameObject.FindObjectOfType<GameComponent>();
+        inventory = GetComponent<InventoryComponent>();
+        ability = GetComponent<AbilityComponent>();
+        
+        gameComponent = GameObject.FindObjectOfType<GameComponent>(); // TODO make this an instance, oof
 
         playerHeight = transform.position.y;
 
         rollTimer = new Timer(rollTime);
-        itemUseTimer = new Timer(itemUseTime);
-        itemDelayTimer = new Timer(itemDelayTime);
         staggerTimer = new Timer(staggerTime);
 
-        // Set aspect ratio of camera
-        // float targetAspect = 8.0f / 7.0f;
-        // float windowAspect = (float) Screen.width / (float) Screen.height;
-        // float scaleHeight = windowAspect / targetAspect;
-        // 
-        // float scaleWidth = 1.0f / scaleHeight;
-        // 
-        // Rect rect = playerCamera.rect;
-        // 
-        // rect.width = scaleWidth;
-        // rect.height = 1.0f;
-        // rect.x = (1.0f - scaleWidth) / 2.0f;
-        // rect.y = 0;
-
         lookAngle = transform.rotation.eulerAngles.y;
-
-        // playerCamera.rect = rect;
     }
 
     void Update(){
@@ -201,21 +145,16 @@ class PlayerComponent : MonoBehaviour {
         bool right = Input.GetKey(KeyCode.RightArrow);
         bool movementInput = (up || left || back || right);
 
-        //         + ----------+
-        //         |   Heavy   |
-        // +----------+--------+
-        // |   Item   | +-----------+
-        // +----------+ |    Roll   |
-        //     +--------+----------+
-        //     |   Light   |
-        //     + ----------+
+        //            +----------+
+        //            |   ????   |
+        // +----------+----------+----------+
+        // |   Left   |   Roll   |   Right  |
+        // +----------+----------+----------+
 
-        bool heavyAttack = Input.GetKeyDown(KeyCode.S);
-
-        bool useItem = Input.GetKeyDown(KeyCode.A);
-        bool duckRoll = Input.GetKeyDown(KeyCode.X);
-
-        bool lightAttack = Input.GetKeyDown(KeyCode.Z);
+        bool topAction = Input.GetKeyDown(KeyCode.W);
+        bool leftAction = Input.GetKeyDown(KeyCode.A);
+        bool rightAction = Input.GetKeyDown(KeyCode.D);
+        bool bottomAction = Input.GetKeyDown(KeyCode.S);
 
         if(up){ movementVector += transform.forward; }
         if(left){ movementVector -= transform.right; }
@@ -229,41 +168,22 @@ class PlayerComponent : MonoBehaviour {
                 cachedRollDirection = movementVector.normalized;
             }
 
-            if(duckRoll){
+            if(topAction){
+                // Interact? or switch with roll?
+            } else if(leftAction){
+                if(inventory.leftHandEquippedItem != null && ability.CanCast(inventory.leftHandEquippedItem.ability)){
+                    ability.Cast(inventory.leftHandEquippedItem.ability, inventory.leftHandEquippedItem);
+                    playerState = PlayerState.UsingAbility;
+                }
+            } else if(rightAction){
+                if(inventory.rightHandEquippedItem != null && ability.CanCast(inventory.rightHandEquippedItem.ability)){
+                    ability.Cast(inventory.rightHandEquippedItem.ability, inventory.rightHandEquippedItem);
+                    playerState = PlayerState.UsingAbility;
+                }
+            } else if(bottomAction){
                 if(movementInput && currentStamina > rollStaminaCost){
                     Roll();
                 }
-            } else if((lightAttack && currentStamina > lightAttackStaminaCost) || (heavyAttack && currentStamina > heavyAttackStaminaCost)){
-                if(lightAttack && currentStamina > lightAttackStaminaCost){
-                    playerState = PlayerState.LightAttack;
-
-                    currentStamina -= lightAttackStaminaCost;
-
-                    characterRenderable.PlayAnimation(AnimationState.LightAttack);
-
-                    attackTimer.SetDuration(lightAttackTime);
-                    attackDelayTimer.SetDuration(lightAttackDelayTime);
-                } else if(heavyAttack && currentStamina > heavyAttackStaminaCost){
-                    playerState = PlayerState.HeavyAttack;
-
-                    currentStamina -= heavyAttackStaminaCost;
-
-                    characterRenderable.PlayAnimation(AnimationState.HeavyAttack);
-
-                    attackTimer.SetDuration(heavyAttackTime);
-                    attackDelayTimer.SetDuration(heavyAttackDelayTime);
-                }
-
-                attackTimer.Start();
-                attackDelayTimer.Start();
-                attackDamageStarted = false;
-            } else if(useItem && hasItem){
-                playerState = PlayerState.UsingItem;
-
-                characterRenderable.PlayAnimation(AnimationState.UseItem);
-
-                itemUseTimer.Start();
-                itemDelayTimer.Start();
             } else {
                 // Only move if not doing another action
                 characterController.SimpleMove(movementVector.normalized * moveSpeed);
@@ -292,74 +212,6 @@ class PlayerComponent : MonoBehaviour {
                     characterRenderable.PlayAnimation(AnimationState.Idle);
                 }
             }
-        } else if(playerState == PlayerState.Ducking){
-            if(!duckRoll){
-                playerState = PlayerState.None;
-
-                if(movementInput){
-                    characterRenderable.PlayAnimation(AnimationState.Walk);
-                } else {
-                    characterRenderable.PlayAnimation(AnimationState.Idle);
-                }
-
-                hurtBox.size = originalHurtBoxSize;
-                hurtBox.center = originalHurtBoxCenter;
-
-                characterController.radius = originalRadiusAndHeight.x;
-                characterController.height = originalRadiusAndHeight.y;
-                characterController.center = originalCharacterControllerCenter;
-            }
-
-            if(movementInput && currentStamina > rollStaminaCost){
-                cachedRollDirection = movementVector.normalized;
-                Roll();
-            }
-        } else if(playerState == PlayerState.LightAttack){
-            if(!attackDamageStarted && attackDelayTimer.Finished()){
-                attackDamageStarted = true;
-                lightAttackHitBox.EnableForTime(lightAttackDuration);
-            }
-
-            if(attackTimer.Finished()){
-                playerState = PlayerState.None;
-
-                if(movementInput){
-                    characterRenderable.PlayAnimation(AnimationState.Walk);
-                } else {
-                    characterRenderable.PlayAnimation(AnimationState.Idle);
-                }
-            }
-        } else if(playerState == PlayerState.HeavyAttack){
-            if(!attackDamageStarted && attackDelayTimer.Finished()){
-                attackDamageStarted = true;
-                heavyAttackHitBox.EnableForTime(heavyAttackDuration);
-            }
-
-            if(attackTimer.Finished()){
-                playerState = PlayerState.None;
-
-                if(movementInput){
-                    characterRenderable.PlayAnimation(AnimationState.Walk);
-                } else {
-                    characterRenderable.PlayAnimation(AnimationState.Idle);
-                }
-            }
-        } else if(playerState == PlayerState.UsingItem){
-            if(itemDelayTimer.Finished() && hasItem){
-                hasItem = false;
-                itemImage.sprite = itemEmpty;
-                currentHealth = Mathf.Min(currentHealth + itemUseHealAmount, maxHealth);
-            }
-
-            if(itemUseTimer.Finished()){
-                playerState = PlayerState.None;
-
-                if(movementInput){
-                    characterRenderable.PlayAnimation(AnimationState.Walk);
-                } else {
-                    characterRenderable.PlayAnimation(AnimationState.Idle);
-                }
-            }
         } else if(playerState == PlayerState.Staggered){
             if(staggerTimer.Finished()){
                 playerState = PlayerState.None;
@@ -369,6 +221,23 @@ class PlayerComponent : MonoBehaviour {
                 } else {
                     characterRenderable.PlayAnimation(AnimationState.Idle);
                 }
+            }
+        } else if(playerState == PlayerState.UsingAbility){
+            if(ability.CastingAnyAbility()){
+                if(inventory.leftHandEquippedItem != null && !Input.GetKey(KeyCode.A)){
+                    ability.NotifyOfInput(inventory.leftHandEquippedItem.ability);
+                }
+                if(inventory.rightHandEquippedItem != null && !Input.GetKey(KeyCode.D)){
+                    ability.NotifyOfInput(inventory.rightHandEquippedItem.ability);
+                }
+            } else {
+                if(movementInput){
+                    characterRenderable.PlayAnimation(AnimationState.Walk);
+                } else {
+                    characterRenderable.PlayAnimation(AnimationState.Idle);
+                }
+                
+                playerState = PlayerState.None;
             }
         }
 
@@ -391,7 +260,7 @@ class PlayerComponent : MonoBehaviour {
         // Camera
         float rotateDirection = 0.0f;
         if(currentHealth > 0.0f){
-            if(Input.GetKey(KeyCode.W)){ rotateDirection = 1.0f; }
+            if(Input.GetKey(KeyCode.E)){ rotateDirection = 1.0f; }
             if(Input.GetKey(KeyCode.Q)){ rotateDirection = -1.0f; }
         }
 
@@ -434,17 +303,8 @@ class PlayerComponent : MonoBehaviour {
     private void Roll(){
         rollTimer.Start();
         playerState = PlayerState.Rolling;
-
+        
         currentStamina = Mathf.Max(currentStamina - rollStaminaCost, 0.0f);
-
-        // Event though rolling makes the player invincible for a bit, still reset the hurtbox
-        hurtBox.size = originalHurtBoxSize;
-        hurtBox.center = originalHurtBoxCenter;
-
-        characterController.radius = originalRadiusAndHeight.x;
-        characterController.height = originalRadiusAndHeight.y;
-        characterController.center = originalCharacterControllerCenter;
-
         characterRenderable.PlayAnimation(AnimationState.Roll);
     }
 
@@ -636,5 +496,13 @@ class PlayerComponent : MonoBehaviour {
         bossCreature = bossCreature_;
 
         bossBarParent.SetActive(true);
+    }
+    
+    public void ApplyEffects(EffectData[] effects){
+        
+    }
+    
+    public void PlayAnimation(AnimationState animationState){
+        characterRenderable.PlayAnimation(animationState);
     }
 }

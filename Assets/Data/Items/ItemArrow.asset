@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ItemArrow
   m_EditorClassIdentifier: 
   nameLoc: item_arrow
-  descLoc: 
-  opalValue: 15
-  abilities: []
+  descLoc: item_arrow_desc
+  itemType: 1
+  inventorySprite: {fileID: 21300000, guid: d7094718bdac022428dd29244922d06b, type: 3}
+  keyItem: 0
+  opalValue: 1
   equipLocation: 0
   itemVisualName: 
-  inventorySprite: {fileID: 0}
-  statChange: 0
+  ability: {fileID: 0}

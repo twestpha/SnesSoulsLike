@@ -1,15 +1,15 @@
-
-[/] Some simple area to explore, just something other than a flat plane
-[/] deer model, animations, character slot
-[/] simple AI navigation, enemy
+[/] Items that use ability? how to equip and use properly?
+[/] Rework stamina to be non-regenerating and use items
 
 [x] Basic game loop start
-    [x] Items that use ability? how to equip and use properly?
-        - right hand, left hand buttons?
     [x] damage and shooting
-    [x] Dropping loot
+        - needs testing
+    [x] Dropping loot on death
+        - item pickups? Or "interact" with body?
 
-[x] Rework stamina to be non-regenerating and take items
+
+
+
 
 
 Pillar: A simulation of a dark fantasy world

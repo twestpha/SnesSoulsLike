@@ -12,8 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c03c64e9b42ddb488170315d82491e2, type: 3}
   m_Name: AbilShortbowShoot
   m_EditorClassIdentifier: 
-  abilityType: 0
-  hpCost: 0
+  abilityType: 1
   staminaCost: 5
-  charges: -1
-  consumesItems: {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
+  itemCost: 1
+  hitboxAnimation: 0
+  hitBoxName: 
+  hitboxWarmupTime: 0
+  hitboxDuration: 0
+  hitboxCooldown: 0
+  shootProjectile: {fileID: 5133321608615581642, guid: d03de92d6e6139e4e85ac4073f53fe95, type: 3}
+  shootSpeed: 1
+  shootwarmupTime: 0.4
+  shootDuration: 0.6
+  shootCooldown: 0.2
+  placeablePrefab: {fileID: 0}
+  effects:
+  - effectType: 0
+    value: -5
+    variance: 0
+    state: 
+    time: 0

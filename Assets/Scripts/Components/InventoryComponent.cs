@@ -124,7 +124,6 @@ public class InventoryComponent : MonoBehaviour {
     }
     
     public void AbleRenderableMesh(string name, bool able){
-        Debug.Log(characterRenderable);
         if(characterRenderable != null){
             GameObject renderableMesh = characterRenderable.FindNamedObjectInCharacter(name);
             
@@ -140,6 +139,16 @@ public class InventoryComponent : MonoBehaviour {
         return inventory.ContainsKey(item) && inventory[item] > 0;
     }
     
+    public bool HasItem(ItemType itemType){
+        foreach( KeyValuePair<ItemData, int> kvp in inventory){
+            if(kvp.Key.itemType == itemType){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public bool TakeItem(ItemData item){
         if(HasItem(item)){
             inventory[item]--;
@@ -149,6 +158,17 @@ public class InventoryComponent : MonoBehaviour {
             }
             
             return true;
+        }
+        
+        return false;
+    }
+    
+    public bool TakeItem(ItemType itemType){
+        foreach(KeyValuePair<ItemData, int> kvp in inventory){
+            if(kvp.Key.itemType == itemType){
+                TakeItem(kvp.Key);
+                return true;
+            }
         }
         
         return false;

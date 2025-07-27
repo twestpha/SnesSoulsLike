@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameLoc: item_shortbow
   descLoc: item_shortbow_desc
-  opalValue: 1
-  abilities:
-  - {fileID: 11400000, guid: 6c68570cb77d1d642baf40da21570d28, type: 2}
+  itemType: 0
+  inventorySprite: {fileID: 21300000, guid: d7094718bdac022428dd29244922d06b, type: 3}
+  keyItem: 0
+  opalValue: 15
   equipLocation: 2
   itemVisualName: item_bow_a
-  inventorySprite: {fileID: 0}
-  statChange: 0
+  ability: {fileID: 11400000, guid: 6c68570cb77d1d642baf40da21570d28, type: 2}

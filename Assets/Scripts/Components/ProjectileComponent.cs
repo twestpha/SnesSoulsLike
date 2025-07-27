@@ -12,7 +12,7 @@ public class ProjectileComponent : MonoBehaviour {
     public const float PROJECTILE_EFFECTS_OFFSET = 0.1f;
     public const float PROJECTILE_DECAL_OFFSET = 0.001f;
 
-    [HeaderAttribute("Bullet Component")]
+    [HeaderAttribute("Projectile Component")]
     public float maxDistance = 100.0f;
     public float gravityModifier = 0.0f;
     public int collisions = 1;

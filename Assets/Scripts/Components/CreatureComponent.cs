@@ -284,4 +284,12 @@ class CreatureComponent : MonoBehaviour {
     void OnRenderingEnd(CharacterRenderable renderable){
         creatureState = CreatureState.Inactive;
     }
+    
+    public void ApplyEffects(EffectData[] effects){
+        // TODO
+    }
+    
+    public void PlayAnimation(AnimationState animationState){
+        characterRenderable.PlayAnimation(animationState);
+    }
 }

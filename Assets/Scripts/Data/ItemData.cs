@@ -12,17 +12,28 @@ public enum EquipLocation {
     Head,
 }
 
+public enum ItemType {
+    None,
+    Arrow,
+}
+
 [CreateAssetMenu(fileName = "ItemData", menuName = "Soulsie/ItemData", order = 1)]
 public class ItemData : ScriptableObject {
     
     [Header("Basic Item Data")]
     public string nameLoc;
     public string descLoc;
+    public ItemType itemType;
+    public Sprite inventorySprite;
+    
+    [Space(10)]
+    public bool keyItem;
     public int opalValue = 1;
-    [Header("Equipping and Using")]
-    public AbilityData[] abilities;
+    
+    [Header("Equipping")]
     public EquipLocation equipLocation;
     public string itemVisualName;
-    [Header("Sprites and Icons")]
-    public Sprite inventorySprite;
+    
+    [Header("Abilities")]
+    public AbilityData ability;
 }
