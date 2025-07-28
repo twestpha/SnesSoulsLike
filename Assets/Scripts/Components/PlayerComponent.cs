@@ -82,7 +82,6 @@ class PlayerComponent : MonoBehaviour {
 
     private bool playerPaused;
     private bool showingMessage;
-    private bool hasItem = true;
 
     public enum PlayerState {
         None,
@@ -455,7 +454,6 @@ class PlayerComponent : MonoBehaviour {
         currentHealth = maxHealth;
         currentStamina = maxStamina;
 
-        hasItem = true; // Reset "estus"
         itemImage.sprite = itemFull;
 
         characterRenderable.PlayAnimation(AnimationState.Idle);
@@ -498,8 +496,32 @@ class PlayerComponent : MonoBehaviour {
         bossBarParent.SetActive(true);
     }
     
-    public void ApplyEffects(EffectData[] effects){
-        
+    public void ApplyEffects(EffectData[] effects){        
+        for(int i = 0, count = effects.Length; i < count; ++i){
+            if(effects[i].effectType == EffectType.ChangeCurrentHp){
+                float effectValue = effects[i].GetFinalValue();
+                if(effectValue < 0.0f){
+                    DealDamage(Mathf.Abs(effectValue));
+                } else {
+                    currentHealth = Mathf.Clamp(currentHealth + effectValue, 0.0f, maxHealth);
+                }
+            } else if(effects[i].effectType == EffectType.ChangeCurrentStamina){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.ChangeMaxHp){
+                maxHealth += effects[i].GetFinalValue();
+                currentHealth = Mathf.Clamp(currentHealth, 0.0f, maxHealth);
+            } else if(effects[i].effectType == EffectType.ChangeMaxStamina){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.RegenCurrentHp){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.RegenCurrentStamina){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.GiveState){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.RemoveState){
+                Debug.Log("Not implemented yet!");
+            }
+        }
     }
     
     public void PlayAnimation(AnimationState animationState){

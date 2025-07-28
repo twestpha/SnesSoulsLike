@@ -15,6 +15,7 @@ public enum EquipLocation {
 public enum ItemType {
     None,
     Arrow,
+    BladedTool,
 }
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Soulsie/ItemData", order = 1)]

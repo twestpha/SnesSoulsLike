@@ -28,7 +28,6 @@ MonoBehaviour:
   placeablePrefab: {fileID: 0}
   effects:
   - effectType: 0
-    value: -5
-    variance: 0
+    valueRange: {x: -6, y: -8}
     state: 
     time: 0

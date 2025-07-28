@@ -1,16 +1,13 @@
 [/] Items that use ability? how to equip and use properly?
 [/] Rework stamina to be non-regenerating and use items
 
+[/] Switch projectile to large-ish spherecast against damageables
+[/] damage and shooting
+[/] Fix creature running bug
+
 [x] Basic game loop start
-    [x] damage and shooting
-        - needs testing
     [x] Dropping loot on death
-        - item pickups? Or "interact" with body?
-
-
-
-
-
+        - "interact" with body
 
 Pillar: A simulation of a dark fantasy world
 

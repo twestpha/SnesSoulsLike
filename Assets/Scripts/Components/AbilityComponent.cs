@@ -103,7 +103,7 @@ class AbilityComponent : MonoBehaviour {
             
             ProjectileComponent newProjectile = newProjectileObject.GetComponent<ProjectileComponent>();
             newProjectile.Fire(
-                1.0f, DamageType.NotSureYet, // TODO change this a lot to link back to ability and effects
+                currentAbility,
                 originTransform.forward * GetProjectileSpeed(currentAbility.shootSpeed), 
                 gameObject
             );

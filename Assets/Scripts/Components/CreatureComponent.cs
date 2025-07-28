@@ -7,9 +7,18 @@ enum Attitude {
     Hostile,
 }
 
+[Serializable]
+class LootOption {
+    // TODO overhaul this into loot groups but this is a good start
+    public string optionLocText;
+    public ItemType requiredItem;
+    public ItemData lootItem;
+}
+
 class CreatureComponent : MonoBehaviour {
 
     private const float MOVE_THRESHOLD_RANGE = 0.05f;
+    private const float FLEE_STAMINA_COST = 5.0f;
 
     [Header("Attitude")]
     public Attitude attitude;
@@ -17,6 +26,11 @@ class CreatureComponent : MonoBehaviour {
     [Header("Health and Damage")]
     public float maxHealth;
     public float currentHealth;
+    
+    [Space(10)]
+    public float maxStamina;
+    public float currentStamina;
+    public float staminaRegenRate;
 
     [Space(10)]
     public float flinchChance;
@@ -32,26 +46,9 @@ class CreatureComponent : MonoBehaviour {
     [Space(10)]
     public float engageRange;
     public float leashRange;
-
-    [Header("Attacking")]
-    public float attackRange;
-    public float lightAttackChance;
-
-    [Space(10)]
-    public HitBoxComponent lightAttackHitBox;
-    public HitBoxComponent heavyAttackHitBox;
-
-    [Space(10)]
-    public float lightAttackTime;
-    public float lightAttackDelayTime;
-    public float lightAttackDuration;
-    public float lightCooldownTime;
-
-    [Space(10)]
-    public float heavyAttackTime;
-    public float heavyAttackDelayTime;
-    public float heavyAttackDuration;
-    public float heavyCooldownTime;
+    
+    [Header("Looting")]
+    public LootOption[] lootOptions;
 
     public enum CreatureState {
         Inactive,
@@ -97,6 +94,8 @@ class CreatureComponent : MonoBehaviour {
         characterRenderable = GetComponent<CharacterRenderable>();
         characterRenderable.onRenderingStart.Register(OnRenderingStart);
         characterRenderable.onRenderingEnd.Register(OnRenderingEnd);
+        
+        currentStamina = maxStamina;
     }
 
     void Update(){
@@ -107,6 +106,8 @@ class CreatureComponent : MonoBehaviour {
         } else if(attitude == Attitude.Hostile){
             UpdateHostile();
         }
+        
+        currentStamina = Mathf.Clamp(currentStamina + staminaRegenRate * Time.deltaTime, 0.0f, maxStamina);
     }
     
     private void UpdateFriendly(){
@@ -122,23 +123,28 @@ class CreatureComponent : MonoBehaviour {
             float playerDistance = toPlayer.magnitude;
             
             if(creatureState == CreatureState.Idle){
-                if(playerDistance < engageRange){
+                if(playerDistance < engageRange && currentStamina >= FLEE_STAMINA_COST){
+                    currentStamina -= FLEE_STAMINA_COST;
+                    
                     creatureState = CreatureState.Moving;
                     characterRenderable.PlayAnimation(AnimationState.Walk);
                     
                     moveTargetPosition = transform.position + (-toPlayer.normalized * 3.0f);
                 }
             } else if(creatureState == CreatureState.Moving){
+                Debug.DrawLine(transform.position, moveTargetPosition, Color.red, 0.0f, false);
                 Vector3 toTarget = moveTargetPosition - transform.position;
+                toTarget.y = 0.0f;
+                
                 float toTargetDistance = toTarget.magnitude;
                 
                 if(toTargetDistance <= MOVE_THRESHOLD_RANGE){
                     // This is buggy and sometimes fails... I think it's due to low framerate? fuck it
                     creatureState = CreatureState.Idle;
+                    characterRenderable.PlayAnimation(AnimationState.Idle);
                 } else {
                     characterController.SimpleMove(toTarget.normalized * moveSpeed);
-                    toTarget.y = 0.0f;
-
+                    
                     // face move direction, snapping instantly so player can read directionality faster
                     if(toTarget.magnitude > MOVE_THRESHOLD_RANGE){
                         transform.rotation = Quaternion.LookRotation(toTarget);
@@ -173,28 +179,19 @@ class CreatureComponent : MonoBehaviour {
                 Vector3 toTarget = moveTargetPosition - transform.position;
                 float toTargetDistance = toTarget.magnitude;
 
-                if(playerDistance <= attackRange && cooldownTimer.Finished()){
-                    // face player
-                    transform.rotation = Quaternion.Euler(
-                        transform.rotation.x,
-                        Mathf.Atan2(toPlayer.x, toPlayer.z) * Mathf.Rad2Deg - 5.0f, // Magic number makes rotations look better *shrug*
-                        transform.rotation.z
-                    );
-
-                    bool lightAttack = UnityEngine.Random.value <= lightAttackChance;
-                    attackDamageStarted = false;
-
-                    attackTimer.SetDuration(lightAttack ? lightAttackTime : heavyAttackTime);
-                    attackTimer.Start();
-
-                    attackDelayTimer.SetDuration(lightAttack ? lightAttackDelayTime : heavyAttackDelayTime);
-                    attackDelayTimer.Start();
-
-                    // TODO switch these to ability-based things
-                    characterRenderable.PlayAnimation(lightAttack ? AnimationState.LightAttack : AnimationState.HeavyAttack);
-
-                    creatureState = lightAttack ? CreatureState.LightAttack : CreatureState.HeavyAttack;
-                }
+                // if(playerDistance <= attackRange && cooldownTimer.Finished()){
+                //     // face player
+                //     transform.rotation = Quaternion.Euler(
+                //         transform.rotation.x,
+                //         Mathf.Atan2(toPlayer.x, toPlayer.z) * Mathf.Rad2Deg - 5.0f, // Magic number makes rotations look better *shrug*
+                //         transform.rotation.z
+                //     );
+                // 
+                //     // TODO switch these to ability-based things
+                //     characterRenderable.PlayAnimation(lightAttack ? AnimationState.LightAttack : AnimationState.HeavyAttack);
+                // 
+                //     creatureState = lightAttack ? CreatureState.LightAttack : CreatureState.HeavyAttack;
+                // }
 
                 if(toTargetDistance < MOVE_THRESHOLD_RANGE){
                     creatureState = CreatureState.Idle;
@@ -207,36 +204,11 @@ class CreatureComponent : MonoBehaviour {
                         Mathf.Atan2(toTarget.x, toTarget.z) * Mathf.Rad2Deg - 5.0f, // Magic number makes rotations look better *shrug*
                         transform.rotation.z
                     );
-
                 }
             } else if(creatureState == CreatureState.LightAttack){
-                // wait for anim, trigger hitbox
-                if(!attackDamageStarted && attackDelayTimer.Finished()){
-                    attackDamageStarted = true;
-                    lightAttackHitBox.EnableForTime(lightAttackDuration);
-                }
-
-                if(attackTimer.Finished()){
-                    creatureState = CreatureState.Idle;
-                    characterRenderable.PlayAnimation(AnimationState.Idle);
-
-                    cooldownTimer.SetDuration(lightCooldownTime);
-                    cooldownTimer.Start();
-                }
+                // TODO switch to ability
             } else if(creatureState == CreatureState.HeavyAttack){
-                // wait for anim, trigger hitbox
-                if(!attackDamageStarted && attackDelayTimer.Finished()){
-                    attackDamageStarted = true;
-                    heavyAttackHitBox.EnableForTime(heavyAttackDuration);
-                }
-
-                if(attackTimer.Finished()){
-                    creatureState = CreatureState.Idle;
-                    characterRenderable.PlayAnimation(AnimationState.Idle);
-
-                    cooldownTimer.SetDuration(heavyCooldownTime);
-                    cooldownTimer.Start();
-                }
+                // TODO switch to ability
             } else if(creatureState == CreatureState.Flinching){
                 if(flinchTimer.Finished()){
                     creatureState = CreatureState.Idle;
@@ -285,8 +257,32 @@ class CreatureComponent : MonoBehaviour {
         creatureState = CreatureState.Inactive;
     }
     
-    public void ApplyEffects(EffectData[] effects){
-        // TODO
+    public void ApplyEffects(EffectData[] effects){        
+        for(int i = 0, count = effects.Length; i < count; ++i){
+            if(effects[i].effectType == EffectType.ChangeCurrentHp){
+                float effectValue = effects[i].GetFinalValue();
+                if(effectValue < 0.0f){
+                    DealDamage(Mathf.Abs(effectValue));
+                } else {
+                    currentHealth = Mathf.Clamp(currentHealth + effectValue, 0.0f, maxHealth);
+                }
+            } else if(effects[i].effectType == EffectType.ChangeCurrentStamina){
+                // Not implemented for creatures
+            } else if(effects[i].effectType == EffectType.ChangeMaxHp){
+                maxHealth += effects[i].GetFinalValue();
+                currentHealth = Mathf.Clamp(currentHealth, 0.0f, maxHealth);
+            } else if(effects[i].effectType == EffectType.ChangeMaxStamina){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.RegenCurrentHp){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.RegenCurrentStamina){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.GiveState){
+                Debug.Log("Not implemented yet!");
+            } else if(effects[i].effectType == EffectType.RemoveState){
+                Debug.Log("Not implemented yet!");
+            }
+        }
     }
     
     public void PlayAnimation(AnimationState animationState){

@@ -2367,7 +2367,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
   currentOpal: 0
   leftHandEquippedItem: {fileID: 0}
-  rightHandEquippedItem: {fileID: 11400000, guid: 410a675bfb6b2544e86f5b88918f8978, type: 2}
+  rightHandEquippedItem: {fileID: 11400000, guid: 3add9b2c2e416f443a9b7c3f17ad8167, type: 2}
   headEquippedItem: {fileID: 0}
   bodyEquippedItem: {fileID: 0}
 --- !u!114 &382766049
