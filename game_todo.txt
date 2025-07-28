@@ -1,13 +1,17 @@
 [/] Items that use ability? how to equip and use properly?
 [/] Rework stamina to be non-regenerating and use items
-
 [/] Switch projectile to large-ish spherecast against damageables
 [/] damage and shooting
 [/] Fix creature running bug
-
-[x] Basic game loop start
-    [x] Dropping loot on death
+[/] Basic game loop start
+    [/] Dropping loot on death
         - "interact" with body
+
+
+
+
+
+
 
 Pillar: A simulation of a dark fantasy world
 
@@ -35,3 +39,10 @@ ImSim type things
         - consumables
         - weapons/armor
         - progression (this is a bigger complexity... how far should this span?)
+        
+        
+        
+        
+        
+        
+https://opengameart.org/content/denzis-gui-artwork

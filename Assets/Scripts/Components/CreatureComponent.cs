@@ -7,14 +7,6 @@ enum Attitude {
     Hostile,
 }
 
-[Serializable]
-class LootOption {
-    // TODO overhaul this into loot groups but this is a good start
-    public string optionLocText;
-    public ItemType requiredItem;
-    public ItemData lootItem;
-}
-
 class CreatureComponent : MonoBehaviour {
 
     private const float MOVE_THRESHOLD_RANGE = 0.05f;
@@ -46,9 +38,6 @@ class CreatureComponent : MonoBehaviour {
     [Space(10)]
     public float engageRange;
     public float leashRange;
-    
-    [Header("Looting")]
-    public LootOption[] lootOptions;
 
     public enum CreatureState {
         Inactive,
@@ -287,5 +276,9 @@ class CreatureComponent : MonoBehaviour {
     
     public void PlayAnimation(AnimationState animationState){
         characterRenderable.PlayAnimation(animationState);
+    }
+    
+    public bool Dead(){
+        return creatureState == CreatureState.Dead;
     }
 }

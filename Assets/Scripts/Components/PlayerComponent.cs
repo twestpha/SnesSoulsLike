@@ -22,6 +22,9 @@ class PlayerComponent : MonoBehaviour {
 
     private const int IGNORE_CAMERA_LAYER_MASK = 1 << 3;
     
+    private const int MAX_OPTIONS = 4;
+    private const float INTERACT_DISTANCE = 0.4f;
+    
     [Header("Movement")]
     public float moveSpeed = 1.0f;
     public float rotateSpeed = 1.0f;
@@ -59,15 +62,23 @@ class PlayerComponent : MonoBehaviour {
     public Image messageBackground;
     public Text messageText;
 
+    [Space(10)]
     public Image itemImage;
     public Sprite itemFull;
     public Sprite itemEmpty;
 
+    [Space(10)]
     public Text locationText;
     public Text gameOverText;
 
+    [Space(10)]
     public GameObject bossBarParent;
     public Image bossBar;
+    
+    [Space(10)]
+    public GameObject optionParent;
+    public RectTransform optionCursor;
+    public Text[] optionTexts;
 
     private float spriteDirection;
     private float spriteDirectionVelocity;
@@ -82,12 +93,17 @@ class PlayerComponent : MonoBehaviour {
 
     private bool playerPaused;
     private bool showingMessage;
+    
+    private InteractComponent interact;
+    private int interactCount;
+    private int interactIndex;
 
     public enum PlayerState {
         None,
         Rolling,
         UsingAbility,
         Staggered,
+        Interacting,
         Dead,
     }
 
@@ -168,7 +184,22 @@ class PlayerComponent : MonoBehaviour {
             }
 
             if(topAction){
-                // Interact? or switch with roll?
+                Debug.DrawLine(transform.position, transform.position + (playerSpriteTransform.forward * INTERACT_DISTANCE), Color.blue, 5.0f, false);
+                
+                RaycastHit[] interactHits = Physics.RaycastAll(transform.position, playerSpriteTransform.forward, INTERACT_DISTANCE);
+                for(int i = 0, hitCount = interactHits.Length; i < hitCount; ++i){
+                    InteractComponent hitInteract = interactHits[i].collider.gameObject.GetComponentInParent<InteractComponent>();
+                    
+                    if(hitInteract != null){
+                        interactCount = hitInteract.GetInteractCount();
+                        
+                        if(interactCount > 0){
+                            interact = hitInteract;
+                            Interact();
+                            return;
+                        }
+                    }
+                }
             } else if(leftAction){
                 if(inventory.leftHandEquippedItem != null && ability.CanCast(inventory.leftHandEquippedItem.ability)){
                     ability.Cast(inventory.leftHandEquippedItem.ability, inventory.leftHandEquippedItem);
@@ -306,6 +337,62 @@ class PlayerComponent : MonoBehaviour {
         currentStamina = Mathf.Max(currentStamina - rollStaminaCost, 0.0f);
         characterRenderable.PlayAnimation(AnimationState.Roll);
     }
+    
+    private void Interact(){
+        playerState = PlayerState.Interacting;
+        
+        // show options
+        interactIndex = 0;
+        SetOptionCursorToIndex();
+        
+        for(int i = 0; i < MAX_OPTIONS; ++i){
+            if(i < interactCount){
+                optionTexts[i].text = interact.GetInteractString(i);
+            } else {
+                optionTexts[i].text = "";
+            }
+        }
+        
+        StartCoroutine(InteractCoroutine());
+    }
+    
+    private void SetOptionCursorToIndex(){
+        optionCursor.anchoredPosition = new Vector2(
+            optionCursor.anchoredPosition.x,
+            optionTexts[interactIndex].GetComponent<RectTransform>().anchoredPosition.y
+        );
+    }
+    
+    private IEnumerator InteractCoroutine(){
+        optionParent.SetActive(true);
+        
+        while(true){
+            if(Input.GetKeyDown(KeyCode.S)){
+                interact.ChooseInteractOption(interactIndex);
+                break;
+            }
+            
+            if(Input.GetKeyDown(KeyCode.D)){
+                interact.ChooseInteractOption(interactCount);
+                break;
+            }
+            
+            if(Input.GetKeyDown(KeyCode.UpArrow)){
+                interactIndex = (interactIndex + interactCount - 1) % interactCount;
+                SetOptionCursorToIndex();
+            }
+            
+            if(Input.GetKeyDown(KeyCode.DownArrow)){
+                interactIndex = (interactIndex + 1) % interactCount;
+                SetOptionCursorToIndex();
+            }
+            
+            yield return null;
+        }
+        
+        optionParent.SetActive(false);
+        playerState = PlayerState.None;
+    }
 
     public void SetPaused(bool newPaused){
         playerPaused = newPaused;
@@ -330,23 +417,7 @@ class PlayerComponent : MonoBehaviour {
 
         showingMessage = true;
         messageText.text = message;
-
-        // Show text box
-        Timer showTimer = new Timer(0.5f);
-        showTimer.Start();
-
-        messageBackground.enabled = true;
-        messageBackground.transform.localScale = new Vector3(1.0f, 0.0f, 1.0f);
-
-        while(!showTimer.Finished()){
-            float t = Mathf.Round(showTimer.Parameterized() * 4.0f) / 4.0f;
-            messageBackground.transform.localScale = new Vector3(1.0f, t, 1.0f);
-
-            yield return null;
-        }
-
-        messageBackground.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        messageText.enabled = true;
+        messageBackground.gameObject.SetActive(true);
 
         // Wait
         Timer waitTimer = new Timer(3.0f);
@@ -357,19 +428,7 @@ class PlayerComponent : MonoBehaviour {
         }
 
         // Hide
-        messageText.enabled = false;
-        showTimer.Start();
-
-        while(!showTimer.Finished()){
-            float t = Mathf.Round(showTimer.Parameterized() * 4.0f) / 4.0f;
-            messageBackground.transform.localScale = new Vector3(1.0f, 1.0f - t, 1.0f);
-
-            yield return null;
-        }
-
-        messageBackground.transform.localScale = new Vector3(1.0f, 0.0f, 1.0f);
-        messageBackground.enabled = true;
-
+        messageBackground.gameObject.SetActive(false);
         showingMessage = false;
     }
 
@@ -419,7 +478,6 @@ class PlayerComponent : MonoBehaviour {
     }
 
     public IEnumerator DieCoroutine(){
-
         // Just wait for a while
         Timer waitTimer = new Timer(3.0f);
         waitTimer.Start();

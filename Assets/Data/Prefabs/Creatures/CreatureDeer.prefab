@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5237672296770651254}
   - component: {fileID: 5237672296770651257}
   - component: {fileID: 5237672296770651256}
+  - component: {fileID: 143775548}
   m_Layer: 3
   m_Name: CreatureDeer
   m_TagString: Untagged
@@ -147,13 +148,26 @@ MonoBehaviour:
   rotateSpeed: 45
   engageRange: 2
   leashRange: 0
-  lootOptions:
-  - optionLocText: gut
-    requiredItem: 2
-    lootItem: {fileID: 11400000, guid: 8e1fae716220da74582d121a35161ff3, type: 2}
   creatureState: 0
   isBoss: 0
   bossNameLoc: 
+--- !u!114 &143775548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237672296770651255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2025069541297b41838b752539a7987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - locText: gut
+    type: 0
+    requiredItem: 2
+    itemOrLootGroup: {fileID: 11400000, guid: 5aa4d4bde5b09cb4aa11e5d9b0af56e3, type: 2}
 --- !u!1 &6957796104964388369
 GameObject:
   m_ObjectHideFlags: 0

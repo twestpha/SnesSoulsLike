@@ -2347,41 +2347,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3900144391010879328, guid: 2c784d10e7d919d47bc39352b359ac1f, type: 3}
   m_PrefabInstance: {fileID: 3900144391167085755}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &382766048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 382766043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 750dca7bfdc3dcc4095e21dfbcb2955c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingItems:
-  - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
-  - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
-  - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
-  - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
-  - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
-  currentOpal: 0
-  leftHandEquippedItem: {fileID: 0}
-  rightHandEquippedItem: {fileID: 11400000, guid: 3add9b2c2e416f443a9b7c3f17ad8167, type: 2}
-  headEquippedItem: {fileID: 0}
-  bodyEquippedItem: {fileID: 0}
---- !u!114 &382766049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 382766043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d54be1550f945458d5a024e53b35eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &393664183
 GameObject:
   m_ObjectHideFlags: 0
@@ -11497,6 +11462,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3900144390536582687, guid: 2c784d10e7d919d47bc39352b359ac1f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3900144391010879328, guid: 2c784d10e7d919d47bc39352b359ac1f, type: 3}
       propertyPath: m_Name
       value: Player

@@ -182,7 +182,7 @@ public class InventoryComponent : MonoBehaviour {
         }
         
         if(isPlayer && !squelchNotification){
-            // PlayerUIComponent.instance.NotifyOfItemPickup(Localizer.Localize(item.nameLoc));
+            PlayerComponent.player.ShowMessage("Got cool unlocalized item: " + item.nameLoc);
         }
     }
     
@@ -222,7 +222,7 @@ public class InventoryComponent : MonoBehaviour {
         currentOpal += amount;
         
         if(isPlayer){
-            // PlayerUIComponent.instance.NotifyOfItemPickup(amount + " " + Localizer.Localize(OPAL_ITEM_LOC));
+            PlayerComponent.player.ShowMessage("Got cool unlocalized opals: " + amount);
         }
     }
     
