@@ -15,15 +15,19 @@ public enum AnimationState {
     Flinch,
     Stagger,
     Death,
+    Sleep,
+    StopSleep,
 }
 
 class PlayerComponent : MonoBehaviour {
     public static PlayerComponent player;
 
     private const int IGNORE_CAMERA_LAYER_MASK = 1 << 3;
+    private const int DAMAGEABLE_LAYER_MASK = 1 << 7;
     
     private const int MAX_OPTIONS = 4;
     private const float INTERACT_DISTANCE = 0.4f;
+    private const float MOVEMENT_STAMINA_COST = 1.0f;
     
     [Header("Movement")]
     public float moveSpeed = 1.0f;
@@ -39,6 +43,9 @@ class PlayerComponent : MonoBehaviour {
 
     public float maxStamina;
     public float currentStamina;
+    
+    public float maxMagic;
+    public float currentMagic;
 
     [Header("Hurt Box")]
     public BoxCollider hurtBox;
@@ -79,6 +86,9 @@ class PlayerComponent : MonoBehaviour {
     public GameObject optionParent;
     public RectTransform optionCursor;
     public Text[] optionTexts;
+    
+    [Space(10)]
+    public Image fade;
 
     private float spriteDirection;
     private float spriteDirectionVelocity;
@@ -105,6 +115,7 @@ class PlayerComponent : MonoBehaviour {
         Staggered,
         Interacting,
         Dead,
+        Resting,
     }
 
     [Header("State")]
@@ -147,6 +158,10 @@ class PlayerComponent : MonoBehaviour {
     }
 
     void Update(){
+        if(currentHealth <= 0.0f){
+            // Die!
+        }
+        
         if(playerPaused){
             return;
         }
@@ -217,6 +232,14 @@ class PlayerComponent : MonoBehaviour {
             } else {
                 // Only move if not doing another action
                 characterController.SimpleMove(movementVector.normalized * moveSpeed);
+                
+                if(movementInput){
+                    if(currentStamina >= 0.0f){
+                        currentStamina = Math.Max(currentStamina - (MOVEMENT_STAMINA_COST * Time.deltaTime), 0.0f);
+                    } else {
+                        currentHealth = Math.Max(currentHealth - (MOVEMENT_STAMINA_COST * Time.deltaTime), 0.0f);
+                    }
+                }
 
                 if(movementInput && !movingAnimation){
                     movingAnimation = true;
@@ -304,7 +327,7 @@ class PlayerComponent : MonoBehaviour {
 
         RaycastHit hit;
         float distance = 1.0f;
-        if(Physics.Raycast(cameraRaycastOrigin.position, cameraRaycastOrigin.forward, out hit, 10.0f, ~IGNORE_CAMERA_LAYER_MASK, QueryTriggerInteraction.Ignore)){
+        if(Physics.Raycast(cameraRaycastOrigin.position, cameraRaycastOrigin.forward, out hit, 10.0f, ~(IGNORE_CAMERA_LAYER_MASK | DAMAGEABLE_LAYER_MASK), QueryTriggerInteraction.Ignore)){
             distance = hit.distance - 0.05f;
         }
 
@@ -405,12 +428,75 @@ class PlayerComponent : MonoBehaviour {
             skyPlaneMeshRenderer.material.SetTextureOffset("_MainTex", new Vector2(transform.rotation.eulerAngles.y / 360.0f, 0.0f));
         }
     }
-
-    public void ShowMessage(string message){
-        StartCoroutine(ShowMessageCoroutine(message));
+        
+    public void Rest(InteractComponent campfire){
+        StartCoroutine(RestCoroutine(campfire));
     }
 
-    private IEnumerator ShowMessageCoroutine(string message){
+    private IEnumerator RestCoroutine(InteractComponent campfire){
+        if(playerState == PlayerState.Resting){
+            yield break;
+        }
+        
+        playerState = PlayerState.Resting;
+        playerPaused = true;
+        characterRenderable.PlayAnimation(AnimationState.Sleep);
+        
+        // Just wait for a while
+        Timer waitTimer = new Timer(3.0f);
+        waitTimer.Start();
+        while(!waitTimer.Finished()){
+            yield return null;
+        }
+
+        // Fade out
+        Timer fadeTimer = new Timer(1.5f);
+        fadeTimer.Start();
+        while(!fadeTimer.Finished()){
+            float t = fadeTimer.Parameterized();
+            t = Mathf.Round(t * 10.0f) / 10.0f;
+
+            fade.color = new Color(0.0f, 0.0f, 0.0f, t);
+            yield return null;
+        }
+        
+        fade.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+        // Actually maybe just save...? since health and stamina probably stay the same
+        Destroy(campfire.gameObject);
+        
+        characterRenderable.PlayAnimation(AnimationState.StopSleep);
+        characterRenderable.PlayAnimation(AnimationState.Idle);
+
+        // Wait in darkness for a sec
+        waitTimer.SetDuration(0.5f);
+        waitTimer.Start();
+        while(!waitTimer.Finished()){
+            yield return null;
+        }
+
+        // Fade in
+        fadeTimer.Start();
+        while(!fadeTimer.Finished()){
+            float t = 1.0f - fadeTimer.Parameterized();
+            t = Mathf.Round(t * 10.0f) / 10.0f;
+
+            fade.color = new Color(0.0f, 0.0f, 0.0f, t);
+            yield return null;
+        }
+
+        fade.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
+        // Set state after fade in to unlock movement, etc.
+        playerState = PlayerState.None;
+        playerPaused = false;
+    }
+
+    public void ShowMessage(string message, ItemData giveItemOnFinish = null){
+        StartCoroutine(ShowMessageCoroutine(message, giveItemOnFinish));
+    }
+
+    private IEnumerator ShowMessageCoroutine(string message, ItemData giveItemOnFinish){
         if(showingMessage){
             yield break;
         }
@@ -426,10 +512,15 @@ class PlayerComponent : MonoBehaviour {
         while(!waitTimer.Finished()){
             yield return null;
         }
-
+        
         // Hide
         messageBackground.gameObject.SetActive(false);
         showingMessage = false;
+        
+        // Give item now so showingMessage can run
+        if(giveItemOnFinish != null){
+            GetComponent<InventoryComponent>().GiveItem(giveItemOnFinish, 1);
+        }
     }
 
     public void ShowLocation(){

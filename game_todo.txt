@@ -1,18 +1,36 @@
-[/] Items that use ability? how to equip and use properly?
-[/] Rework stamina to be non-regenerating and use items
-[/] Switch projectile to large-ish spherecast against damageables
-[/] damage and shooting
-[/] Fix creature running bug
-[/] Basic game loop start
-    [/] Dropping loot on death
-        - "interact" with body
+[/] Campfire mechanics
+[/] Game ui showing left and right items, hp and stamina
+    - oh shit... do I need magic too?
+
+
+[x] Get heightmap workflow working
+    4k image -> blender -> unity (texture?)
+
+
+[x] World and dungeon separation
 
 
 
+[x] World map, figure out some lore and shit
+    - Really like the idea of a ghoulish rotting "death" rather than a fire and brimstone "demon"
+    - More "Arthas" and the Reaper than Satan or Diablo
+    - Or maybe there's a bunch of sin kings like in that one lore
+        - Poison, Rot, Hot Metal, Radiant, Flesh (some fun themes I guess)
+    
+    - That one game by KittyHorrorShow, "Monastery" was fucking great. That, but with some combat in between things
+        - Small, only a few rooms or spaces, several key items leading progressing with LOTS of text messages and eery atmo
+        
+    - Continuous world map? Tried out height maps and it felt weird and wrong
+    - Maybe kind of like neverwinter nights but stitched together?
 
+[x] Hitch when hitting interact and it not casting
+[x] Blood spawning on hit, staying around on ground, placeable item (interact with flask to pick up?)
 
+Hydlide quote, stick somewhere
+"Don't mistake recklessness for Courage"
 
-
+Pillar: A balance of DIABLO (Lore, Setting, and Tone), VIRTUAL HYDLIDE (Visuals), 
+        DARK SOULS (Tactical Mechanics), and FEAR AND HUNGER (Strategic Mechanics)
 Pillar: A simulation of a dark fantasy world
 
 Verbs
@@ -46,3 +64,6 @@ ImSim type things
         
         
 https://opengameart.org/content/denzis-gui-artwork
+https://opengameart.org/content/100-isometric-bushes
+https://opengameart.org/content/sideview-small-trees
+https://opengameart.org/content/flare-trunk-icon

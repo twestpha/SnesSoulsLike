@@ -16,6 +16,7 @@ public enum ItemType {
     None,
     Arrow,
     BladedTool,
+    Money,
 }
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Soulsie/ItemData", order = 1)]
@@ -25,11 +26,12 @@ public class ItemData : ScriptableObject {
     public string nameLoc;
     public string descLoc;
     public ItemType itemType;
+    public Sprite hudSprite;
     public Sprite inventorySprite;
     
     [Space(10)]
     public bool keyItem;
-    public int opalValue = 1;
+    public int moneyValue = 1;
     
     [Header("Equipping")]
     public EquipLocation equipLocation;

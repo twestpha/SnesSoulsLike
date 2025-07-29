@@ -12,6 +12,8 @@ public enum AbilityState {
 }
 
 class AbilityComponent : MonoBehaviour {
+    
+    private const int DEFAULT_LAYER_MASK = 1 << 0;
 
     private Timer abilityTimer = new();
     private AbilityData currentAbility;
@@ -129,6 +131,8 @@ class AbilityComponent : MonoBehaviour {
             if(abilityData.itemCost != ItemType.None){
                 canCast = canCast && inventory.HasItem(abilityData.itemCost);
             }
+            
+            // TODO if in overworld and not in a dungeon, cannot place a campfire 
         }
         
         return canCast;
@@ -174,9 +178,7 @@ class AbilityComponent : MonoBehaviour {
             abilityState = AbilityState.PreAttack;
             
             currentAbility = abilityData;
-            
         } else if(abilityData.abilityType == AbilityType.FireProjectile){
-            
             // Play animation
             if(player != null){ player.PlayAnimation(AnimationState.Aim); }
             if(creature != null){ creature.PlayAnimation(AnimationState.Aim); }
@@ -188,17 +190,31 @@ class AbilityComponent : MonoBehaviour {
             abilityState = AbilityState.PreAttack;
             
             currentAbility = abilityData;
-            
         } else if(abilityData.abilityType == AbilityType.Consumable){
-            
             if(player != null){ player.ApplyEffects(abilityData.effects); }
             if(creature != null){ creature.ApplyEffects(abilityData.effects); }
             
             inventory.TakeItem(castingItem);
-            
         } else if(abilityData.abilityType == AbilityType.Placeable){
+            GameObject newPlaceable = GameObject.Instantiate(abilityData.placeablePrefab);
             
-            // instantiate and place item in front of the caster
+            Transform originTransform = null;
+            if(player != null){
+                originTransform = player.playerSpriteTransform;
+            } else {
+                originTransform = transform;
+            }
+            
+            // Place in front of caster raycasting against terrain
+            RaycastHit hit;
+            if(Physics.Raycast(originTransform.position + (Vector3.up * 0.1f) + (originTransform.forward * 0.2f),
+               -Vector3.up, out hit, 1.0f, DEFAULT_LAYER_MASK, QueryTriggerInteraction.Ignore)
+            ){
+                newPlaceable.transform.position = hit.point;
+            } else {
+                newPlaceable.transform.position = originTransform.position + (originTransform.forward * 0.2f);
+            }
+            
             inventory.TakeItem(castingItem);
         }
     }

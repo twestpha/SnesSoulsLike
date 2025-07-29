@@ -5,6 +5,8 @@ public enum InteractType {
     Loot,
     Message,
     Shop,
+    Campfire,
+    OpenDoor,
 }
 
 public enum InteractCount {
@@ -15,9 +17,10 @@ public enum InteractCount {
 
 [Serializable]
 public class InteractOption {
-    public string locText;
+    public string optionLocText;
     public InteractType type;
-    public ItemType requiredItem;
+    public ItemData requiredItem;
+    public ItemType requiredItemType;
     public InteractCount count;
     
     [Header("Loot Options")]
@@ -26,6 +29,12 @@ public class InteractOption {
     [Header("Message Options")]
     public string messageLocText;
     public ItemData giveItemAfterMessage;
+    
+    [Header("Shop Options")]
+    public int notYet;
+    
+    [Header("Door Options")]
+    public int notYet2;
 }
 
 class InteractComponent : MonoBehaviour {
@@ -62,7 +71,7 @@ class InteractComponent : MonoBehaviour {
             try {
                 if(CanInteract(options[i])){
                     if(interactCount == index){
-                        return options[i].locText;
+                        return options[i].optionLocText;
                     }
                     
                     count++;
@@ -80,10 +89,22 @@ class InteractComponent : MonoBehaviour {
     }
     
     private bool CanInteract(InteractOption option){
+        // We're done with that interact
         if(option.count == InteractCount.None){
             return false;
         }
         
+        // Check for required items or item types
+        InventoryComponent playerInventory = PlayerComponent.player.GetComponent<InventoryComponent>();
+        if(option.requiredItem != null && !playerInventory.HasItem(option.requiredItem)){
+            return false;
+        }
+        
+        if(option.requiredItemType != ItemType.None && !playerInventory.HasItem(option.requiredItemType)){
+            return false;
+        }
+        
+        // Loot requires the creature to be dead
         if(option.type == InteractType.Loot){
             return creature.Dead();
         }
@@ -98,7 +119,6 @@ class InteractComponent : MonoBehaviour {
             try {
                 if(CanInteract(options[i])){
                     if(interactCount == index){
-                        Debug.Log("Interact?");
                         Interact(options[i]);
                         return;
                     }
@@ -123,8 +143,16 @@ class InteractComponent : MonoBehaviour {
             if(option.itemOrLootGroup is ItemData singleItem){
                 playerInventory.GiveItem(singleItem);
             } else if(option.itemOrLootGroup is LootGroupData lootGroup){
-                playerInventory.GiveItem(lootGroup.GetRandomItem());
+                lootGroup.GiveRandomItem(playerInventory);
             }
-        } // ...
+        } else if(option.type == InteractType.Message){
+            PlayerComponent.player.ShowMessage(option.messageLocText, option.giveItemAfterMessage);
+        } else if(option.type == InteractType.Shop){
+            Debug.Log("TODO!");
+        } else if(option.type == InteractType.Campfire){
+            PlayerComponent.player.Rest(this);
+        } else if(option.type == InteractType.OpenDoor){
+            Debug.Log("TODO!");
+        }
     }
 }

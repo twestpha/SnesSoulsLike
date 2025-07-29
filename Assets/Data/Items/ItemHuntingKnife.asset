@@ -15,9 +15,9 @@ MonoBehaviour:
   nameLoc: item_huntingknife
   descLoc: item_huntingknife_desc
   itemType: 2
-  inventorySprite: {fileID: 21300000, guid: d7094718bdac022428dd29244922d06b, type: 3}
+  inventorySprite: {fileID: 0}
   keyItem: 0
-  opalValue: 4
+  moneyValue: 1
   equipLocation: 2
   itemVisualName: item_knife
   ability: {fileID: 11400000, guid: 37a1774c55df2ec4d9d5d3fe16b0c01f, type: 2}

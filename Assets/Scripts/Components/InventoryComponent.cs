@@ -10,7 +10,6 @@ public class InventoryComponent : MonoBehaviour {
     
     [Header("Initial Items")]
     public ItemData[] startingItems;
-    public int currentOpal;
     [Header("Equipped Items")]
     public ItemData leftHandEquippedItem;
     public ItemData rightHandEquippedItem;
@@ -29,7 +28,7 @@ public class InventoryComponent : MonoBehaviour {
         // Only the player does a save/load
         if(!isPlayer || !didLoad){
             for(int i = 0, count = startingItems.Length; i < count; ++i){
-                GiveItem(startingItems[i], true);
+                GiveItem(startingItems[i], 1, true);
             }
             
             if(leftHandEquippedItem != null){ EquipItem(leftHandEquippedItem, EquipLocation.LeftHand); }
@@ -154,6 +153,11 @@ public class InventoryComponent : MonoBehaviour {
             inventory[item]--;
             
             if(inventory[item] <= 0){
+                if(leftHandEquippedItem == item){ Unequip(EquipLocation.LeftHand); }
+                if(rightHandEquippedItem == item){ Unequip(EquipLocation.RightHand); }
+                if(headEquippedItem == item){ Unequip(EquipLocation.Head); }
+                if(bodyEquippedItem == item){ Unequip(EquipLocation.Body); }
+                
                 inventory.Remove(item);
             }
             
@@ -174,15 +178,15 @@ public class InventoryComponent : MonoBehaviour {
         return false;
     }
     
-    public void GiveItem(ItemData item, bool squelchNotification = false){
+    public void GiveItem(ItemData item, int count = 1, bool squelchNotification = false){
         if(inventory.ContainsKey(item)){
-            inventory[item] += 1;
+            inventory[item] += count;
         } else {
-            inventory[item] = 1;
+            inventory[item] = count;
         }
         
         if(isPlayer && !squelchNotification){
-            PlayerComponent.player.ShowMessage("Got cool unlocalized item: " + item.nameLoc);
+            PlayerComponent.player.ShowMessage("Got cool " + count + " unlocalized item(s): " + item.nameLoc);
         }
     }
     
@@ -198,32 +202,8 @@ public class InventoryComponent : MonoBehaviour {
                 targetInventory.GiveItem(kvp.Key);
             }
         }
+        
         inventory.Clear();
-        
-        if(currentOpal > 0){
-            targetInventory.GiveGold(currentOpal);
-            currentOpal = 0;
-        }
-    }
-    
-    public bool HasGold(int amount){
-        return currentOpal >= amount;
-    }
-    
-    public bool TakeGold(int amount){
-        if(HasGold(amount)){
-            currentOpal -= amount;
-            return true;
-        }
-        return false;
-    }
-    
-    public void GiveGold(int amount){
-        currentOpal += amount;
-        
-        if(isPlayer){
-            PlayerComponent.player.ShowMessage("Got cool unlocalized opals: " + amount);
-        }
     }
     
     private const char DELIMETER_C = ':';

@@ -15,9 +15,10 @@ MonoBehaviour:
   nameLoc: item_shortbow
   descLoc: item_shortbow_desc
   itemType: 0
-  inventorySprite: {fileID: 21300000, guid: d7094718bdac022428dd29244922d06b, type: 3}
+  hudSprite: {fileID: 21300000, guid: 029cc55a5ee8a7241891ad7d22405b52, type: 3}
+  inventorySprite: {fileID: 0}
   keyItem: 0
-  opalValue: 15
+  moneyValue: 1
   equipLocation: 2
   itemVisualName: item_bow_a
   ability: {fileID: 11400000, guid: 6c68570cb77d1d642baf40da21570d28, type: 2}

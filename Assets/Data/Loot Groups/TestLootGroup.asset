@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37294bb6067913747909096645089d3d, type: 3}
   m_Name: TestLootGroup
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 8e1fae716220da74582d121a35161ff3, type: 2}
-  - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
+  lootEntries:
+  - quantityRange: {x: 1, y: 2}
+    item: {fileID: 11400000, guid: 8e1fae716220da74582d121a35161ff3, type: 2}
+  - quantityRange: {x: 3, y: 5}
+    item: {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}

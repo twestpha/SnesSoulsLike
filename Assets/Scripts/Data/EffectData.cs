@@ -6,10 +6,13 @@ using UnityEngine;
 public enum EffectType {
     ChangeCurrentHp,
     ChangeCurrentStamina,
+    ChangeCurrentMagic,
     ChangeMaxHp,
     ChangeMaxStamina,
+    ChangeMaxMagic,
     RegenCurrentHp,
     RegenCurrentStamina,
+    RegenCurrentMagic,
     GiveState,
     RemoveState,
 }
@@ -17,6 +20,7 @@ public enum EffectType {
 [Serializable]
 public class EffectData {
     [Header("Effect Attributes")]
+    // TODO add who gets targeted, the caster or the attacked?
     public EffectType effectType;
     public Vector2 valueRange;
     public string state;
