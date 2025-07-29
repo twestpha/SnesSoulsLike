@@ -2324,7 +2324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceFog: 1
   excludeFarPixels: 1
-  useRadialDistance: 0
+  useRadialDistance: 1
   heightFog: 0
   height: 1
   heightDensity: 2

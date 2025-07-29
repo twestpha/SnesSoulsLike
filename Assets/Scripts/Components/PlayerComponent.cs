@@ -229,7 +229,9 @@ class PlayerComponent : MonoBehaviour {
                 if(movementInput && currentStamina > rollStaminaCost){
                     Roll();
                 }
-            } else {
+            }
+            
+            if(playerState == PlayerState.None){
                 // Only move if not doing another action
                 characterController.SimpleMove(movementVector.normalized * moveSpeed);
                 

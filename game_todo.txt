@@ -1,15 +1,13 @@
 [/] Campfire mechanics
 [/] Game ui showing left and right items, hp and stamina
     - oh shit... do I need magic too?
+[/] Get tile based workflow working
+[/] Hitch when hitting interact and it not casting
 
-
-[x] Get heightmap workflow working
-    4k image -> blender -> unity (texture?)
 
 
 [x] World and dungeon separation
-
-
+    - unloading world, loading dungeon, transitioning between the two
 
 [x] World map, figure out some lore and shit
     - Really like the idea of a ghoulish rotting "death" rather than a fire and brimstone "demon"
@@ -20,10 +18,11 @@
     - That one game by KittyHorrorShow, "Monastery" was fucking great. That, but with some combat in between things
         - Small, only a few rooms or spaces, several key items leading progressing with LOTS of text messages and eery atmo
         
-    - Continuous world map? Tried out height maps and it felt weird and wrong
-    - Maybe kind of like neverwinter nights but stitched together?
+    - More walls for maps
+        - Rocky cliffs
+        - Stone brick walls
+        - Manually placeable ramps for the above two
 
-[x] Hitch when hitting interact and it not casting
 [x] Blood spawning on hit, staying around on ground, placeable item (interact with flask to pick up?)
 
 Hydlide quote, stick somewhere
