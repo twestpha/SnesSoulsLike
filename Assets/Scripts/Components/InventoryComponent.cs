@@ -123,7 +123,7 @@ public class InventoryComponent : MonoBehaviour {
     }
     
     public void AbleRenderableMesh(string name, bool able){
-        if(characterRenderable != null){
+        if(characterRenderable != null && !String.IsNullOrEmpty(name)){
             GameObject renderableMesh = characterRenderable.FindNamedObjectInCharacter(name);
             
             if(renderableMesh != null){

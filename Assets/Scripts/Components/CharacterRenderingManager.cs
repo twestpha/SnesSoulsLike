@@ -102,7 +102,13 @@ class CharacterRenderingManager : MonoBehaviour {
             if(characterSlots[i].inUse){
                 if(characterSlots[i].renderTimer.Finished()){
                     characterSlots[i].renderTimer.Start();
+                    
+                    Color previousAmbientColor = RenderSettings.ambientSkyColor;
+                    RenderSettings.ambientSkyColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+                    
                     characterSlots[i].slotComponent.slotCamera.Render();
+                    
+                    RenderSettings.ambientSkyColor = previousAmbientColor;
                 }
             }
         }

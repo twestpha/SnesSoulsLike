@@ -17,6 +17,7 @@ public enum ItemType {
     Arrow,
     BladedTool,
     Money,
+    LightSource,
 }
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Soulsie/ItemData", order = 1)]

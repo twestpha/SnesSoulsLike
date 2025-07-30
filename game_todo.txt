@@ -1,8 +1,7 @@
-[/] Campfire mechanics
-[/] Game ui showing left and right items, hp and stamina
-    - oh shit... do I need magic too?
-[/] Get tile based workflow working
-[/] Hitch when hitting interact and it not casting
+[/] Switch rendering to use ambient color better
+[/] Rocky cliff walls
+[x] Torch Item, hookup
+
 
 
 
@@ -10,18 +9,13 @@
     - unloading world, loading dungeon, transitioning between the two
 
 [x] World map, figure out some lore and shit
-    - Really like the idea of a ghoulish rotting "death" rather than a fire and brimstone "demon"
-    - More "Arthas" and the Reaper than Satan or Diablo
-    - Or maybe there's a bunch of sin kings like in that one lore
-        - Poison, Rot, Hot Metal, Radiant, Flesh (some fun themes I guess)
-    
-    - That one game by KittyHorrorShow, "Monastery" was fucking great. That, but with some combat in between things
-        - Small, only a few rooms or spaces, several key items leading progressing with LOTS of text messages and eery atmo
-        
     - More walls for maps
-        - Rocky cliffs
         - Stone brick walls
+        - dungeon walls (todo!)
         - Manually placeable ramps for the above two
+        - gravestones
+        - houses
+    - How to do different ground textures?
 
 [x] Blood spawning on hit, staying around on ground, placeable item (interact with flask to pick up?)
 

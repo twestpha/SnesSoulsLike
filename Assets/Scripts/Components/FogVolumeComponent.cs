@@ -18,16 +18,19 @@ class FogVolumeComponent : MonoBehaviour {
     
     private static Color currentColor;
     private static Vector2 currentThickness;
-    private static Material currentBackground;
     
     private static Color targetColor;
     private static Vector2 targetThickness;
-    private static Material targetBackground;
 
     public bool instant;
     public Color color;
     public FogThickness thickness;
-    public Material background;
+    
+    private InventoryComponent playerInventory;
+    
+    void Start(){
+        playerInventory = PlayerComponent.player.GetComponent<InventoryComponent>();
+    }
     
     void Update(){
         if(updater == null){
@@ -39,8 +42,16 @@ class FogVolumeComponent : MonoBehaviour {
             
             RenderSettings.fogColor = Color.Lerp(currentColor, targetColor, t);
             
-            RenderSettings.fogStartDistance = Mathf.Lerp(currentThickness.x, targetThickness.x, t);
-            RenderSettings.fogEndDistance = Mathf.Lerp(currentThickness.y, targetThickness.y, t);
+            // If the player has a torch, the fog can be only as thick as medium
+            Vector2 maxThickness = targetThickness;
+            if(playerInventory.leftHandEquippedItem != null && playerInventory.leftHandEquippedItem.itemType == ItemType.LightSource){
+                Vector2 mediumThickness = GetThicknessRange(FogThickness.Medium);
+                maxThickness.x = Mathf.Max(maxThickness.x, mediumThickness.x);
+                maxThickness.y = Mathf.Max(maxThickness.y, mediumThickness.y);
+            }
+            
+            RenderSettings.fogStartDistance = Mathf.Lerp(currentThickness.x, maxThickness.x, t);
+            RenderSettings.fogEndDistance = Mathf.Lerp(currentThickness.y, maxThickness.y, t);
         }
     }
 
@@ -50,11 +61,9 @@ class FogVolumeComponent : MonoBehaviour {
         if(player != null){
             currentColor = RenderSettings.fogColor;
             currentThickness = new Vector2(RenderSettings.fogStartDistance, RenderSettings.fogEndDistance);
-            // currentBackground
             
             targetColor = color;
             targetThickness = GetThicknessRange(thickness);
-            targetBackground = background;
             
             if(instant){
                 fadeTimer.SetParameterized(1.0f);
