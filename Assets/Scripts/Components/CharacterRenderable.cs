@@ -52,7 +52,10 @@ class CharacterRenderable : MonoBehaviour {
             animator = characterInstance.GetComponentInChildren<Animator>();
 
             characterMesh.material.mainTexture = characterTexture;
-            characterMesh.enabled = true;
+            
+            // Wait a frame to enable the characterMesh, let the character get rendered
+            
+            UpdateCameraForRenderable();
 
             // characterSize ???
         } else {
@@ -79,30 +82,9 @@ class CharacterRenderable : MonoBehaviour {
                 onRenderingEnd.Invoke(this);
                 return;
             }
-
-            Vector3 renderableFlat = transform.forward;
-            renderableFlat.y = 0.0f;
-
-            Vector3 cameraFlat = cachedMainCamera.transform.forward;
-            cameraFlat.y = 0.0f;
-
-            float angle = Vector3.Angle(renderableFlat, cameraFlat);
-            angle *= (Vector3.Dot(transform.right, cameraFlat) < 0.0f) ? -1.0f : 1.0f;
-
-            if(angle < 0.0f){
-                angle = 360.0f + angle;
-            }
-
-            // Snap to angle count
-            float degreesPerCount = 360.0f / CAMERA_ANGLE_COUNT;
-            float halfDegrees = degreesPerCount / 2.0f;
-
-            angle -= halfDegrees;
-            angle = Mathf.Ceil(angle / degreesPerCount) * degreesPerCount;
-
-            // Debug.Log(angle + " " + degreesPerCount);
-
-            manager.UpdateCameraForRenderable(renderableSlot, angle);
+            
+            characterMesh.enabled = true;
+            UpdateCameraForRenderable();
         } else {
             if(distanceToCamera <= renderDistance){
                 RequestSlot();
@@ -110,6 +92,32 @@ class CharacterRenderable : MonoBehaviour {
                 return;
             }
         }
+    }
+    
+    public void UpdateCameraForRenderable(){
+        Vector3 renderableFlat = transform.forward;
+        renderableFlat.y = 0.0f;
+
+        Vector3 cameraFlat = cachedMainCamera.transform.forward;
+        cameraFlat.y = 0.0f;
+
+        float angle = Vector3.Angle(renderableFlat, cameraFlat);
+        angle *= (Vector3.Dot(transform.right, cameraFlat) < 0.0f) ? -1.0f : 1.0f;
+
+        if(angle < 0.0f){
+            angle = 360.0f + angle;
+        }
+
+        // Snap to angle count
+        float degreesPerCount = 360.0f / CAMERA_ANGLE_COUNT;
+        float halfDegrees = degreesPerCount / 2.0f;
+
+        angle -= halfDegrees;
+        angle = Mathf.Ceil(angle / degreesPerCount) * degreesPerCount;
+
+        // Debug.Log(angle + " " + degreesPerCount);
+
+        manager.UpdateCameraForRenderable(renderableSlot, angle);
     }
     
     public static int GetResolutionForCharacterSize(CharacterRenderableSize size){

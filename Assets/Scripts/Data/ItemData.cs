@@ -14,10 +14,12 @@ public enum EquipLocation {
 
 public enum ItemType {
     None,
-    Arrow,
-    BladedTool,
-    Money,
-    LightSource,
+    Arrow,       // Consumed by bows, etc.
+    BladedTool,  // Can be used to gut animals
+    Money,       // Can be exchanged for goods and services
+    LightSource, // Fog volume component changes the fog distance based on this
+    KeyItem,     // Cannot be sold, story critical stuff
+    TagItem,     // Hidden in UI, can only have max 1, and used as a status indicator.
 }
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Soulsie/ItemData", order = 1)]
@@ -31,7 +33,6 @@ public class ItemData : ScriptableObject {
     public Sprite inventorySprite;
     
     [Space(10)]
-    public bool keyItem;
     public int moneyValue = 1;
     
     [Header("Equipping")]

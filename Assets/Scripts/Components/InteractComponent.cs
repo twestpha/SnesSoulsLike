@@ -6,7 +6,7 @@ public enum InteractType {
     Message,
     Shop,
     Campfire,
-    OpenDoor,
+    EnterDoor,
 }
 
 public enum InteractCount {
@@ -19,8 +19,8 @@ public enum InteractCount {
 public class InteractOption {
     public string optionLocText;
     public InteractType type;
-    public ItemData requiredItem;
-    public ItemType requiredItemType;
+    public ItemData[] requiredItems;
+    public ItemType[] requiredItemTypes;
     public InteractCount count;
     
     [Header("Loot Options")]
@@ -93,15 +93,20 @@ class InteractComponent : MonoBehaviour {
         if(option.count == InteractCount.None){
             return false;
         }
-        
+    
         // Check for required items or item types
+        // player must have ALL of them, essentially an && operation
         InventoryComponent playerInventory = PlayerComponent.player.GetComponent<InventoryComponent>();
-        if(option.requiredItem != null && !playerInventory.HasItem(option.requiredItem)){
-            return false;
+        for(int i = 0, count = option.requiredItems.Length; i < count; ++i){
+            if(!playerInventory.HasItem(option.requiredItems[i])){
+                return false;
+            }
         }
         
-        if(option.requiredItemType != ItemType.None && !playerInventory.HasItem(option.requiredItemType)){
-            return false;
+        for(int i = 0, count = option.requiredItemTypes.Length; i < count; ++i){
+            if(!playerInventory.HasItem(option.requiredItemTypes[i])){
+                return false;
+            }
         }
         
         // Loot requires the creature to be dead
@@ -151,7 +156,7 @@ class InteractComponent : MonoBehaviour {
             Debug.Log("TODO!");
         } else if(option.type == InteractType.Campfire){
             PlayerComponent.player.Rest(this);
-        } else if(option.type == InteractType.OpenDoor){
+        } else if(option.type == InteractType.EnterDoor){
             Debug.Log("TODO!");
         }
     }

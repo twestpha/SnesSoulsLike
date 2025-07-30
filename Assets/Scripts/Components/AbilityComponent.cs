@@ -120,6 +120,10 @@ class AbilityComponent : MonoBehaviour {
     }
     
     public bool CanCast(AbilityData abilityData){
+        if(abilityData == null){
+            return false;
+        }
+        
         bool canCast = currentAbility == null;
         
         // Only apply certain requirements to the player

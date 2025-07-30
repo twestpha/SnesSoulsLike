@@ -83,12 +83,13 @@ class CharacterRenderingManager : MonoBehaviour {
 
                 characterSlots[i].characterPrefabInstance = characterPrefabInstance;
                 
-                characterSlots[i].renderTimer.Start();
+                characterSlots[i].renderTimer.SetParameterized(1.0f);
 
                 characterSlots[i].slotComponent.slotCamera.enabled = false;
                 characterSlots[i].slotComponent.slotCamera.Render();
 
                 slotIndex = i;
+                
                 return true;
             }
         }
@@ -116,13 +117,11 @@ class CharacterRenderingManager : MonoBehaviour {
 
     public RenderTexture GetRenderTextureAtSlot(int slotIndex){
         Debug.Assert(characterSlots[slotIndex].inUse);
-
         return characterSlots[slotIndex].renderTexture;
     }
 
     public GameObject GetCharacterInstanceAtSlot(int slotIndex){
         Debug.Assert(characterSlots[slotIndex].inUse);
-
         return characterSlots[slotIndex].characterPrefabInstance;
     }
 
@@ -136,7 +135,6 @@ class CharacterRenderingManager : MonoBehaviour {
 
     public void UpdateCameraForRenderable(int slotIndex, float cameraAngle){
         Debug.Assert(characterSlots[slotIndex].inUse);
-
         characterSlots[slotIndex].slotComponent.cameraOrigin.transform.localRotation = Quaternion.Euler(0.0f, cameraAngle, 0.0f);
     }
 }

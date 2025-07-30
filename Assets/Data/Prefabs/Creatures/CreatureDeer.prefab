@@ -164,10 +164,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - locText: gut
+  - optionLocText: Gut
     type: 0
-    requiredItem: 2
+    requiredItem: {fileID: 0}
+    requiredItemType: 0
+    requiredItems: []
+    requiredItemTypes: 02000000
+    count: 0
     itemOrLootGroup: {fileID: 11400000, guid: 5aa4d4bde5b09cb4aa11e5d9b0af56e3, type: 2}
+    messageLocText: 
+    giveItemAfterMessage: {fileID: 0}
+    notYet: 0
+    notYet2: 0
 --- !u!1 &6957796104964388369
 GameObject:
   m_ObjectHideFlags: 0
