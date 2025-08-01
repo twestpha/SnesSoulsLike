@@ -1,22 +1,13 @@
 [/] Figured out some lore
 [/] Change item req's to take a list and AND them
 [/] some buildings and houses
+[/] World and dungeon separation
 
 
-Big question: How do houses and shops work? I'd really prefer NOT to set up a shitload of tiny house interiors
-Also it feels tedious to do simple things like buy and sell items.
-Maybe interacting with the door is the shop, a la final fantasy 1 (and diablo, functionally)
-
-grid of my items, their items. Click-hold to buy, selling destroys item for money.
-
-[x] World and dungeon separation
-    - unloading world, loading dungeon, transitioning between the two
-    
 [x] Start work on the village you start in
-    - doors?
     - shops
-    - resting
-    - sad angry people
+    - resting and saving at inns
+    - sad angry people wandering around
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
     - A bunch of dead monks that summoned an angel
@@ -24,15 +15,16 @@ grid of my items, their items. Click-hold to buy, selling destroys item for mone
     - eventually reach the angel, some lore dump, main quest given sort of
 
 
+[x] Falling damage? Not sure if that's needed
 
+[x] Rework background to be generic overcast clouds, and figure out fading shader tech to key off of fog color so it's always seamless
 
 [x] World map
     - More walls for maps
         - Stone brick walls
-        - dungeon walls (todo! once we know the theme of dungeons)
         - Manually placeable ramps for the above two
         - gravestones
-        - houses
+        - more houses
     - How to do different ground textures?
 
 [x] Blood spawning on hit, staying around on ground, placeable item (interact with flask to pick up?)

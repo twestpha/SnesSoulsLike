@@ -146,8 +146,6 @@ class PlayerComponent : MonoBehaviour {
         characterController = GetComponent<CharacterController>();
         inventory = GetComponent<InventoryComponent>();
         ability = GetComponent<AbilityComponent>();
-        
-        gameComponent = GameObject.FindObjectOfType<GameComponent>(); // TODO make this an instance, oof
 
         playerHeight = transform.position.y;
 
@@ -525,11 +523,12 @@ class PlayerComponent : MonoBehaviour {
         }
     }
 
-    public void ShowLocation(){
-        StartCoroutine(ShowLocationCoroutine());
+    public void ShowLocation(String location){
+        StartCoroutine(ShowLocationCoroutine(location));
     }
 
-    private IEnumerator ShowLocationCoroutine(){
+    private IEnumerator ShowLocationCoroutine(String location){
+        locationText.text = location;
         locationText.enabled = true;
 
         Timer showTimer = new Timer(3.5f);
@@ -594,9 +593,9 @@ class PlayerComponent : MonoBehaviour {
         RenderSettings.ambientLight = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
         // Reset things
-        player.transform.position = gameComponent.respawnTransform.position;
+        // player.transform.position = gameComponent.respawnTransform.position;
 
-        player.transform.rotation = gameComponent.respawnTransform.rotation;
+        // player.transform.rotation = gameComponent.respawnTransform.rotation;
         lookAngle = transform.rotation.eulerAngles.y;
 
         playerSpriteTransform.localRotation = Quaternion.identity;
@@ -614,7 +613,7 @@ class PlayerComponent : MonoBehaviour {
 
         // Reset the levels after a frame, and give it a frame
         yield return null;
-        gameComponent.ResetLevels();
+        // gameComponent.ResetLevels();
         yield return null;
 
         // Wait in darkness for a sec
@@ -638,6 +637,77 @@ class PlayerComponent : MonoBehaviour {
 
         // Set state after fade in to unlock movement, etc.
         playerState = PlayerState.None;
+    }
+    
+    public void EnterExitDungeon(DungeonName dungeon){
+        StartCoroutine(EnterExitDungeonCoroutine(dungeon));
+    }
+
+    private IEnumerator EnterExitDungeonCoroutine(DungeonName dungeon){
+        if(playerPaused){
+            yield break;
+        }
+        
+        playerPaused = true;
+        characterRenderable.PlayAnimation(AnimationState.Idle);
+        
+        // Fade out
+        Timer fadeTimer = new Timer(1.5f);
+        fadeTimer.Start();
+        while(!fadeTimer.Finished()){
+            float t = fadeTimer.Parameterized();
+            t = Mathf.Round(t * 10.0f) / 10.0f;
+
+            fade.color = new Color(0.0f, 0.0f, 0.0f, t);
+            yield return null;
+        }
+        
+        fade.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+        // Kick game to switch location, apply position and rotation to player
+        Transform dungeonTransform = GameComponent.instance.SetCurrentDungeon(dungeon);
+        transform.position = dungeonTransform.position;
+        transform.rotation = dungeonTransform.rotation;
+        lookAngle = transform.rotation.eulerAngles.y;
+        
+        playerSpriteTransform.rotation = Quaternion.identity;
+        
+        // Unpause for a frame to fix camera in darkness
+        playerPaused = false;
+        yield return null;
+        playerPaused = true;
+
+        // Wait in darkness for a sec
+        Timer waitTimer = new Timer(0.5f);
+        waitTimer.Start();
+        while(!waitTimer.Finished()){
+            yield return null;
+        }
+
+        // Fade in
+        fadeTimer.Start();
+        while(!fadeTimer.Finished()){
+            float t = 1.0f - fadeTimer.Parameterized();
+            t = Mathf.Round(t * 10.0f) / 10.0f;
+
+            fade.color = new Color(0.0f, 0.0f, 0.0f, t);
+            yield return null;
+        }
+
+        fade.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
+        // Set state after fade in to unlock movement, etc.
+        playerState = PlayerState.None;
+        playerPaused = false;
+        
+        // Wait a moment
+        waitTimer.Start();
+        while(!waitTimer.Finished()){
+            yield return null;
+        }
+        
+        // Show location name
+        ShowLocation(GameComponent.GetDungeonName(dungeon));
     }
 
     public void ShowBossBar(CreatureComponent bossCreature_){

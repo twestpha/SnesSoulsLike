@@ -2,38 +2,47 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
 
-class GameComponent : MonoBehaviour {
+public enum DungeonName : int {
+    OpenWorld = -1,
+    StartingCastle,
+    Dungeon1,
+    Dungeon2,
+    Dungeon3,
+    Dungeon4,
+    Dungeon5,
+    Dungeon6,
+}
 
-    public static bool locationFound;
-    public static bool gateOpened;
+[Serializable]
+class Dungeon {
+    public GameObject dungeonParent;
+    public Transform dungeonStart;
+    public Transform worldExit;
+}
+
+class GameComponent : MonoBehaviour {
+    
+    public static GameComponent instance;
 
     [Header("Game Connections")]
     public GameObject player;
-    public Transform playerStartTransform;
 
     [Space(10)]
-    public GameObject exteriorPrefab;
-
-    [Space(10)]
-    public GameObject interiorPrefab;
-
-    [Space(10)]
-    public Transform respawnTransform;
-
-    private GameObject exteriorInstance;
-    private GameObject interiorInstance;
+    public GameObject openWorldParent;
+    
+    public Dungeon[] dungeons;
+    private DungeonName currentDungeon;
 
     private int graphicsSettings = 0;
     private Camera playerCamera;
     private PixellateAndPalette pixellateEffect;
     private Antialiasing antialiasingEffect;
+    
+    void Awake(){
+        instance = this;
+    }
 
     void Start(){
-        locationFound = false;
-        gateOpened = false;
-
-        respawnTransform = playerStartTransform; // until overridden by bonfire
-
         // Emulate probable SNES framerate and graphics options by default
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 15; // for now?
@@ -41,13 +50,8 @@ class GameComponent : MonoBehaviour {
         playerCamera = player.GetComponentInChildren<Camera>();
         pixellateEffect = playerCamera.GetComponent<PixellateAndPalette>();
         antialiasingEffect = playerCamera.GetComponent<Antialiasing>();
-
-        // Setup first level
-        // exteriorInstance = GameObject.Instantiate(exteriorPrefab);
-        // interiorInstance = GameObject.Instantiate(interiorPrefab);
-
-        // player.transform.position = playerStartTransform.position;
-        // player.transform.rotation = playerStartTransform.rotation;
+        
+        currentDungeon = DungeonName.OpenWorld;
     }
 
     void Update(){
@@ -98,17 +102,38 @@ class GameComponent : MonoBehaviour {
             RenderSettings.fogMode = FogMode.Exponential; // Actually linear
         }
     }
+    
+    public Transform SetCurrentDungeon(DungeonName newDungeon){
+        if(currentDungeon != newDungeon){
+            // Disable previous level
+            if(currentDungeon == DungeonName.OpenWorld){
+                openWorldParent.SetActive(false);
+            } else {
+                dungeons[(int) currentDungeon].dungeonParent.SetActive(false);
+            }
+            
+            // Enable new level
+            if(newDungeon == DungeonName.OpenWorld){
+                openWorldParent.SetActive(true);
+            } else {
+                dungeons[(int) newDungeon].dungeonParent.SetActive(true);
+            }
 
-    public void ResetLevels(){
-        if(exteriorInstance != null){
-            Destroy(exteriorInstance);
+            // Now we're in the dungeon!
+            DungeonName previousDungeon = currentDungeon;
+            currentDungeon = newDungeon;
+            
+            if(currentDungeon == DungeonName.OpenWorld){
+                return dungeons[(int) previousDungeon].worldExit;
+            } else {
+                return dungeons[(int) currentDungeon].dungeonStart;
+            }
         }
-
-        if(interiorInstance != null){
-            Destroy(interiorInstance);
-        }
-
-        exteriorInstance = GameObject.Instantiate(exteriorPrefab);
-        interiorInstance = GameObject.Instantiate(interiorPrefab);
+        
+        return null;
+    }
+    
+    public static string GetDungeonName(DungeonName name){
+        return "dungeon_" + (name.ToString().ToLower());
     }
 }

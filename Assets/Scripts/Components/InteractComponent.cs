@@ -6,7 +6,8 @@ public enum InteractType {
     Message,
     Shop,
     Campfire,
-    EnterDoor,
+    EnterExitDungeon,
+    OpenDoor,
 }
 
 public enum InteractCount {
@@ -33,8 +34,14 @@ public class InteractOption {
     [Header("Shop Options")]
     public int notYet;
     
-    [Header("Door Options")]
-    public int notYet2;
+    [Header("Enter/Exit Dungeon Options")]
+    public DungeonName dungeon;
+    
+    [Header("Open Door Options")]
+    public Transform doorTransform;
+    public Vector2 transformAngleRange;
+    public Vector3 transformPositionRangeA;
+    public Vector3 transformPositionRangeB;
 }
 
 class InteractComponent : MonoBehaviour {
@@ -156,7 +163,9 @@ class InteractComponent : MonoBehaviour {
             Debug.Log("TODO!");
         } else if(option.type == InteractType.Campfire){
             PlayerComponent.player.Rest(this);
-        } else if(option.type == InteractType.EnterDoor){
+        } else if(option.type == InteractType.EnterExitDungeon){
+            PlayerComponent.player.EnterExitDungeon(option.dungeon);
+        } else if(option.type == InteractType.OpenDoor){
             Debug.Log("TODO!");
         }
     }
