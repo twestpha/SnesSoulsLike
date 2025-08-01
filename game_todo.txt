@@ -2,12 +2,11 @@
 [/] Change item req's to take a list and AND them
 [/] some buildings and houses
 [/] World and dungeon separation
-
 [/] First castle dungeon mesh and layout
 [/] Maybe make the world map a little tighter, closer
 [/] Instant kill boxes, put around starting castle dungeon
+[/] Localization
 
-[x] Localization
 
 [x] Start work on the village you start in
     - shops

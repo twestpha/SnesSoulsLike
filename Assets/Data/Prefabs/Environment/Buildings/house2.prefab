@@ -158,13 +158,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - optionLocText: Knock
+  - optionLocText: int_trydoor
     type: 1
     requiredItems: []
     requiredItemTypes: 
     count: 1
     itemOrLootGroup: {fileID: 0}
-    messageLocText: Knock knock... no one's home.
+    messageLocText: int_doorlocked
     giveItemAfterMessage: {fileID: 0}
     notYet: 0
-    notYet2: 0
+    dungeon: 0
+    doorTransform: {fileID: 0}
+    transformAngleRange: {x: 0, y: 0}
+    transformPositionRangeA: {x: 0, y: 0, z: 0}
+    transformPositionRangeB: {x: 0, y: 0, z: 0}

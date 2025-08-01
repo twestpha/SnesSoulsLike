@@ -707,7 +707,7 @@ class PlayerComponent : MonoBehaviour {
         }
         
         // Show location name
-        ShowLocation(GameComponent.GetDungeonName(dungeon));
+        ShowLocation(Localizer.Localize(GameComponent.GetDungeonName(dungeon)));
     }
 
     public void ShowBossBar(CreatureComponent bossCreature_){

@@ -46,6 +46,8 @@ public class InteractOption {
 
 class InteractComponent : MonoBehaviour {
     
+    public const string LEAVE_LOC = "int_leave";
+    
     public InteractOption[] options;
     
     private CreatureComponent creature;
@@ -70,7 +72,7 @@ class InteractComponent : MonoBehaviour {
         
         return interactCount;
     }
-    
+
     public string GetInteractString(int index){
         int interactCount = 0;
         
@@ -78,7 +80,7 @@ class InteractComponent : MonoBehaviour {
             try {
                 if(CanInteract(options[i])){
                     if(interactCount == index){
-                        return options[i].optionLocText;
+                        return Localizer.Localize(options[i].optionLocText);
                     }
                     
                     count++;
@@ -89,7 +91,7 @@ class InteractComponent : MonoBehaviour {
         }
         
         if(index >= interactCount){
-            return "leave";
+            return Localizer.Localize(LEAVE_LOC);
         }
         
         return "";
@@ -158,7 +160,10 @@ class InteractComponent : MonoBehaviour {
                 lootGroup.GiveRandomItem(playerInventory);
             }
         } else if(option.type == InteractType.Message){
-            PlayerComponent.player.ShowMessage(option.messageLocText, option.giveItemAfterMessage);
+            PlayerComponent.player.ShowMessage(
+                Localizer.Localize(option.messageLocText), 
+                option.giveItemAfterMessage
+            );
         } else if(option.type == InteractType.Shop){
             Debug.Log("TODO!");
         } else if(option.type == InteractType.Campfire){

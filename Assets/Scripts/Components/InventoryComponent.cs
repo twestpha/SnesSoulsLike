@@ -6,7 +6,7 @@ using System;
 
 public class InventoryComponent : MonoBehaviour {
     
-    public const string OPAL_ITEM_LOC = "item_opal";
+    public const string ITEM_RECEIVE_LOC = "item_receive";
     
     [Header("Initial Items")]
     public ItemData[] startingItems;
@@ -177,7 +177,7 @@ public class InventoryComponent : MonoBehaviour {
         
         return false;
     }
-    
+        
     public void GiveItem(ItemData item, int count = 1, bool squelchNotification = false){
         if(inventory.ContainsKey(item)){
             inventory[item] += count;
@@ -186,7 +186,8 @@ public class InventoryComponent : MonoBehaviour {
         }
         
         if(isPlayer && !squelchNotification){
-            PlayerComponent.player.ShowMessage("Got cool " + count + " unlocalized item(s): " + item.nameLoc);
+            string message = Localizer.LocalizeWithArgs(ITEM_RECEIVE_LOC, new String[]{ count.ToString(), Localizer.Localize(item.nameLoc) });
+            PlayerComponent.player.ShowMessage(message);
         }
     }
     

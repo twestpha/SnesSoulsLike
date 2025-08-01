@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - optionLocText: Open
+  - optionLocText: int_opendoor
     type: 5
     requiredItems: []
     requiredItemTypes: 

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ItemCampfire
   m_EditorClassIdentifier: 
   nameLoc: item_campfire
-  descLoc: item_campfire
+  descLoc: item_campfire_desc
   itemType: 0
+  hudSprite: {fileID: 0}
   inventorySprite: {fileID: 0}
-  keyItem: 0
   moneyValue: 1
   equipLocation: 1
   itemVisualName: 

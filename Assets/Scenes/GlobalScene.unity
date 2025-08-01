@@ -13827,22 +13827,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: house2 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5892360163149074691, guid: 7c3fe1f4273268440853316e7b76458f, type: 3}
-      propertyPath: options.Array.data[0].type
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892360163149074691, guid: 7c3fe1f4273268440853316e7b76458f, type: 3}
-      propertyPath: options.Array.data[0].dungeon
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892360163149074691, guid: 7c3fe1f4273268440853316e7b76458f, type: 3}
-      propertyPath: options.Array.data[0].optionLocText
-      value: Enter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892360163149074691, guid: 7c3fe1f4273268440853316e7b76458f, type: 3}
-      propertyPath: options.Array.data[0].messageLocText
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c3fe1f4273268440853316e7b76458f, type: 3}
 --- !u!4 &742767019 stripped
@@ -15700,6 +15684,10 @@ PrefabInstance:
       propertyPath: options.Array.data[0].type
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5945879623324231877, guid: f7935d75101951b468ef0c6cf9a17268, type: 3}
+      propertyPath: options.Array.data[0].optionLocText
+      value: int_enter
+      objectReference: {fileID: 0}
     - target: {fileID: 6129042296004584777, guid: f7935d75101951b468ef0c6cf9a17268, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -16099,7 +16087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864273993}
   m_LocalRotation: {x: -0, y: 0.0028235272, z: -0, w: -0.99999607}
-  m_LocalPosition: {x: -2.66, y: 0.25, z: 4.92}
+  m_LocalPosition: {x: -5.211, y: 0.25, z: 0.2909999}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16119,13 +16107,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - optionLocText: Talk
+  - optionLocText: int_talk
     type: 1
     requiredItems: []
     requiredItemTypes: 
     count: 0
     itemOrLootGroup: {fileID: 0}
-    messageLocText: Hey ma, it's a message
+    messageLocText: int_sheepymessage0
     giveItemAfterMessage: {fileID: 11400000, guid: 8e1fae716220da74582d121a35161ff3, type: 2}
     notYet: 0
     dungeon: 0
@@ -16133,14 +16121,14 @@ MonoBehaviour:
     transformAngleRange: {x: 0, y: 0}
     transformPositionRangeA: {x: 0, y: 0, z: 0}
     transformPositionRangeB: {x: 0, y: 0, z: 0}
-  - optionLocText: Talk about Meat
+  - optionLocText: int_sheepytalk0
     type: 1
     requiredItems:
     - {fileID: 11400000, guid: 8e1fae716220da74582d121a35161ff3, type: 2}
     requiredItemTypes: 
     count: 0
     itemOrLootGroup: {fileID: 0}
-    messageLocText: Wow you have meat?
+    messageLocText: int_sheepymessage1
     giveItemAfterMessage: {fileID: 0}
     notYet: 0
     dungeon: 0
@@ -26900,6 +26888,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1525943985}
   - component: {fileID: 1525943984}
+  - component: {fileID: 1525943986}
+  - component: {fileID: 1525943987}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -26940,6 +26930,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1525943986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525943983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cb4524db942a14791abd5c8bfe72d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localization: {fileID: 4900000, guid: bf3448ed3ae49b545ab51bac889de609, type: 3}
+  currentLanguage: 4
+--- !u!114 &1525943987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525943983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e051f7bc340893409f29b185f49f660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1532670587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37826,6 +37842,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 726687179}
     m_Modifications:
+    - target: {fileID: 143775548, guid: 469704ce3a49451489eb51371ddea0c5, type: 3}
+      propertyPath: options.Array.data[0].optionLocText
+      value: int_lootanimal
+      objectReference: {fileID: 0}
     - target: {fileID: 5237672296770651255, guid: 469704ce3a49451489eb51371ddea0c5, type: 3}
       propertyPath: m_Name
       value: CreatureDeer
@@ -37836,7 +37856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5237672296770651259, guid: 469704ce3a49451489eb51371ddea0c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1490002
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 5237672296770651259, guid: 469704ce3a49451489eb51371ddea0c5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -37844,7 +37864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5237672296770651259, guid: 469704ce3a49451489eb51371ddea0c5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.7790003
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5237672296770651259, guid: 469704ce3a49451489eb51371ddea0c5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38021,6 +38041,10 @@ PrefabInstance:
     - target: {fileID: 5945879623324231877, guid: f7935d75101951b468ef0c6cf9a17268, type: 3}
       propertyPath: options.Array.data[0].dungeon
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945879623324231877, guid: f7935d75101951b468ef0c6cf9a17268, type: 3}
+      propertyPath: options.Array.data[0].optionLocText
+      value: int_exit
       objectReference: {fileID: 0}
     - target: {fileID: 6129042296004584777, guid: f7935d75101951b468ef0c6cf9a17268, type: 3}
       propertyPath: m_RootOrder
