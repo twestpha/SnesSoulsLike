@@ -70,11 +70,6 @@ class PlayerComponent : MonoBehaviour {
     public Text messageText;
 
     [Space(10)]
-    public Image itemImage;
-    public Sprite itemFull;
-    public Sprite itemEmpty;
-
-    [Space(10)]
     public Text locationText;
     public Text gameOverText;
 
@@ -603,8 +598,6 @@ class PlayerComponent : MonoBehaviour {
 
         currentHealth = maxHealth;
         currentStamina = maxStamina;
-
-        itemImage.sprite = itemFull;
 
         characterRenderable.PlayAnimation(AnimationState.Idle);
 

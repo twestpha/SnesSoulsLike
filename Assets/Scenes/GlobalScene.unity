@@ -26943,7 +26943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localization: {fileID: 4900000, guid: bf3448ed3ae49b545ab51bac889de609, type: 3}
-  currentLanguage: 4
+  currentLanguage: 0
 --- !u!114 &1525943987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37776,6 +37776,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3900144391229898867, guid: 2c784d10e7d919d47bc39352b359ac1f, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 40295f4f836e84946afbc6393ade556b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c784d10e7d919d47bc39352b359ac1f, type: 3}
 --- !u!1001 &4949040594293326126

@@ -1,11 +1,9 @@
-[/] Figured out some lore
-[/] Change item req's to take a list and AND them
-[/] some buildings and houses
-[/] World and dungeon separation
-[/] First castle dungeon mesh and layout
-[/] Maybe make the world map a little tighter, closer
-[/] Instant kill boxes, put around starting castle dungeon
-[/] Localization
+[/] A fun font that also localizes ok
+[/] A bunch of items just to have
+
+[x] Fog is bugged?
+[x] Rework background to be generic overcast clouds, and figure out fading shader tech to key off of fog color so it's always seamless
+[x] Cache fog when changing levels and then restore it so fog volumes don't have to be quite so manually placed
 
 
 [x] Start work on the village you start in
@@ -20,18 +18,17 @@
 
 [x] Falling damage? Not sure if that's needed
 
-[x] Fog is bugged?
+
 
 [x] Multiple characters a la F&H
-    - Nudity allowed (like old CRPGs tended to do) because it's so pixelly
-
-[x] Rework background to be generic overcast clouds, and figure out fading shader tech to key off of fog color so it's always seamless
-[x] Cache fog when changing levels and then restore it so fog volumes don't have to be quite so manually placed
+    - Nudity allowed (like old CRPGs tended to do)
+    - try and share items...? Is that even possible?
+    - definitely share animations and maybe even rigs if we can swing it
+    - starting equip different (and therefore some different abilities too)
 
 [x] World map
-    - More walls for outdoor maps
-        - Stone brick walls
-        - Manually placeable ramps for the above two
+    - tall and taller rocks?
+    - Manually placeable ramps for rock
     - gravestones
     - more houses
     - How to do different ground textures?

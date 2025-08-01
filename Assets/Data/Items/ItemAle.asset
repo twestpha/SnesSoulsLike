@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe4b65bb2208e848bca82a7df7165b7, type: 3}
+  m_Name: ItemAle
+  m_EditorClassIdentifier: 
+  nameLoc: item_ale
+  descLoc: item_ale_desc
+  itemType: 0
+  hudSprite: {fileID: 0}
+  inventorySprite: {fileID: 0}
+  moneyValue: 1
+  equipLocation: 0
+  itemVisualName: 
+  ability: {fileID: 0}
