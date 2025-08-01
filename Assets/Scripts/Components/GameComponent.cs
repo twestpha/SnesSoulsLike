@@ -51,6 +51,15 @@ class GameComponent : MonoBehaviour {
         pixellateEffect = playerCamera.GetComponent<PixellateAndPalette>();
         antialiasingEffect = playerCamera.GetComponent<Antialiasing>();
         
+        // Editor fixup because I'm dippy and I leave dungeons open a lot
+        #if UNITY_EDITOR
+            for(int i = 0, count = dungeons.Length; i < count; ++i){
+                dungeons[i].dungeonParent.SetActive(false);
+            }
+            
+            openWorldParent.SetActive(true);
+        #endif
+        
         currentDungeon = DungeonName.OpenWorld;
     }
 

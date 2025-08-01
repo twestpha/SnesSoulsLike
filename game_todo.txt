@@ -3,31 +3,41 @@
 [/] some buildings and houses
 [/] World and dungeon separation
 
+[/] First castle dungeon mesh and layout
+[/] Maybe make the world map a little tighter, closer
+[/] Instant kill boxes, put around starting castle dungeon
+
+[x] Localization
 
 [x] Start work on the village you start in
     - shops
-    - resting and saving at inns
+    - resting and saving at inn
     - sad angry people wandering around
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
-    - A bunch of dead monks that summoned an angel
-    - low level critters mostly, nothing too scary
-    - eventually reach the angel, some lore dump, main quest given sort of
-
+    - A bunch of dead sorcerers that summoned an angel
+    - Rats and maybe a skeleton enemy
+    - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
 
 [x] Falling damage? Not sure if that's needed
 
+[x] Fog is bugged?
+
+[x] Multiple characters a la F&H
+    - Nudity allowed (like old CRPGs tended to do) because it's so pixelly
+
 [x] Rework background to be generic overcast clouds, and figure out fading shader tech to key off of fog color so it's always seamless
+[x] Cache fog when changing levels and then restore it so fog volumes don't have to be quite so manually placed
 
 [x] World map
-    - More walls for maps
+    - More walls for outdoor maps
         - Stone brick walls
         - Manually placeable ramps for the above two
-        - gravestones
-        - more houses
+    - gravestones
+    - more houses
     - How to do different ground textures?
 
-[x] Blood spawning on hit, staying around on ground, placeable item (interact with flask to pick up?)
+[x] Blood spawning on hit, staying around on ground, placeable/interactable item (interact with flask to pick up?)
 
 Hydlide quote, stick somewhere
 "Don't mistake recklessness for Courage"

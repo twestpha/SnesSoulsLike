@@ -717,7 +717,7 @@ class PlayerComponent : MonoBehaviour {
         bossBarParent.SetActive(true);
     }
     
-    public void ApplyEffects(EffectData[] effects){        
+    public void ApplyEffects(EffectData[] effects){
         for(int i = 0, count = effects.Length; i < count; ++i){
             if(effects[i].effectType == EffectType.ChangeCurrentHp){
                 float effectValue = effects[i].GetFinalValue();

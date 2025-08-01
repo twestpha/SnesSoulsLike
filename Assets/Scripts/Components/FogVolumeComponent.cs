@@ -27,9 +27,11 @@ class FogVolumeComponent : MonoBehaviour {
     public FogThickness thickness;
     
     private InventoryComponent playerInventory;
+    private Camera mainCamera;
     
     void Start(){
         playerInventory = PlayerComponent.player.GetComponent<InventoryComponent>();
+        mainCamera = Camera.main;
     }
     
     void Update(){
@@ -41,6 +43,7 @@ class FogVolumeComponent : MonoBehaviour {
             float t = fadeTimer.Parameterized();
             
             RenderSettings.fogColor = Color.Lerp(currentColor, targetColor, t);
+            mainCamera.backgroundColor = RenderSettings.fogColor;
             
             // If the player has a torch, the fog can be only as thick as medium
             Vector2 maxThickness = targetThickness;
