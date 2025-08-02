@@ -12,12 +12,11 @@ class FogVolumeComponent : MonoBehaviour {
     
     private const float FADE_TIME = 1.0f;
     
-    private static FogVolumeComponent updater;
-    
-    private static Timer fadeTimer = new Timer(FADE_TIME);
-    
     private static Color currentColor;
+    private static Color colorVelocity;
+    
     private static Vector2 currentThickness;
+    private static Vector2 thicknessVelocity;
     
     private static Color targetColor;
     private static Vector2 targetThickness;
@@ -25,6 +24,10 @@ class FogVolumeComponent : MonoBehaviour {
     public bool instant;
     public Color color;
     public FogThickness thickness;
+    public MeshRenderer skyboxRenderer;
+    
+    [Space(10)]
+    public bool primary;
     
     private InventoryComponent playerInventory;
     private Camera mainCamera;
@@ -35,15 +38,12 @@ class FogVolumeComponent : MonoBehaviour {
     }
     
     void Update(){
-        if(updater == null){
-            updater = this;
-        }
-        
-        if(updater == this){
-            float t = fadeTimer.Parameterized();
+        if(primary){
+            currentColor = ColorSmoothDamp(currentColor, targetColor, ref colorVelocity, FADE_TIME);
             
-            RenderSettings.fogColor = Color.Lerp(currentColor, targetColor, t);
-            mainCamera.backgroundColor = RenderSettings.fogColor;
+            RenderSettings.fogColor = currentColor;
+            mainCamera.backgroundColor = currentColor;
+            skyboxRenderer.material.SetColor("_FadeColor", currentColor);
             
             // If the player has a torch, the fog can be only as thick as medium
             Vector2 maxThickness = targetThickness;
@@ -53,25 +53,32 @@ class FogVolumeComponent : MonoBehaviour {
                 maxThickness.y = Mathf.Max(maxThickness.y, mediumThickness.y);
             }
             
-            RenderSettings.fogStartDistance = Mathf.Lerp(currentThickness.x, maxThickness.x, t);
-            RenderSettings.fogEndDistance = Mathf.Lerp(currentThickness.y, maxThickness.y, t);
+            currentThickness = Vector2.SmoothDamp(currentThickness, maxThickness, ref thicknessVelocity, FADE_TIME);
+            
+            RenderSettings.fogStartDistance = currentThickness.x;
+            RenderSettings.fogEndDistance = currentThickness.y;
         }
+    }
+    
+    private static Color ColorSmoothDamp(Color current, Color target, ref Color velocity, float smoothTime){
+        current.r = Mathf.SmoothDamp(current.r, target.r, ref velocity.r, smoothTime);
+        current.g = Mathf.SmoothDamp(current.g, target.g, ref velocity.g, smoothTime);
+        current.b = Mathf.SmoothDamp(current.b, target.b, ref velocity.b, smoothTime);
+        current.a = Mathf.SmoothDamp(current.a, target.a, ref velocity.a, smoothTime);
+        
+        return current;
     }
 
     void OnTriggerEnter(Collider other){
         PlayerComponent player = other.gameObject.GetComponent<PlayerComponent>();
 
         if(player != null){
-            currentColor = RenderSettings.fogColor;
-            currentThickness = new Vector2(RenderSettings.fogStartDistance, RenderSettings.fogEndDistance);
-            
             targetColor = color;
             targetThickness = GetThicknessRange(thickness);
             
             if(instant){
-                fadeTimer.SetParameterized(1.0f);
-            } else {
-                fadeTimer.Start();
+                currentColor = color;
+                currentThickness = GetThicknessRange(thickness);
             }
         }
     }

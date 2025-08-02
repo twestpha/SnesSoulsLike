@@ -202,6 +202,7 @@ class PlayerComponent : MonoBehaviour {
                         interactCount = hitInteract.GetInteractCount();
                         
                         if(interactCount > 0){
+                            characterRenderable.PlayAnimation(AnimationState.Idle);
                             interact = hitInteract;
                             Interact();
                             return;

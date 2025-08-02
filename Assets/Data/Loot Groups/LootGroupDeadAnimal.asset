@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37294bb6067913747909096645089d3d, type: 3}
-  m_Name: TestLootGroup
+  m_Name: LootGroupDeadAnimal
   m_EditorClassIdentifier: 
   lootEntries:
   - quantityRange: {x: 1, y: 2}
     item: {fileID: 11400000, guid: 8e1fae716220da74582d121a35161ff3, type: 2}
-  - quantityRange: {x: 3, y: 5}
+  - quantityRange: {x: 1, y: 2}
+    item: {fileID: 11400000, guid: eefa69511f83ea54581e0a18172d965f, type: 2}
+  - quantityRange: {x: 1, y: 1}
     item: {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
+  - quantityRange: {x: 3, y: 6}
+    item: {fileID: 11400000, guid: 890e38ea5b4b9f34381aa523f45c1381, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37294bb6067913747909096645089d3d, type: 3}
+  m_Name: LootGroupBasicBarrel
+  m_EditorClassIdentifier: 
+  lootEntries:
+  - quantityRange: {x: 1, y: 1}
+    item: {fileID: 11400000, guid: 8e1fae716220da74582d121a35161ff3, type: 2}
+  - quantityRange: {x: 3, y: 4}
+    item: {fileID: 11400000, guid: 890e38ea5b4b9f34381aa523f45c1381, type: 2}
+  - quantityRange: {x: 1, y: 1}
+    item: {fileID: 11400000, guid: e9d755d122306e74796d243cc08ef379, type: 2}
+  - quantityRange: {x: 1, y: 1}
+    item: {fileID: 11400000, guid: 5b73784c1c4bda440a4124166e8142a5, type: 2}
+  - quantityRange: {x: 1, y: 2}
+    item: {fileID: 11400000, guid: 7cff56db6b28f4c478aa185fc2a85e33, type: 2}
+  - quantityRange: {x: 3, y: 8}
+    item: {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
+  - quantityRange: {x: 1, y: 1}
+    item: {fileID: 11400000, guid: 41462702cb4f1554eabe85cd4bf3af16, type: 2}

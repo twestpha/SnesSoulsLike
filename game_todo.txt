@@ -1,30 +1,33 @@
-[/] A fun font that also localizes ok
-[/] A bunch of items just to have
+[/] Fog is bugged?
+[/] Rework background to be generic overcast clouds, and figure out fading shader tech to key off of fog color so it's always seamless
 
-[x] Fog is bugged?
-[x] Rework background to be generic overcast clouds, and figure out fading shader tech to key off of fog color so it's always seamless
-[x] Cache fog when changing levels and then restore it so fog volumes don't have to be quite so manually placed
 
+
+
+
+
+
+[x] Barrels and Crates to Loot
 
 [x] Start work on the village you start in
-    - shops
     - resting and saving at inn
+        - generic signage
     - sad angry people wandering around
+    - shops (honestly just open/close menu at this point)
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
     - A bunch of dead sorcerers that summoned an angel
-    - Rats and maybe a skeleton enemy
+    - Rats enemy prowling outside the area
     - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
 
 [x] Falling damage? Not sure if that's needed
-
-
 
 [x] Multiple characters a la F&H
     - Nudity allowed (like old CRPGs tended to do)
     - try and share items...? Is that even possible?
     - definitely share animations and maybe even rigs if we can swing it
     - starting equip different (and therefore some different abilities too)
+    - some hidden characters in the game (like marriage)
 
 [x] World map
     - tall and taller rocks?
