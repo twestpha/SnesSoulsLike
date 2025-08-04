@@ -27,6 +27,7 @@ public class ItemData : ScriptableObject {
     
     [Header("Basic Item Data")]
     public string nameLoc;
+    public string pluralNameLoc;
     public string descLoc;
     public ItemType itemType;
     public Sprite hudSprite;

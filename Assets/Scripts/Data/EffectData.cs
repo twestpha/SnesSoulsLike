@@ -17,12 +17,21 @@ public enum EffectType {
     RemoveState,
 }
 
+public enum DamageType {
+    None,
+    Gouging,   // Generic "physical" damage
+    Festering, // Rotting, worms, infection
+    Searing,   // Fire, heat
+    Trauma,    // Mental anguish
+}
+
 [Serializable]
 public class EffectData {
     [Header("Effect Attributes")]
     // TODO add who gets targeted, the caster or the attacked?
     public EffectType effectType;
     public Vector2 valueRange;
+    public DamageType damageType;
     public string state;
     public float time;
     

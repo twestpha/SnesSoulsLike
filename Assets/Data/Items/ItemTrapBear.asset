@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ItemTrapBear
   m_EditorClassIdentifier: 
   nameLoc: item_trapbear
+  pluralNameLoc: item_trapbear_plur
   descLoc: item_trapbear_desc
   itemType: 0
   hudSprite: {fileID: 0}

@@ -2039,7 +2039,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
   - {fileID: 11400000, guid: 3add9b2c2e416f443a9b7c3f17ad8167, type: 2}
   - {fileID: 11400000, guid: 41462702cb4f1554eabe85cd4bf3af16, type: 2}
-  leftHandEquippedItem: {fileID: 11400000, guid: 5f2ec342ea285a94eb3eaa572235ec3b, type: 2}
+  leftHandEquippedItem: {fileID: 0}
   rightHandEquippedItem: {fileID: 11400000, guid: 410a675bfb6b2544e86f5b88918f8978, type: 2}
   headEquippedItem: {fileID: 0}
   bodyEquippedItem: {fileID: 0}
@@ -2297,9 +2297,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Here's a cool piece of dialogue. Wow! It just keeps going. Will it ever
-    stop? I'm not sure. Anyways, lkoasidu alskdj asoiaus aksdja slkdja sdj asdkjas
-    ldkjas dlkasduoiasud as asiud asoidu asodiua sdasud   aosiduaosidu asodu asdiyuty
+  m_Text: "Here's a cool piece of dialogue. Wow! It just keeps going. \nSomething
+    with text..."
 --- !u!1 &3900144391260993542
 GameObject:
   m_ObjectHideFlags: 0

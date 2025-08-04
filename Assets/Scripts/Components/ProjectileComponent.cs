@@ -1,10 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DamageType {
-    NotSureYet,
-}
-
 public class ProjectileComponent : MonoBehaviour {
     
     public const int NO_PROJECTILE_COLLIDE_LAYER = 1 << 11;

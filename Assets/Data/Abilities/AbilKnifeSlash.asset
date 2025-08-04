@@ -29,5 +29,6 @@ MonoBehaviour:
   effects:
   - effectType: 0
     valueRange: {x: -6, y: -8}
+    damageType: 1
     state: 
     time: 0

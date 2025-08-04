@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ItemHuntingKnife
   m_EditorClassIdentifier: 
   nameLoc: item_huntingknife
+  pluralNameLoc: item_huntingknife_plur
   descLoc: item_huntingknife_desc
   itemType: 2
+  hudSprite: {fileID: 0}
   inventorySprite: {fileID: 0}
-  keyItem: 0
   moneyValue: 1
   equipLocation: 2
   itemVisualName: item_knife

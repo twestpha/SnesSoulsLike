@@ -214,12 +214,13 @@ MonoBehaviour:
     type: 5
     requiredItems: []
     requiredItemTypes: 
-    count: 0
+    count: 1
     itemOrLootGroup: {fileID: 0}
     messageLocText: 
     giveItemAfterMessage: {fileID: 0}
     notYet: 0
     dungeon: 0
+    dungeonIndex: 0
     doorTransform: {fileID: 0}
     transformAngleRange: {x: 0, y: 0}
     transformPositionRangeA: {x: 0, y: 0, z: 0}

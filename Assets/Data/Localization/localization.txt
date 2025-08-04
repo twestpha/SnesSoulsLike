@@ -7,43 +7,58 @@ dungeon_dungeon4	???	???	???	???	???	???	???
 dungeon_dungeon5	???	???	???	???	???	???	???
 dungeon_dungeon6	???	???	???	???	???	???	???
 dungeon_openworld	Loma	Loma	Loma	Loma	Loma	Лома	ロマ
-item_receive	Got (0) (1)!	¡Conseguí (0) (1)!	J'ai (0) (1)!	Ottenuto (0) (1)!	Habe (0) (1)!	Получил (0) (1)!	(0) (1) を獲得しました!
-item_meat	Animal Flesh	Carne de animal	Chair animale	Carne animale	Tierfleisch	Плоть животных	動物の肉
+item_receive	You search for anything useful...<br>You find (0) (1).	Buscas algo útil...<br>Encuentras (0) (1).	Vous recherchez quelque chose d'utile...<br>Vous trouvez (0) (1).	Cerchi qualcosa di utile...<br>Trovi (0) (1).	Sie suchen nach etwas Nützlichem...<br>Sie finden (0) (1).	Вы ищете что-нибудь полезное...<br>Вы находите (0) (1).	何か役に立つものを検索します...<br>(0) (1) が見つかります。
+item_meat	Chunk of Flesh	Trozo de carne	Morceau de chair	Pezzo di carne	Stück Fleisch	Кусок плоти	肉の塊
+item_meat_plur	Chunks of Flesh	Trozos de carne	Morceaux de chair	Pezzi di carne	Fleischstücke	Куски плоти	肉塊
 item_meat_desc	Hefty and still leaking blood.	Corpulento y todavía perdiendo sangre.	Lourd et toujours en train de saigner.	Robusto e ancora sanguinante.	Kräftig und immer noch blutend.	Тяжёлый и всё ещё истекающий кровью.	重くてまだ血が漏れている。
 item_arrow	Fletched Arrow	Flecha emplumada	Flèche empennée	Freccia impennata	Befiederter Pfeil	Оперенная стрела	羽根付き矢
+item_arrow_plur	Fletched Arrows	Flechas emplumadas	Flèches empennées	Frecce impennate	Befiederte Pfeile	Оперенные стрелы	羽根付き矢
 item_arrow_desc	A simple wooden arrow with a barbed tip meant to lodge in prey.	Una simple flecha de madera con punta de púas destinada a clavarse en la presa.	Une simple flèche en bois avec une pointe barbelée destinée à se loger dans la proie.	Una semplice freccia di legno con la punta uncinata, pensata per conficcarsi nella preda.	Ein einfacher Holzpfeil mit einer Widerhakenspitze, der dazu bestimmt ist, in der Beute stecken zu bleiben.	Простая деревянная стрела с зазубренным наконечником, предназначенная для поражения добычи.	獲物に刺さるように先端にとげのあるシンプルな木製の矢。
 item_huntingknife	Hunting Knife	Cuchillo de caza	Couteau de chasse	Coltello da caccia	Jagdmesser	Охотничий нож	ハンティングナイフ
+item_huntingknife_plur	Hunting Knives	Cuchillos de caza	Couteaux de chasse	Coltelli da caccia	Jagdmesser	Охотничьи ножи	ハンティングナイフ
 item_huntingknife_desc	Equally adept at flensing a pelt or gutting a creature.	Igualmente hábil para despellejar una piel o destripar una criatura.	Également habile à dépecer une peau ou à éviscérer une créature.	Altrettanto abili nello scuoiare una pelle o nello sventrare una creatura.	Ebenso geschickt im Abhäuten eines Fells oder Ausnehmen einer Kreatur.	Одинаково искусен в освежевании шкур и потрошении животных.	毛皮を剥ぐのも、生き物の内臓を取り出すのも、同様に熟練している。
 item_campfire	Kindling	Astillas	Allumage	Accensione	Anzündholz	Растопка	焚き付け
+item_campfire_plur	Kindlings	Leña	Petits bois	Accenditori	Anzündholz	Растопка	焚き付け
 item_campfire_desc	Use this to light a campfire and save the game.	Usa esto para encender una fogata y guardar el juego.	Utilisez ceci pour allumer un feu de camp et sauvegarder la partie.	Usalo per accendere un falò e salvare la partita.	Verwenden Sie dies, um ein Lagerfeuer anzuzünden und das Spiel zu speichern.	Используйте это, чтобы разжечь костер и сохранить игру.	これを使ってキャンプファイヤーに火をつけ、ゲームを保存します。
 item_torch	Torch	Antorcha	Torche	Torcia	Fackel	Факел	トーチ
+item_torch_plur	Torches	Antorchas	Torches	Torce	Fackeln	Факелы	トーチ
 item_torch_desc	Fashioned from a branch and some pitch, it will keep the darkness at bay.	Hecho a partir de una rama y un poco de brea, mantendrá a raya la oscuridad.	Fabriqué à partir d'une branche et d'un peu de poix, il gardera l'obscurité à distance.	Realizzato con un ramo e un po' di pece, terrà lontana l'oscurità.	Aus einem Ast und etwas Pech gefertigt, hält es die Dunkelheit fern.	Сделанный из ветки и смолы, он будет держать тьму в страхе.	枝と少量のピッチで作られたこの装置は、暗闇を寄せ付けません。
 item_shortbow	Wooden Shortbow	Arco corto de madera	Arc court en bois	Arco corto in legno	Hölzerner Kurzbogen	Деревянный короткий лук	木製ショートボウ
+item_shortbow_plur	Wooden Shortbows	Arcos cortos de madera	Arcs courts en bois	Archi corti in legno	Hölzerne Kurzbögen	Деревянные короткие луки	木製ショートボウ
 item_shortbow_desc	A simple tool for hunting from a distance.	Una herramienta sencilla para cazar a distancia.	Un outil simple pour chasser à distance.	Uno strumento semplice per la caccia a distanza.	Ein einfaches Werkzeug für die Jagd aus der Ferne.	Простой инструмент для охоты на расстоянии.	遠くから狩りをするためのシンプルな道具。
 item_tooth	Tooth	Diente	Dent	Dente	Zahn	Зуб	歯
-item_tooth_desc	A yellowing tooth. Traded in Loma as money.	Un diente amarillento. Intercambiado en Loma como dinero.	Une dent jaunie. Échangée à Loma comme monnaie.	Un dente ingiallito. Veniva scambiato a Loma per denaro.	Ein gelblicher Zahn. In Loma als Geld eingetauscht.	Пожелтевший зуб. В Ломе его обменивали на деньги.	黄ばんだ歯。ロマでは金銭として取引される。
+item_tooth_plur	Teeth	Dientes	Dents	Denti	Zähne	Зубы	歯
+item_tooth_desc	A yellowing tooth. Traded in Loma as money.	Un diente amarillento. Intercambiado en Loma como dinero.	Une dent jaunie. Échangée à Loma comme monnaie.	Un dente ingiallito. Veniva scambiato a Loma per denaro.	Ein gelber Zahn. In Loma als Geld eingetauscht.	Пожелтевший зуб. В Ломе его обменивали на деньги.	黄ばんだ歯。ロマでは金銭として取引される。
 item_candle	Ritual Candle	Vela ritual	Bougie rituelle	Candela rituale	Ritualkerze	Ритуальная свеча	儀式用キャンドル
+item_candle_plur	Ritual Candles	Velas rituales	Bougies rituelles	Candele rituali	Ritualkerzen	Ритуальные свечи	儀式用キャンドル
 item_candle_desc	Used in rituals	Utilizado en rituales	Utilisé dans les rituels	Utilizzato nei rituali	Wird in Ritualen verwendet	Используется в ритуалах	儀式で使用される
 item_vial	Glass Vial	Vial de vidrio	flacon en verre	Fiala di vetro	Glasfläschchen	Стеклянный флакон	ガラスバイアル
+item_vial_plur	Glass Vials	Viales de vidrio	Flacons en verre	Fiale di vetro	Glasfläschchen	Стеклянные флаконы	ガラスバイアル
 item_vial_desc	Empty	Vacío	Vide	Vuoto	Leer	Пустой	空の
 item_vialblood	Vial of Blood	Vial de sangre	Fiole de sang	Fiala di sangue	Phiole mit Blut	Флакон крови	血の小瓶
+item_vialblood_plur	Vials of Blood	Viales de sangre	Fioles de sang	Fiale di sangue	Fläschchen mit Blut	Флаконы с кровью	血の入った小瓶
 item_vialblood_desc	glass vial full of blood. Don't drink	Frasco de vidrio lleno de sangre. No lo beba.	flacon en verre rempli de sang. Ne pas boire	fiala di vetro piena di sangue. Non bere	Glasfläschchen voller Blut. Nicht trinken	Стеклянный флакон, полный крови. Не пейте.	血が入ったガラス瓶。飲まないでください
-item_wine	Wine	Vino	Vin	Vino	Wein	Вино	ワイン
+item_wine	Bottle of Wine	Botella de vino	Bouteille de vin	Bottiglia di vino	Flasche Wein	Бутылка вина	ワイン1本
+item_wine_plur	Bottles of Wine	Botellas de vino	Bouteilles de vin	Bottiglie di vino	Flaschen Wein	Бутылки вина	ワインのボトル
 item_wine_desc	Yummy	Delicioso	Délicieux	Delizioso	Lecker	Вкусный	おいしい
-item_ale	Ale	Cerveza inglesa	Ale	Ale	Ale	Эль	エール
+item_ale	Stein of Ale	Jarra de cerveza	Chope de bière	Boccale di birra	Krug Bier	Кружка эля	ビールジョッキ
+item_ale_plur	Steins of Ale	Jarras de cerveza	Chopes de bière	Boccali di birra	Krüge Bier	Кружки эля	ビールのジョッキ
 item_ale_desc	also yummy	También delicioso	aussi délicieux	anche delizioso	auch lecker	тоже вкусно	おいしい
-item_meatrotten	Rotten Meat	Carne podrida	Viande avariée	Carne marcia	Verdorbenes Fleisch	Гнилое мясо	腐った肉
+item_meatrotten	Chunk of Rotting Meat	Trozo de carne podrida	Morceau de viande pourrie	Pezzo di carne marcia	Stück verrottendes Fleisch	Кусок гниющего мяса	腐った肉塊
+item_meatrotten_plur	Chunks of Rotting Meat	Trozos de carne podrida	Morceaux de viande en décomposition	Pezzi di carne in putrefazione	Stücke verrottendes Fleisch	Куски гниющего мяса	腐った肉塊
 item_meatrotten_desc	don't eat that	no comas eso	ne mange pas ça	non mangiare quello	iss das nicht	не ешь это	それを食べないで
-item_trapbear	Bear Trap	Trampa para osos	Piège à ours	Trappola per orsi	Bärenfalle	Медвежий капкан	ベアトラップ
-item_trapbear_desc	yeowch!	¡Ay!	beurk !	oddio!	Juchhu!	йоуч!	うわっ！
-int_leave	Close	Cerca	Fermer	Vicino	Schließen	Закрывать	近い
-int_opendoor	Open Door	Puerta abierta	Porte ouverte	Porta aperta	Offene Tür	Открытая дверь	開かれた扉
-int_exit	Escape	Escapar	S'échapper	Fuga	Flucht	Побег	逃げる
-int_trydoor	Try Door	Puerta de prueba	Essayez la porte	Prova Porta	Versuchen Sie es mit der Tür	Попробуйте дверь	ドアを試す
-int_doorlocked	Door is locked.	La puerta está cerrada.	La porte est verrouillée.	La porta è chiusa a chiave.	Die Tür ist verschlossen.	Дверь заперта.	ドアは施錠されています。
-int_lootanimal	Gut	Intestino	Intestin	Intestino	Darm	Кишечник	腸
-int_enter	Trespass	Pecado	Intrusion	violazione di domicilio	Hausfriedensbruch	Нарушение границ	不法侵入
-int_talk	Talk	Hablar	Parler	Parlare	Sprechen	Разговаривать	話す
-int_sheepymessage0	I'm a sheep. Have some meat beacuse of that	Soy una oveja. Comeré algo de carne por eso.	Je suis un mouton. Mange de la viande à cause de ça.	Sono una pecora. Prendi un po' di carne per questo	Ich bin ein Schaf. Iss deswegen etwas Fleisch	Я овца. Вот за это и ешь мясо.	私は羊です。だから肉を食べましょう
-int_sheepytalk0	Meat?	¿Carne?	Viande?	Carne?	Fleisch?	Мясо?	肉？
-int_sheepymessage1	EWWW you have meat?	¡¿EWWW tienes carne?!	BEURK, tu as de la viande ?	EWWW hai della carne?	Igitt, du hast Fleisch?	Фууу, у тебя есть мясо?	うわあ、肉あるの？
+item_trapbear	Bear Trap						
+item_trapbear_plur	Bear Traps						
+item_trapbear_desc	yeowch!						
+int_leave	Close						
+int_loot	Search						
+int_opendoor	Open Door						
+int_exit	Escape						
+int_trydoor	Try Door						
+int_doorlocked	Door is locked.						
+int_lootanimal	Gut						
+int_enter	Trespass						
+int_talk	Talk						
+int_sheepymessage0	I'm a sheep. Have some meat beacuse of that						
+int_sheepytalk0	Meat?						
+int_sheepymessage1	EWWW you have meat?						

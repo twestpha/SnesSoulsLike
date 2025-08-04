@@ -16,8 +16,8 @@ public enum DungeonName : int {
 [Serializable]
 class Dungeon {
     public GameObject dungeonParent;
-    public Transform dungeonStart;
-    public Transform worldExit;
+    public Transform[] entrances;
+    public Transform[] exits;
 }
 
 class GameComponent : MonoBehaviour {
@@ -112,7 +112,7 @@ class GameComponent : MonoBehaviour {
         }
     }
     
-    public Transform SetCurrentDungeon(DungeonName newDungeon){
+    public Transform SetCurrentDungeon(DungeonName newDungeon, int dungeonIndex){
         if(currentDungeon != newDungeon){
             // Disable previous level
             if(currentDungeon == DungeonName.OpenWorld){
@@ -133,9 +133,9 @@ class GameComponent : MonoBehaviour {
             currentDungeon = newDungeon;
             
             if(currentDungeon == DungeonName.OpenWorld){
-                return dungeons[(int) previousDungeon].worldExit;
+                return dungeons[(int) previousDungeon].exits[dungeonIndex];
             } else {
-                return dungeons[(int) currentDungeon].dungeonStart;
+                return dungeons[(int) currentDungeon].entrances[dungeonIndex];
             }
         }
         

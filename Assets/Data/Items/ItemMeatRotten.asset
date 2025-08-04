@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ItemMeatRotten
   m_EditorClassIdentifier: 
   nameLoc: item_meatrotten
+  pluralNameLoc: item_meatrotten_plur
   descLoc: item_meatrotten_desc
   itemType: 0
   hudSprite: {fileID: 0}

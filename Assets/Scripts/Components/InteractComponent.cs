@@ -22,6 +22,7 @@ public class InteractOption {
     public InteractType type;
     public ItemData[] requiredItems;
     public ItemType[] requiredItemTypes;
+    // TODO public bool consumeItemOnInteract;
     public InteractCount count;
     
     [Header("Loot Options")]
@@ -36,6 +37,7 @@ public class InteractOption {
     
     [Header("Enter/Exit Dungeon Options")]
     public DungeonName dungeon;
+    public int dungeonIndex;
     
     [Header("Open Door Options")]
     public Transform doorTransform;
@@ -119,7 +121,7 @@ class InteractComponent : MonoBehaviour {
         }
         
         // Loot requires the creature to be dead
-        if(option.type == InteractType.Loot){
+        if(creature != null && option.type == InteractType.Loot){
             return creature.Dead();
         }
         
@@ -169,7 +171,7 @@ class InteractComponent : MonoBehaviour {
         } else if(option.type == InteractType.Campfire){
             PlayerComponent.player.Rest(this);
         } else if(option.type == InteractType.EnterExitDungeon){
-            PlayerComponent.player.EnterExitDungeon(option.dungeon);
+            PlayerComponent.player.EnterExitDungeon(option.dungeon, option.dungeonIndex);
         } else if(option.type == InteractType.OpenDoor){
             Debug.Log("TODO!");
         }

@@ -186,7 +186,14 @@ public class InventoryComponent : MonoBehaviour {
         }
         
         if(isPlayer && !squelchNotification){
-            string message = Localizer.LocalizeWithArgs(ITEM_RECEIVE_LOC, new String[]{ count.ToString(), Localizer.Localize(item.nameLoc) });
+            string nameLoc = "";
+            if(count > 1){
+                nameLoc = Localizer.Localize(item.pluralNameLoc);
+            } else {
+                nameLoc = Localizer.Localize(item.nameLoc);
+            }
+            
+            string message = Localizer.LocalizeWithArgs(ITEM_RECEIVE_LOC, new String[]{ count.ToString(), nameLoc });
             PlayerComponent.player.ShowMessage(message);
         }
     }

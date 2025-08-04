@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ItemVial
   m_EditorClassIdentifier: 
   nameLoc: item_vial
+  pluralNameLoc: item_vial_plur
   descLoc: item_vial_desc
   itemType: 0
   hudSprite: {fileID: 0}

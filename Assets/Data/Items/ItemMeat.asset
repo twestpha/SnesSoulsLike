@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ItemMeat
   m_EditorClassIdentifier: 
   nameLoc: item_meat
+  pluralNameLoc: item_meat_plur
   descLoc: item_meat_desc
   itemType: 0
+  hudSprite: {fileID: 0}
   inventorySprite: {fileID: 0}
-  keyItem: 0
   moneyValue: 1
   equipLocation: 0
   itemVisualName: 

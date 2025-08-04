@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ItemTooth
   m_EditorClassIdentifier: 
   nameLoc: item_tooth
+  pluralNameLoc: item_tooth_plur
   descLoc: item_tooth_desc
   itemType: 3
+  hudSprite: {fileID: 0}
   inventorySprite: {fileID: 0}
-  keyItem: 0
   moneyValue: 1
   equipLocation: 0
   itemVisualName: 

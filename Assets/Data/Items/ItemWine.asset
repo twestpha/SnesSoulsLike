@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ItemWine
   m_EditorClassIdentifier: 
   nameLoc: item_wine
+  pluralNameLoc: item_wine_plur
   descLoc: item_wine_desc
   itemType: 0
   hudSprite: {fileID: 0}

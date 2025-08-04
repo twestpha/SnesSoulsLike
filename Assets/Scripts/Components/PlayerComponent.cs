@@ -633,11 +633,11 @@ class PlayerComponent : MonoBehaviour {
         playerState = PlayerState.None;
     }
     
-    public void EnterExitDungeon(DungeonName dungeon){
-        StartCoroutine(EnterExitDungeonCoroutine(dungeon));
+    public void EnterExitDungeon(DungeonName dungeon, int dungeonIndex){
+        StartCoroutine(EnterExitDungeonCoroutine(dungeon, dungeonIndex));
     }
 
-    private IEnumerator EnterExitDungeonCoroutine(DungeonName dungeon){
+    private IEnumerator EnterExitDungeonCoroutine(DungeonName dungeon, int dungeonIndex){
         if(playerPaused){
             yield break;
         }
@@ -659,7 +659,7 @@ class PlayerComponent : MonoBehaviour {
         fade.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
         // Kick game to switch location, apply position and rotation to player
-        Transform dungeonTransform = GameComponent.instance.SetCurrentDungeon(dungeon);
+        Transform dungeonTransform = GameComponent.instance.SetCurrentDungeon(dungeon, dungeonIndex);
         transform.position = dungeonTransform.position;
         transform.rotation = dungeonTransform.rotation;
         lookAngle = transform.rotation.eulerAngles.y;

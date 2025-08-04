@@ -119,6 +119,16 @@ public class LocalizationMenuItems : MonoBehaviour
                 }
             }
             {
+                string locKey = allItems[i].pluralNameLoc;
+                string locValue = Localizer.Localize(locKey);
+    
+                if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
+                    entries[locKey] = DEFAULT_EMPTY_LOC;
+                } else {
+                    entries[locKey] = locValue;
+                }
+            }
+            {
                 string locKey = allItems[i].descLoc;
                 string locValue = Localizer.Localize(locKey);
     

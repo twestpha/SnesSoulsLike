@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ItemCampfire
   m_EditorClassIdentifier: 
   nameLoc: item_campfire
+  pluralNameLoc: item_campfire_plur
   descLoc: item_campfire_desc
   itemType: 0
   hudSprite: {fileID: 0}

@@ -1,25 +1,27 @@
-[/] Fog is bugged?
-[/] Rework background to be generic overcast clouds, and figure out fading shader tech to key off of fog color so it's always seamless
+[/] Barrels and Crates to Loot
 
 
 
+[x] Open woods area where you start
+    - First rat enemies
+    - gravestones
+    - campsite stuff
+    - mausoleum
+        - can dungeons connect...? I think so...?
 
 
 
+[x] Start work on the first dungeon, the ruins of the cursed king's castle
+    - A bunch of dead sorcerers that summoned an angel
+    - Rats enemy prowling outside the area, some inside too
+    - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
 
-[x] Barrels and Crates to Loot
-
-[x] Start work on the village you start in
+[x] Start work on the village
     - resting and saving at inn
         - generic signage
     - sad angry people wandering around
     - shops (honestly just open/close menu at this point)
-
-[x] Start work on the first dungeon, the ruins of the cursed king's castle
-    - A bunch of dead sorcerers that summoned an angel
-    - Rats enemy prowling outside the area
-    - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
-
+        
 [x] Falling damage? Not sure if that's needed
 
 [x] Multiple characters a la F&H
@@ -32,7 +34,7 @@
 [x] World map
     - tall and taller rocks?
     - Manually placeable ramps for rock
-    - gravestones
+    - 
     - more houses
     - How to do different ground textures?
 

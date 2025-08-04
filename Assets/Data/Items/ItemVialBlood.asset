@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ItemVialBlood
   m_EditorClassIdentifier: 
   nameLoc: item_vialblood
+  pluralNameLoc: item_vialblood_plur
   descLoc: item_vialblood_desc
   itemType: 0
   hudSprite: {fileID: 0}
