@@ -80,7 +80,7 @@ public class LocalizationMenuItems : MonoBehaviour
     
             if(enumName != "count"){
                 string locKey = prepend + enumName;
-                string locValue = Localizer.Localize(locKey);
+                string locValue = StripNewlines(Localizer.Localize(locKey));
     
                 if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                     entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -96,7 +96,7 @@ public class LocalizationMenuItems : MonoBehaviour
         // Also include recieving format text
         {
             string locKey = InventoryComponent.ITEM_RECEIVE_LOC;
-            string locValue = Localizer.Localize(locKey);
+            string locValue = StripNewlines(Localizer.Localize(locKey));
 
             if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                 entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -110,7 +110,7 @@ public class LocalizationMenuItems : MonoBehaviour
         for(int i = 0, count = allItems.Length; i < count; ++i){
             {
                 string locKey = allItems[i].nameLoc;
-                string locValue = Localizer.Localize(locKey);
+                string locValue = StripNewlines(Localizer.Localize(locKey));
     
                 if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                     entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -120,7 +120,7 @@ public class LocalizationMenuItems : MonoBehaviour
             }
             {
                 string locKey = allItems[i].pluralNameLoc;
-                string locValue = Localizer.Localize(locKey);
+                string locValue = StripNewlines(Localizer.Localize(locKey));
     
                 if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                     entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -130,7 +130,7 @@ public class LocalizationMenuItems : MonoBehaviour
             }
             {
                 string locKey = allItems[i].descLoc;
-                string locValue = Localizer.Localize(locKey);
+                string locValue = StripNewlines(Localizer.Localize(locKey));
     
                 if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                     entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -146,7 +146,7 @@ public class LocalizationMenuItems : MonoBehaviour
         // Also include "leave"
         {
             string locKey = InteractComponent.LEAVE_LOC;
-            string locValue = Localizer.Localize(locKey);
+            string locValue = StripNewlines(Localizer.Localize(locKey));
 
             if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                 entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -166,7 +166,7 @@ public class LocalizationMenuItems : MonoBehaviour
 
                 if(!String.IsNullOrEmpty(option.optionLocText)){
                     string locKey = option.optionLocText;
-                    string locValue = Localizer.Localize(locKey);
+                    string locValue = StripNewlines(Localizer.Localize(locKey));
         
                     if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                         entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -177,7 +177,7 @@ public class LocalizationMenuItems : MonoBehaviour
                 
                 if(!String.IsNullOrEmpty(option.messageLocText)){
                     string locKey = option.messageLocText;
-                    string locValue = Localizer.Localize(locKey);
+                    string locValue = StripNewlines(Localizer.Localize(locKey));
         
                     if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
                         entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -200,7 +200,7 @@ public class LocalizationMenuItems : MonoBehaviour
     // 
     //             if(!string.IsNullOrEmpty(t.text)){
     //                 string locKey = t.text;
-    //                 string locValue = Localizer.Localize(locKey);
+    //                 string locValue = StripNewlines(Localizer.Localize(locKey));
     // 
     //                 if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
     //                     entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -211,7 +211,7 @@ public class LocalizationMenuItems : MonoBehaviour
     //         } else if(l.locType == LocalizationType.Formatted){
     //             if(!string.IsNullOrEmpty(l.format)){
     //                 string locKey = l.format;
-    //                 string locValue = Localizer.Localize(locKey);
+    //                 string locValue = StripNewlines(Localizer.Localize(locKey));
     // 
     //                 if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
     //                     entries[locKey] = DEFAULT_EMPTY_LOC;
@@ -254,6 +254,10 @@ public class LocalizationMenuItems : MonoBehaviour
                     break;
             }
         }
+    }
+    
+    private static string StripNewlines(string input){
+        return input.Replace("\n", "<br>");
     }
 }
 

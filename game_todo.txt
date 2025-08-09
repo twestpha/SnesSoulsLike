@@ -1,16 +1,17 @@
 
+[/] gravestones
+[/] gate
 
 
 
 
 [x] Open woods area where you start
     - First rat enemies
-    - gravestones
     - campsite stuff
     - mausoleum
         - can dungeons connect...? I think so...?
 
-
+[x] Spherecast for interactions?
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
     - A bunch of dead sorcerers that summoned an angel
@@ -82,3 +83,4 @@ https://opengameart.org/content/denzis-gui-artwork
 https://opengameart.org/content/100-isometric-bushes
 https://opengameart.org/content/sideview-small-trees
 https://opengameart.org/content/flare-trunk-icon
+https://opengameart.org/content/23-high-res-graveyard-texture-photos

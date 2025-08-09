@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7273271570332498652}
   - component: {fileID: 2654936594552279079}
   - component: {fileID: 2053273422434491553}
+  - component: {fileID: 4842540860909271346}
   m_Layer: 3
   m_Name: tree_d
   m_TagString: Untagged
@@ -127,3 +128,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomFlipX: 1
   randomScale: 1
+--- !u!114 &4842540860909271346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273271570332498653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2025069541297b41838b752539a7987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - optionLocText: int_getwood
+    type: 0
+    requiredItems: []
+    requiredItemTypes: 07000000
+    count: 0
+    itemOrLootGroup: {fileID: 11400000, guid: 41462702cb4f1554eabe85cd4bf3af16, type: 2}
+    messageLocText: 
+    giveItemAfterMessage: {fileID: 0}
+    notYet: 0
+    dungeon: 0
+    dungeonIndex: 0
+    doorTransform: {fileID: 0}
+    transformAngleRange: {x: 0, y: 0}
+    transformPositionRangeA: {x: 0, y: 0, z: 0}
+    transformPositionRangeB: {x: 0, y: 0, z: 0}

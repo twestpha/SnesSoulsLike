@@ -19,6 +19,6 @@ MonoBehaviour:
   hudSprite: {fileID: 0}
   inventorySprite: {fileID: 0}
   moneyValue: 1
-  equipLocation: 1
+  equipLocation: 0
   itemVisualName: 
   ability: {fileID: 11400000, guid: 452be7f6446bf204293e06219ee4f75b, type: 2}

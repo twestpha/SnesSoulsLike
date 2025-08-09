@@ -5,12 +5,14 @@ using UnityStandardAssets.ImageEffects;
 public enum DungeonName : int {
     OpenWorld = -1,
     StartingCastle,
-    Dungeon1,
+    StartingCastleMausoleum,
     Dungeon2,
     Dungeon3,
     Dungeon4,
     Dungeon5,
     Dungeon6,
+    Dungeon7,
+    Dungeon8,
 }
 
 [Serializable]
