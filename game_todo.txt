@@ -1,15 +1,12 @@
 
-[/] gravestones
-[/] gate
-
+[/] mausoleum model
+[/] Mausoleum temp interior, door interacts!
 
 
 
 [x] Open woods area where you start
     - First rat enemies
-    - campsite stuff
-    - mausoleum
-        - can dungeons connect...? I think so...?
+    - rat camp stuff
 
 [x] Spherecast for interactions?
 
@@ -17,6 +14,7 @@
     - A bunch of dead sorcerers that summoned an angel
     - Rats enemy prowling outside the area, some inside too
     - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
+    - large main exit to Loma open world, village
 
 [x] Start work on the village
     - resting and saving at inn
@@ -84,3 +82,4 @@ https://opengameart.org/content/100-isometric-bushes
 https://opengameart.org/content/sideview-small-trees
 https://opengameart.org/content/flare-trunk-icon
 https://opengameart.org/content/23-high-res-graveyard-texture-photos
+https://skfb.ly/p7NHM
