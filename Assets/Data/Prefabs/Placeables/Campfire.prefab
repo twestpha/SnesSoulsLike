@@ -61,16 +61,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - optionLocText: Rest
+  - optionLocText: int_rest
     type: 3
-    requiredItem: {fileID: 0}
-    requiredItemType: 0
+    requiredItems: []
+    requiredItemTypes: 
     count: 0
     itemOrLootGroup: {fileID: 0}
     messageLocText: 
     giveItemAfterMessage: {fileID: 0}
     notYet: 0
-    notYet2: 0
+    dungeon: 0
+    dungeonIndex: 0
+    doorTransform: {fileID: 0}
+    transformAngleRange: {x: 0, y: 0}
+    transformPositionRangeA: {x: 0, y: 0, z: 0}
+    transformPositionRangeB: {x: 0, y: 0, z: 0}
 --- !u!1 &5009737251664360080
 GameObject:
   m_ObjectHideFlags: 0

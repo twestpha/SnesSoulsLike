@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 ﻿using System;
 
+// TODO add an enum like "any, unowned" and then the latter will only consider unowned items to give
+// for stuff like random key items
+
 [Serializable]
 public struct LootEntry {
     public Vector2 quantityRange;

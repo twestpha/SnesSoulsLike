@@ -5,6 +5,8 @@ enum Attitude {
     Friendly,
     Scared,
     Hostile,
+    
+    Unchanged,
 }
 
 enum AbilityUsage {
@@ -137,7 +139,7 @@ class CreatureComponent : MonoBehaviour {
                     moveTargetPosition = transform.position + (-toPlayer.normalized * 3.0f);
                 }
             } else if(creatureState == CreatureState.Moving){
-                Debug.DrawLine(transform.position, moveTargetPosition, Color.red, 0.0f, false);
+                // Debug.DrawLine(transform.position, moveTargetPosition, Color.red, 0.0f, false);
                 Vector3 toTarget = moveTargetPosition - transform.position;
                 toTarget.y = 0.0f;
                 
@@ -162,6 +164,7 @@ class CreatureComponent : MonoBehaviour {
     private void UpdateHostile(){
         if(creatureState != CreatureState.Inactive){
             Vector3 toPlayer = player.transform.position - transform.position;
+            
             float playerDistance = toPlayer.magnitude;
             float selfDistance = (startPosition - transform.position).magnitude;
 
@@ -180,9 +183,6 @@ class CreatureComponent : MonoBehaviour {
                     moveTargetPosition = startPosition;
                 }
             } else if(creatureState == CreatureState.Moving){
-                Vector3 toTarget = moveTargetPosition - transform.position;
-                float toTargetDistance = toTarget.magnitude;
-
                 AbilityData nextAbility = abilities[nextAbilityIndex];
                 float range = nextAbility.abilityType == AbilityType.FireProjectile ? ABILITY_PROJECTILE_RANGE : ABILITY_MELEE_RANGE;
 
@@ -198,6 +198,11 @@ class CreatureComponent : MonoBehaviour {
                     ability.Cast(nextAbility, null);
                     creatureState = CreatureState.UsingAbility;
                 }
+                
+                Vector3 toTarget = toPlayer;
+                toTarget.y = 0.0f;
+                
+                float toTargetDistance = toTarget.magnitude;
 
                 if(toTargetDistance < MOVE_THRESHOLD_RANGE){
                     creatureState = CreatureState.Idle;

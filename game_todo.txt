@@ -1,18 +1,21 @@
 [/] rat camp art
+[/] Open woods area where you start
+[/] Place woods barrels and crates
 
-[x] Open woods area where you start
-    [x] enemy patrolling (needed?)
+[x] Player stagger animation
 
-[x] SpherecastAll for interactions?
-[x] Enemy death disables colliders
+[x] BUG Can't interact sometimes (SpherecastAll?)
+[x] BUG Enemy death disables colliders
+[x] BUG Player can roll then not animate walking sometimes
+
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
     - A bunch of dead sorcerers that summoned an angel
-    - Rats enemy prowling outside the area, some inside too
+    - Rats enemy prowling inside
+        [x] enemy, friendly patrolling (needed?)
     - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
     - large main exit to Loma open world, village
 
-[x] Player stagger
 [x] Start work on the village
     - resting and saving at inn
         - generic signage
@@ -20,6 +23,7 @@
     - shops (honestly just open/close menu at this point)
         
 [x] Falling damage? Not sure if that's needed
+[x] Signposts (3d model so they don't rotate)
 
 [x] Multiple characters a la F&H
     - Nudity allowed (like old CRPGs tended to do)
@@ -31,7 +35,6 @@
 [x] World map
     - tall and taller rocks?
     - Manually placeable ramps for rock
-    - 
     - more houses
     - How to do different ground textures?
 

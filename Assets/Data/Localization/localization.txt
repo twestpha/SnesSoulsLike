@@ -29,7 +29,7 @@ item_wine	Bottle of Wine	Botella de vino	Bouteille de vin	bottiglia di vino	Flas
 item_wine_plur	Bottles of Wine	Botellas de vino	Bouteilles de vin	Bottiglie di vino	Flaschen Wein	Бутылки вина	ワインのボトル
 item_wine_desc	Yummy	Delicioso	Délicieux	Delizioso	Lecker	Вкусный	おいしい
 item_ale	Stein of Ale	Jarra de cerveza	Chope de bière	Boccale di birra	Krug Bier	Кружка эля	ビールジョッキ
-item_ale_plur	Steins of Ale	Jarras de cerveza	Chopes de bière	Boccali di birra	Krüge Bier	Кружки эля	ビールジョッキ
+item_ale_plur	Steins of Ale	Jarras de cerveza	Chopes de bière	Boccali di birra	Krüge Bier	Кружки эля	ビールのジョッキ
 item_ale_desc	also yummy	También delicioso	aussi délicieux	anche delizioso	auch lecker	тоже вкусно	おいしい
 item_campfire	Bundle of Kindling	Paquete de leña	Paquet de bois d'allumage	Fascio di legna da ardere	Bündel Anzündholz	Связка растопки	焚き付けの束
 item_campfire_plur	Bundles of Kindling	Paquetes de leña	fagots de bois d'allumage	Fasci di legna da ardere	Bündel Anzündholz	Связки растопки	焚き付けの束
@@ -41,19 +41,20 @@ item_shortbow	Wooden Shortbow	Arco corto de madera	Arc court en bois	Arco corto 
 item_shortbow_plur	Wooden Shortbows	Arcos cortos de madera	Arcs courts en bois	Archi corti in legno	Hölzerne Kurzbögen	Деревянные короткие луки	木製ショートボウ
 item_shortbow_desc	A simple tool for hunting from a distance.	Una herramienta sencilla para cazar a distancia.	Un outil simple pour chasser à distance.	Uno strumento semplice per la caccia a distanza.	Ein einfaches Werkzeug für die Jagd aus der Ferne.	Простой инструмент для охоты на расстоянии.	遠くから狩りをするためのシンプルな道具。
 item_drawknife	Draw Knife	Cuchillo de dibujo	Couteau à tirer	Coltello da disegno	Ziehmesser	Скоба	ドローナイフ
-item_drawknife_plur	Draw Knives	Dibujar cuchillos	Couteaux à tirer	Coltelli da disegno	Ziehmesser	Выдвижные ножи	ドローナイフ
+item_drawknife_plur	Draw Knives	Dibujar cuchillos	Couteaux à tirer	Coltelli da disegno	Ziehmesser	Ножи для рисования	ドローナイフ
 item_drawknife_desc	It's really sharp and good at cutting dead wood	Es realmente afilado y bueno para cortar madera muerta.	Il est vraiment tranchant et efficace pour couper le bois mort	È davvero affilato e bravo a tagliare il legno morto	Es ist wirklich scharf und gut zum Schneiden von totem Holz	Он действительно острый и хорошо режет сухостой.	本当に鋭くて枯れ木を切るのに優れています
 int_leave	Close	Cerca	Fermer	Vicino	Schließen	Закрывать	近い
+int_lootanimal	Gut	Intestino	Intestin	Intestino	Darm	Кишечник	腸
+int_rest	Sleep	Dormir	Dormir	Sonno	Schlafen	Спать	寝る
+int_opendoor	Open Door	Puerta abierta	Porte ouverte	Porta aperta	Offene Tür	Открытая дверь	開かれた扉
 int_read	Read	Leer	Lire	Leggere	Lesen	Читать	読む
 int_gravemessage_3	The headstone reads, "Here lies Link".	La lápida dice: "Aquí yace Link".	Sur la pierre tombale on peut lire : « Ici repose Link ».	Sulla lapide c'è scritto: "Qui giace Link".	Auf dem Grabstein steht: „Hier liegt Link“.	На надгробии написано: «Здесь покоится Линк».	墓石には「ここにリンクが眠る」と刻まれている。
 int_gravemessage_2	Strange runes adorn the grave marker.	Runas extrañas adornan la lápida.	D'étranges runes ornent la pierre tombale.	Strane rune adornano la lapide.	Seltsame Runen zieren den Grabstein.	Надгробный камень украшен странными рунами.	墓石には奇妙なルーン文字が刻まれている。
 int_gravemessage_1	You recognize few of these runes. Some appear to be defaced intentionally.	Reconoces pocas de estas runas. Algunas parecen estar desfiguradas intencionalmente.	Vous ne reconnaissez que peu de ces runes. Certaines semblent avoir été intentionnellement défigurées.	Riconoscete poche di queste rune. Alcune sembrano essere state rovinate intenzionalmente.	Sie erkennen nur wenige dieser Runen. Einige scheinen absichtlich unkenntlich gemacht worden zu sein.	Вы узнаете лишь некоторые из этих рун. Некоторые, похоже, намеренно испорчены.	これらのルーン文字のほとんどが見覚えがありません。中には意図的に汚損されているものもあります。
 int_gravemessage_0	Part of a name is visible. "Loran..."	Se ve parte de un nombre: "Loran..."	Une partie d'un nom est visible. « Loran… »	È visibile parte del nome. "Loran..."	Ein Teil eines Namens ist sichtbar. „Loran …“	Видна часть имени. «Лоран...»	名前の一部が見えています。「ロラン…」
 int_getwood	Scrape Bark	Raspar la corteza	Écorce de grattage	Raschiare la corteccia	Rinde abkratzen	Скрести кору	樹皮を削る
-int_opendoor	Open Door	Puerta abierta	Porte ouverte	Porta aperta	Offene Tür	Открытая дверь	開かれた扉
 int_trydoor	Try Door	Puerta de prueba	Essayez la porte	Prova Porta	Versuchen Sie es mit der Tür	Попробуйте дверь	ドアを試す
 int_doorlocked	Door is locked.	La puerta está cerrada.	La porte est verrouillée.	La porta è chiusa a chiave.	Die Tür ist verschlossen.	Дверь заперта.	ドアは施錠されています。
-int_lootanimal	Gut	Intestino	Intestin	Intestino	Darm	Кишечник	腸
 int_loot	Search	Buscar	Recherche	Ricerca	Suchen	Поиск	検索
 int_talk	Talk	Hablar	Parler	Parlare	Sprechen	Разговаривать	話す
 int_sheepymessage0	I'm a sheep. Have some meat beacuse of that	Soy una oveja. Comeré algo de carne por eso.	Je suis un mouton. Mange de la viande à cause de ça.	Sono una pecora. Prendi un po' di carne per questo	Ich bin ein Schaf. Iss deswegen etwas Fleisch	Я овца. Вот за это и ешь мясо.	私は羊です。だから肉を食べましょう
