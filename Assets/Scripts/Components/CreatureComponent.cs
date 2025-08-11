@@ -7,10 +7,17 @@ enum Attitude {
     Hostile,
 }
 
+enum AbilityUsage {
+    Random,
+    Scripted,
+}
+
 class CreatureComponent : MonoBehaviour {
 
     private const float MOVE_THRESHOLD_RANGE = 0.05f;
     private const float FLEE_STAMINA_COST = 5.0f;
+    private const float ABILITY_MELEE_RANGE = 0.3f;
+    private const float ABILITY_PROJECTILE_RANGE = 2.0f;
 
     [Header("Attitude")]
     public Attitude attitude;
@@ -38,13 +45,16 @@ class CreatureComponent : MonoBehaviour {
     [Space(10)]
     public float engageRange;
     public float leashRange;
+    
+    [Space(10)]
+    public AbilityUsage usage;
+    public AbilityData[] abilities;
 
     public enum CreatureState {
         Inactive,
         Idle,
         Moving,
-        LightAttack,
-        HeavyAttack,
+        UsingAbility,
         Flinching,
         Dead,
     }
@@ -59,11 +69,13 @@ class CreatureComponent : MonoBehaviour {
     private PlayerComponent player;
     private CharacterController characterController;
     private CharacterRenderable characterRenderable;
+    private InventoryComponent inventory;
+    private AbilityComponent ability;
     
     private Vector3 startPosition;
     private Vector3 moveTargetPosition;
 
-    private bool attackDamageStarted;
+    private int nextAbilityIndex = -1;
 
     private Timer attackTimer = new Timer();
     private Timer attackDelayTimer = new Timer();
@@ -84,7 +96,11 @@ class CreatureComponent : MonoBehaviour {
         characterRenderable.onRenderingStart.Register(OnRenderingStart);
         characterRenderable.onRenderingEnd.Register(OnRenderingEnd);
         
+        inventory = GetComponent<InventoryComponent>();
+        ability = GetComponent<AbilityComponent>();
+        
         currentStamina = maxStamina;
+        SetNextAbilityIndex();
     }
 
     void Update(){
@@ -153,7 +169,6 @@ class CreatureComponent : MonoBehaviour {
                 if(playerDistance < engageRange){
                     creatureState = CreatureState.Moving;
                     characterRenderable.PlayAnimation(AnimationState.Walk);
-                
                     
                     moveTargetPosition = player.transform.position;
                 }
@@ -168,22 +183,25 @@ class CreatureComponent : MonoBehaviour {
                 Vector3 toTarget = moveTargetPosition - transform.position;
                 float toTargetDistance = toTarget.magnitude;
 
-                // if(playerDistance <= attackRange && cooldownTimer.Finished()){
-                //     // face player
-                //     transform.rotation = Quaternion.Euler(
-                //         transform.rotation.x,
-                //         Mathf.Atan2(toPlayer.x, toPlayer.z) * Mathf.Rad2Deg - 5.0f, // Magic number makes rotations look better *shrug*
-                //         transform.rotation.z
-                //     );
-                // 
-                //     // TODO switch these to ability-based things
-                //     characterRenderable.PlayAnimation(lightAttack ? AnimationState.LightAttack : AnimationState.HeavyAttack);
-                // 
-                //     creatureState = lightAttack ? CreatureState.LightAttack : CreatureState.HeavyAttack;
-                // }
+                AbilityData nextAbility = abilities[nextAbilityIndex];
+                float range = nextAbility.abilityType == AbilityType.FireProjectile ? ABILITY_PROJECTILE_RANGE : ABILITY_MELEE_RANGE;
+
+                if(playerDistance <= range && ability.CanCast(nextAbility)){
+                    // Face player
+                    transform.rotation = Quaternion.Euler(
+                        transform.rotation.x,
+                        Mathf.Atan2(toPlayer.x, toPlayer.z) * Mathf.Rad2Deg - 5.0f, // Magic number makes rotations look better *shrug*
+                        transform.rotation.z
+                    );
+                
+                    // Cast
+                    ability.Cast(nextAbility, null);
+                    creatureState = CreatureState.UsingAbility;
+                }
 
                 if(toTargetDistance < MOVE_THRESHOLD_RANGE){
                     creatureState = CreatureState.Idle;
+                    characterRenderable.PlayAnimation(AnimationState.Idle);
                 } else {
                     characterController.SimpleMove(toTarget.normalized * moveSpeed);
 
@@ -194,10 +212,14 @@ class CreatureComponent : MonoBehaviour {
                         transform.rotation.z
                     );
                 }
-            } else if(creatureState == CreatureState.LightAttack){
-                // TODO switch to ability
-            } else if(creatureState == CreatureState.HeavyAttack){
-                // TODO switch to ability
+            } else if(creatureState == CreatureState.UsingAbility){
+                if(ability.CastingAnyAbility()){
+                    ability.NotifyOfInput(abilities[nextAbilityIndex]);
+                } else {
+                    SetNextAbilityIndex();
+                    creatureState = CreatureState.Idle;
+                    characterRenderable.PlayAnimation(AnimationState.Idle);
+                }
             } else if(creatureState == CreatureState.Flinching){
                 if(flinchTimer.Finished()){
                     creatureState = CreatureState.Idle;
@@ -206,6 +228,14 @@ class CreatureComponent : MonoBehaviour {
             } else if(creatureState == CreatureState.Dead){
                 // Do anything?
             }
+        }
+    }
+    
+    private void SetNextAbilityIndex(){
+        if(usage == AbilityUsage.Random){
+            nextAbilityIndex = UnityEngine.Random.Range(0, abilities.Length);
+        } else if(usage == AbilityUsage.Scripted){
+            nextAbilityIndex = (nextAbilityIndex + 1) % abilities.Length;
         }
     }
 
@@ -246,7 +276,7 @@ class CreatureComponent : MonoBehaviour {
         creatureState = CreatureState.Inactive;
     }
     
-    public void ApplyEffects(EffectData[] effects){        
+    public void ApplyEffects(EffectData[] effects){
         for(int i = 0, count = effects.Length; i < count; ++i){
             if(effects[i].effectType == EffectType.ChangeCurrentHp){
                 float effectValue = effects[i].GetFinalValue();
@@ -266,9 +296,9 @@ class CreatureComponent : MonoBehaviour {
                 Debug.Log("Not implemented yet!");
             } else if(effects[i].effectType == EffectType.RegenCurrentStamina){
                 Debug.Log("Not implemented yet!");
-            } else if(effects[i].effectType == EffectType.GiveState){
+            } else if(effects[i].effectType == EffectType.GiveTagItem){
                 Debug.Log("Not implemented yet!");
-            } else if(effects[i].effectType == EffectType.RemoveState){
+            } else if(effects[i].effectType == EffectType.TakeTagItem){
                 Debug.Log("Not implemented yet!");
             }
         }

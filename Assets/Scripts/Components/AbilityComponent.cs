@@ -171,6 +171,8 @@ class AbilityComponent : MonoBehaviour {
                 return;
             }
             
+            hitbox.hitEffects = abilityData.effects;
+            
             // Play animation
             if(player != null){ player.PlayAnimation(abilityData.hitboxAnimation); }
             if(creature != null){ creature.PlayAnimation(abilityData.hitboxAnimation); }

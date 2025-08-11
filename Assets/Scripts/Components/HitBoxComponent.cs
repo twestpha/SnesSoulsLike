@@ -3,18 +3,17 @@ using UnityEngine;
 
 class HitBoxComponent : MonoBehaviour {
 
-    public float damage;
-    public BoxCollider hitBox;
-
-    public GameObject hitEffectsPrefab;
+    [NonSerialized] public EffectData[] hitEffects;
 
     private bool isPlayer;
+    private BoxCollider hitBox;
 
     private bool enableDamage;
     private Timer enableDamageTimer = new Timer();
 
     void Start(){
         isPlayer = GetComponentInParent<PlayerComponent>() != null;
+        hitBox = GetComponent<BoxCollider>();
     }
 
     void Update(){
@@ -42,25 +41,13 @@ class HitBoxComponent : MonoBehaviour {
                 CreatureComponent creatureComponent = other.gameObject.GetComponent<CreatureComponent>();
 
                 if(creatureComponent){
-                    creatureComponent.DealDamage(damage);
-
-                    GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
-                    Vector3 position = Vector3.Lerp(transform.parent.position, creatureComponent.transform.position, 0.5f);
-                    position.y = transform.position.y;
-
-                    newHitEffects.transform.position = position;
+                    creatureComponent.ApplyEffects(hitEffects);
                 }
             } else {           
                 PlayerComponent playerComponent = other.gameObject.GetComponent<PlayerComponent>();
 
                 if(playerComponent){
-                    if(playerComponent.DealDamage(damage)){
-                        GameObject newHitEffects = GameObject.Instantiate(hitEffectsPrefab);
-                        Vector3 position = Vector3.Lerp(transform.parent.position, playerComponent.transform.position, 0.5f);
-                        position.y = transform.position.y;
-
-                        newHitEffects.transform.position = position;
-                    }
+                    playerComponent.ApplyEffects(hitEffects);
                 }
             }
         }

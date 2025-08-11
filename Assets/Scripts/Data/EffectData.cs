@@ -13,8 +13,8 @@ public enum EffectType {
     RegenCurrentHp,
     RegenCurrentStamina,
     RegenCurrentMagic,
-    GiveState,
-    RemoveState,
+    GiveTagItem,
+    TakeTagItem,
 }
 
 public enum DamageType {
@@ -32,7 +32,7 @@ public class EffectData {
     public EffectType effectType;
     public Vector2 valueRange;
     public DamageType damageType;
-    public string state;
+    public ItemData tagItem;
     public float time;
     
     public float GetFinalValue(){

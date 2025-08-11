@@ -1,14 +1,16 @@
-
 [/] mausoleum model
 [/] Mausoleum temp interior, door interacts!
-
+[/] First rat enemies
+    [/] walk, attack animations
+    [/] enemy style behavior, 
+    [/] hit boxes
 
 
 [x] Open woods area where you start
-    - First rat enemies
-    - rat camp stuff
+    [x] rat camp art
+    [x] enemy patrolling
 
-[x] Spherecast for interactions?
+[x] SpherecastAll for interactions?
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
     - A bunch of dead sorcerers that summoned an angel

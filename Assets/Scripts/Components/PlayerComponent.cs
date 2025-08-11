@@ -556,7 +556,6 @@ class PlayerComponent : MonoBehaviour {
 
         if(currentStamina <= (staggerThreshold * maxStamina)){ // Staggering based on stamina
             playerState = PlayerState.Staggered;
-
             staggerTimer.Start();
 
             characterRenderable.PlayAnimation(AnimationState.Stagger);
@@ -731,9 +730,9 @@ class PlayerComponent : MonoBehaviour {
                 Debug.Log("Not implemented yet!");
             } else if(effects[i].effectType == EffectType.RegenCurrentStamina){
                 Debug.Log("Not implemented yet!");
-            } else if(effects[i].effectType == EffectType.GiveState){
+            } else if(effects[i].effectType == EffectType.GiveTagItem){
                 Debug.Log("Not implemented yet!");
-            } else if(effects[i].effectType == EffectType.RemoveState){
+            } else if(effects[i].effectType == EffectType.TakeTagItem){
                 Debug.Log("Not implemented yet!");
             }
         }
