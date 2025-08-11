@@ -1,16 +1,10 @@
-[/] mausoleum model
-[/] Mausoleum temp interior, door interacts!
-[/] First rat enemies
-    [/] walk, attack animations
-    [/] enemy style behavior, 
-    [/] hit boxes
-
+[/] rat camp art
 
 [x] Open woods area where you start
-    [x] rat camp art
-    [x] enemy patrolling
+    [x] enemy patrolling (needed?)
 
 [x] SpherecastAll for interactions?
+[x] Enemy death disables colliders
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
     - A bunch of dead sorcerers that summoned an angel
@@ -18,6 +12,7 @@
     - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
     - large main exit to Loma open world, village
 
+[x] Player stagger
 [x] Start work on the village
     - resting and saving at inn
         - generic signage
