@@ -1,13 +1,11 @@
-[/] rat camp art
-[/] Open woods area where you start
-[/] Place woods barrels and crates
+[/] Player stagger animation
+[/] BUG Can't interact sometimes (SpherecastAll?)
+[/] BUG Enemy death disables colliders
+[/] BUG Player can interact then not animate walking sometimes
 
-[x] Player stagger animation
 
-[x] BUG Can't interact sometimes (SpherecastAll?)
-[x] BUG Enemy death disables colliders
-[x] BUG Player can roll then not animate walking sometimes
 
+[x] Blood spawning on hit, staying around on ground, placeable/interactable item (interact with flask to pick up?)
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
     - A bunch of dead sorcerers that summoned an angel
@@ -38,7 +36,6 @@
     - more houses
     - How to do different ground textures?
 
-[x] Blood spawning on hit, staying around on ground, placeable/interactable item (interact with flask to pick up?)
 
 Hydlide quote, stick somewhere
 "Don't mistake recklessness for Courage"

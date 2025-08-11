@@ -253,6 +253,14 @@ class CreatureComponent : MonoBehaviour {
 
         if(currentHealth <= 0.0f){
             creatureState = CreatureState.Dead;
+            
+            characterController.enabled = false;
+            
+            // Disable all children game objects, to turn off damagable collider, etc.
+            for(int i = 0, count = transform.childCount; i < count; ++i){
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+            
             characterRenderable.PlayAnimation(AnimationState.Death);
 
             return;

@@ -27,6 +27,7 @@ class PlayerComponent : MonoBehaviour {
     
     private const int MAX_OPTIONS = 4;
     private const float INTERACT_DISTANCE = 0.4f;
+    private const float INTERACT_RADIUS = 0.1f;
     private const float MOVEMENT_STAMINA_COST = 1.0f;
     
     [Header("Movement")]
@@ -194,7 +195,7 @@ class PlayerComponent : MonoBehaviour {
             if(topAction){
                 Debug.DrawLine(transform.position, transform.position + (playerSpriteTransform.forward * INTERACT_DISTANCE), Color.blue, 5.0f, false);
                 
-                RaycastHit[] interactHits = Physics.RaycastAll(transform.position, playerSpriteTransform.forward, INTERACT_DISTANCE);
+                RaycastHit[] interactHits = Physics.SphereCastAll(transform.position, INTERACT_RADIUS, playerSpriteTransform.forward, INTERACT_DISTANCE);
                 for(int i = 0, hitCount = interactHits.Length; i < hitCount; ++i){
                     InteractComponent hitInteract = interactHits[i].collider.gameObject.GetComponentInParent<InteractComponent>();
                     
@@ -411,6 +412,7 @@ class PlayerComponent : MonoBehaviour {
         
         optionParent.SetActive(false);
         playerState = PlayerState.None;
+        movingAnimation = false;
     }
 
     public void SetPaused(bool newPaused){
