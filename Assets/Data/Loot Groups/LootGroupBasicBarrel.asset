@@ -27,3 +27,7 @@ MonoBehaviour:
     item: {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
   - quantityRange: {x: 1, y: 1}
     item: {fileID: 11400000, guid: 41462702cb4f1554eabe85cd4bf3af16, type: 2}
+  - quantityRange: {x: 1, y: 3}
+    item: {fileID: 11400000, guid: 2963d131ccc6f3e438c96dc160088a2b, type: 2}
+  - quantityRange: {x: 2, y: 3}
+    item: {fileID: 11400000, guid: 6dd9bf22c0dc29f46ae53569923450bd, type: 2}

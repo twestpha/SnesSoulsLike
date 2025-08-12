@@ -200,7 +200,9 @@ class AbilityComponent : MonoBehaviour {
             if(player != null){ player.ApplyEffects(abilityData.effects); }
             if(creature != null){ creature.ApplyEffects(abilityData.effects); }
             
-            inventory.TakeItem(castingItem);
+            if(castingItem != null){
+                inventory.TakeItem(castingItem);
+            }
         } else if(abilityData.abilityType == AbilityType.Placeable){
             GameObject newPlaceable = GameObject.Instantiate(abilityData.placeablePrefab);
             
@@ -221,7 +223,13 @@ class AbilityComponent : MonoBehaviour {
                 newPlaceable.transform.position = originTransform.position + (originTransform.forward * 0.2f);
             }
             
-            inventory.TakeItem(castingItem);
+            if(castingItem != null){
+                inventory.TakeItem(castingItem);
+            }
+            
+            if(abilityData.giveItemOnPlace != null){
+                inventory.GiveItem(abilityData.giveItemOnPlace);
+            }
         }
     }
     

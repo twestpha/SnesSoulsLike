@@ -50,6 +50,9 @@ class PlayerComponent : MonoBehaviour {
 
     [Header("Hurt Box")]
     public BoxCollider hurtBox;
+    
+    [Header("Spawning Blood on Hit")]
+    public AbilityData bleedAbility;
 
     [Space(10)]
     public float staggerThreshold = 0.5f;
@@ -545,6 +548,7 @@ class PlayerComponent : MonoBehaviour {
         }
 
         currentHealth -= damage;
+        ability.Cast(bleedAbility);
 
         if(currentHealth < 0){
             playerState = PlayerState.Dead;

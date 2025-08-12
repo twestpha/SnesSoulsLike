@@ -1,18 +1,29 @@
-[/] Player stagger animation
-[/] BUG Can't interact sometimes (SpherecastAll?)
-[/] BUG Enemy death disables colliders
-[/] BUG Player can interact then not animate walking sometimes
+[/] Blood spawning on hit, staying around on ground, placeable/interactable item (interact with vial to pick up?)
+[/] A bunch of dead sorcerers scattered around
+
+[/] Castle Pillars
+[/] Chandeliers
+[/] Fireplace
+[/] How do I want to handle existing lighting?
+
+[x] Hanging tapestries, paintings, shields
+[x] Low poly table, chair (triplanar wood, fix shader)
+
+[x] Torches
+    - on or off
+    - interactable, turns off and gives torch item
+[x] standing lights
 
 
-
-[x] Blood spawning on hit, staying around on ground, placeable/interactable item (interact with flask to pick up?)
 
 [x] Start work on the first dungeon, the ruins of the cursed king's castle
-    - A bunch of dead sorcerers that summoned an angel
-    - Rats enemy prowling inside
+    [x] angelic design
+    [x] Rats enemy prowling inside
         [x] enemy, friendly patrolling (needed?)
-    - eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
-    - large main exit to Loma open world, village
+    [x] eventually reach the angel, some lore dump, main quest given sort of (knowledge of the seven evils)
+        [x] Button to close message
+    [x] large main exit to Loma open world, village
+    
 
 [x] Start work on the village
     - resting and saving at inn

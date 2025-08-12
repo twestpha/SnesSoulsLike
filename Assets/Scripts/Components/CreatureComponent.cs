@@ -39,6 +39,9 @@ class CreatureComponent : MonoBehaviour {
 
     [Space(10)]
     public float deathTime;
+    
+    [Header("Spawning Blood on Hit")]
+    public AbilityData bleedAbility;
 
     [Header("Movement")]
     public float moveSpeed = 1.0f;
@@ -250,16 +253,16 @@ class CreatureComponent : MonoBehaviour {
         }
 
         currentHealth -= damage;
+        
+        if(bleedAbility != null){
+            ability.Cast(bleedAbility);
+        }
 
         if(currentHealth <= 0.0f){
             creatureState = CreatureState.Dead;
             
-            characterController.enabled = false;
-            
-            // Disable all children game objects, to turn off damagable collider, etc.
-            for(int i = 0, count = transform.childCount; i < count; ++i){
-                transform.GetChild(i).gameObject.SetActive(false);
-            }
+            // DONT DISABLE COLLIDERS
+            // Leave them for interaction
             
             characterRenderable.PlayAnimation(AnimationState.Death);
 

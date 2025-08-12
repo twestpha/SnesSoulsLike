@@ -22,11 +22,12 @@ public class InteractOption {
     public InteractType type;
     public ItemData[] requiredItems;
     public ItemType[] requiredItemTypes;
-    // TODO public bool consumeItemOnInteract;
+    public bool takeReqItems;
     public InteractCount count;
     
     [Header("Loot Options")]
     public ScriptableObject itemOrLootGroup;
+    public bool destroyOnLoot;
     
     [Header("Message Options")]
     public string messageLocText;
@@ -153,13 +154,25 @@ class InteractComponent : MonoBehaviour {
             option.count = InteractCount.None;
         }
         
+        // This just gets used a lot
+        InventoryComponent playerInventory = PlayerComponent.player.GetComponent<InventoryComponent>();
+        
+        // If marked to, take the required item(s)
+        if(option.takeReqItems){
+            for(int i = 0, count = option.requiredItems.Length; i < count; ++i){
+                playerInventory.TakeItem(option.requiredItems[i]);
+            }
+        }
+        
         if(option.type == InteractType.Loot){
-            InventoryComponent playerInventory = PlayerComponent.player.GetComponent<InventoryComponent>();
-
             if(option.itemOrLootGroup is ItemData singleItem){
                 playerInventory.GiveItem(singleItem);
             } else if(option.itemOrLootGroup is LootGroupData lootGroup){
                 lootGroup.GiveRandomItem(playerInventory);
+            }
+            
+            if(option.destroyOnLoot){
+                Destroy(gameObject);
             }
         } else if(option.type == InteractType.Message){
             PlayerComponent.player.ShowMessage(

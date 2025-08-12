@@ -146,6 +146,7 @@ MonoBehaviour:
   flinchChance: 0
   flinchTime: 0
   deathTime: 0
+  bleedAbility: {fileID: 11400000, guid: 810c2bbedfe896b41935bc697a22a00d, type: 2}
   moveSpeed: 0.6
   rotateSpeed: 45
   engageRange: 3
@@ -185,8 +186,10 @@ MonoBehaviour:
     type: 0
     requiredItems: []
     requiredItemTypes: 02000000
+    takeReqItems: 0
     count: 0
     itemOrLootGroup: {fileID: 11400000, guid: 5aa4d4bde5b09cb4aa11e5d9b0af56e3, type: 2}
+    destroyOnLoot: 0
     messageLocText: 
     giveItemAfterMessage: {fileID: 0}
     notYet: 0
@@ -296,7 +299,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.19
-  m_Height: 1
+  m_Radius: 0.16
+  m_Height: 0.84
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

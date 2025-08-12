@@ -46,8 +46,9 @@ public class LocalizationMenuItems : MonoBehaviour
         instance.StartCoroutine(instance.ScrapeLocalizationCoroutine());
     }
     
-    private IEnumerator ScrapeLocalizationCoroutine(){
+    private IEnumerator ScrapeLocalizationCoroutine(){        
         // Force assets to save and refresh because unity forgets to do that a _lot_
+        EditorUtility.SetDirty(instance);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         
@@ -105,37 +106,42 @@ public class LocalizationMenuItems : MonoBehaviour
             }
         }
         
-        ItemData[] allItems = Resources.FindObjectsOfTypeAll<ItemData>();
+        // ItemData[] allItems = Resources.FindObjectsOfTypeAll<ItemData>();
+        string[] allItemGuids = AssetDatabase.FindAssets("item");
     
-        for(int i = 0, count = allItems.Length; i < count; ++i){
-            {
-                string locKey = allItems[i].nameLoc;
-                string locValue = StripNewlines(Localizer.Localize(locKey));
-    
-                if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
-                    entries[locKey] = DEFAULT_EMPTY_LOC;
-                } else {
-                    entries[locKey] = locValue;
+        for(int i = 0, count = allItemGuids.Length; i < count; ++i){
+            ItemData item = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(allItemGuids[i]), typeof(ItemData)) as ItemData;
+            
+            if(item != null){
+                {
+                    string locKey = item.nameLoc;
+                    string locValue = StripNewlines(Localizer.Localize(locKey));
+                
+                    if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
+                        entries[locKey] = DEFAULT_EMPTY_LOC;
+                    } else {
+                        entries[locKey] = locValue;
+                    }
                 }
-            }
-            {
-                string locKey = allItems[i].pluralNameLoc;
-                string locValue = StripNewlines(Localizer.Localize(locKey));
-    
-                if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
-                    entries[locKey] = DEFAULT_EMPTY_LOC;
-                } else {
-                    entries[locKey] = locValue;
+                {
+                    string locKey = item.pluralNameLoc;
+                    string locValue = StripNewlines(Localizer.Localize(locKey));
+                
+                    if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
+                        entries[locKey] = DEFAULT_EMPTY_LOC;
+                    } else {
+                        entries[locKey] = locValue;
+                    }
                 }
-            }
-            {
-                string locKey = allItems[i].descLoc;
-                string locValue = StripNewlines(Localizer.Localize(locKey));
-    
-                if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
-                    entries[locKey] = DEFAULT_EMPTY_LOC;
-                } else {
-                    entries[locKey] = locValue;
+                {
+                    string locKey = item.descLoc;
+                    string locValue = StripNewlines(Localizer.Localize(locKey));
+                
+                    if(locValue.Contains(Localizer.MISSING_LOCALIZATION)){
+                        entries[locKey] = DEFAULT_EMPTY_LOC;
+                    } else {
+                        entries[locKey] = locValue;
+                    }
                 }
             }
         }
@@ -250,6 +256,12 @@ public class LocalizationMenuItems : MonoBehaviour
                     break;
                 case UnityWebRequest.Result.Success:
                     File.WriteAllText(Application.dataPath + "\\Data\\Localization\\localization.txt", webRequest.downloadHandler.text);
+                    
+                    // Force assets to save and refresh because unity forgets to do that a _lot_
+                    EditorUtility.SetDirty(instance);
+                    AssetDatabase.SaveAssets();
+                    AssetDatabase.Refresh();
+                    
                     Debug.Log("Successfully downloaded localization sheet and saved as localization.txt");
                     break;
             }

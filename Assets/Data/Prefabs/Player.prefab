@@ -1921,6 +1921,7 @@ MonoBehaviour:
   maxMagic: 50
   currentMagic: 50
   hurtBox: {fileID: 3900144391010879335}
+  bleedAbility: {fileID: 11400000, guid: 810c2bbedfe896b41935bc697a22a00d, type: 2}
   staggerThreshold: 1
   staggerTime: 0.8
   cameraDistanceBounds: {x: 0.011, y: 1}
@@ -2036,6 +2037,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc53beda95fbd5b4688d20e7e5447ae2, type: 2}
   - {fileID: 11400000, guid: 3add9b2c2e416f443a9b7c3f17ad8167, type: 2}
   - {fileID: 11400000, guid: 41462702cb4f1554eabe85cd4bf3af16, type: 2}
+  - {fileID: 11400000, guid: be1e810eca14f3540b44293818ffd56b, type: 2}
+  - {fileID: 11400000, guid: e9d755d122306e74796d243cc08ef379, type: 2}
   leftHandEquippedItem: {fileID: 0}
   rightHandEquippedItem: {fileID: 11400000, guid: 410a675bfb6b2544e86f5b88918f8978, type: 2}
   headEquippedItem: {fileID: 0}
